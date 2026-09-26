@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 38" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@900&amp;display=swap');
+      .w { font-family: 'Archivo', sans-serif; font-weight: 900; fill: #FFFFFF; }
+      .g { font-family: 'Archivo', sans-serif; font-weight: 900; fill: #F2B34F; }
+    </style>
+  </defs>
+  <!-- Main wordmark -->
+  <text class="w" x="0" y="29" font-size="30" letter-spacing="-1.2">REVAMP</text>
+  <text class="g" x="109" y="29" font-size="30" letter-spacing="-1.5">365</text>
+  <text class="w" x="167" y="29" font-size="18" letter-spacing="0" font-weight="700">.ai</text>
+  <!-- Gold accent bar above E area -->
+  <rect x="31" y="2" width="12" height="2.5" rx="0.5" fill="#F2B34F"/>
+</svg>

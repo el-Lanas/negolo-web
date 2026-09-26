@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClubMap — Miami Beach Clubs Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C1A2B; --navy-2:#132A45; --sand:#F6F1E7; --ink:#0C1A2B; --muted:#6B7789;
+    --gold:#C8A96A; --line:#E3E7EE; --radius:16px;
+    --shadow:0 1px 2px rgba(12,26,43,.05), 0 18px 44px rgba(12,26,43,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;overflow:hidden}
+  /* ---------- top bar ---------- */
+  header{position:fixed;inset:0 0 auto 0;height:64px;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 22px}
+  .logo{display:flex;align-items:center;gap:9px;font-family:Fraunces,serif;font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .logo i{width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#E9D9AE,var(--gold))}
+  .search{flex:1;max-width:420px;background:#F4F6F9;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:13.5px;color:var(--muted)}
+  .spacer{flex:1}
+  .pill{border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:13px;font-weight:600;color:var(--navy);background:#fff;cursor:pointer}
+  .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--navy),#3E6A9A);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;cursor:pointer}
+  /* ---------- layout ---------- */
+  .app{position:fixed;inset:64px 0 0 0;display:grid;grid-template-columns:1.35fr .65fr}
+  /* ---------- map ---------- */
+  .map{position:relative;overflow:hidden;background:#EAF0F6;cursor:grab}
+  .map.drag{cursor:grabbing}
+  .layer{position:absolute;left:0;top:0;width:1500px;height:1100px;transform-origin:0 0;will-change:transform}
+  .layer svg{position:absolute;inset:0;width:100%;height:100%}
+  .pin{position:absolute;transform:translate(-50%,-100%);z-index:3}
+  .pin b{display:block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 12px 7px 9px;font-size:12.5px;font-weight:600;box-shadow:var(--shadow);white-space:nowrap;display:flex;align-items:center;gap:7px}
+  .pin b::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(200,169,106,.25)}
+  .pin.on b{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .pin.on b::before{background:#fff}
+  .zoom{position:absolute;right:18px;bottom:18px;z-index:5;display:flex;flex-direction:column;gap:1px;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+  .zoom button{width:40px;height:38px;border:0;background:#fff;font-size:17px;cursor:pointer;color:var(--navy)}
+  .zoom button:hover{background:#F4F6F9}
+  .hint{position:absolute;left:18px;bottom:18px;z-index:5;background:rgba(12,26,43,.82);color:#fff;font-size:12px;padding:9px 13px;border-radius:999px}
+  /* ---------- list ---------- */
+  .rail{border-left:1px solid var(--line);background:var(--sand);overflow:auto;padding:24px 22px 90px}
+  .rail h2{font-family:Fraunces,serif;font-weight:600;font-size:25px;letter-spacing:-.01em}
+  .rail p.sub{color:var(--muted);font-size:13.5px;margin-top:8px;line-height:1.55}
+  .club{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s}
+  .club:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#D8DEE8}
+  .club.on{border-color:var(--gold);box-shadow:0 12px 30px rgba(200,169,106,.22)}
+  .club h3{font-size:15.5px}
+  .club span{display:block;color:var(--muted);font-size:12.5px;margin-top:5px}
+  .club .meta{display:flex;gap:8px;margin-top:11px;font-size:11.5px}
+  .tag{background:#F2F4F8;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:#42536B;font-weight:600}
+  /* ---------- AI agent ---------- */
+  .agent{position:fixed;right:26px;bottom:26px;z-index:60;display:flex;align-items:flex-end;gap:12px}
+  .agent .bubble{background:#fff;border:1px solid var(--line);border-radius:14px 14px 4px 14px;box-shadow:var(--shadow);padding:12px 14px;font-size:13px;max-width:280px;display:none}
+  .agent.open .bubble{display:block}
+  .agent .bubble b{display:block;margin-bottom:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .agent .bubble a{display:block;color:var(--navy);text-decoration:none;font-weight:600;padding:7px 0;border-top:1px solid var(--line);font-size:13px}
+  .agent .btnAgent{width:62px;height:62px;border-radius:50%;background:var(--navy);border:2px solid #fff;box-shadow:0 14px 30px rgba(12,26,43,.28);cursor:pointer;display:grid;place-items:center;padding:0}
+  /* ---------- profile panel ---------- */
+  .panel{position:fixed;top:0;right:0;bottom:0;width:400px;max-width:92vw;background:#fff;z-index:70;box-shadow:-24px 0 60px rgba(12,26,43,.18);transform:translateX(102%);transition:transform .45s cubic-bezier(.16,1,.3,1);padding:26px}
+  .panel.open{transform:none}
+  .panel h2{font-family:Fraunces,serif;font-size:23px;font-weight:600}
+  .panel .who{display:flex;gap:14px;align-items:center;margin:20px 0 26px}
+  .panel .who .avatar{width:54px;height:54px;font-size:16px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+  .field input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:14px;font-family:inherit}
+  .toggle{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:13px 0;font-size:14px}
+  .sw{width:42px;height:24px;border-radius:999px;background:#D8DEE8;position:relative;cursor:pointer}
+  .sw i{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .25s}
+  .sw.on{background:var(--gold)}
+  .sw.on i{left:21px}
+  .close{position:absolute;top:20px;right:20px;border:0;background:#F2F4F8;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:15px}
+  @media (max-width:900px){
+    .app{grid-template-columns:1fr;grid-template-rows:52vh 1fr}
+    .rail{border-left:0;border-top:1px solid var(--line);padding-bottom:110px}
+    .search{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><i></i>ClubMap</div>
+  <div class="search">Search Miami Beach clubs, beaches, marinas…</div>
+  <div class="spacer"></div>
+  <button class="pill" id="openProfile">Profile &amp; settings</button>
+  <div class="avatar" id="avatar2">PL</div>
+</header>
+
+<div class="app">
+  <div class="map" id="map">
+    <div class="layer" id="layer">
+      <svg viewBox="0 0 1500 1100" preserveAspectRatio="none">
+        <rect width="1500" height="1100" fill="#DCE7F0"/>
+        <path d="M0 0 H1500 V640 C1180 690 900 760 640 900 C470 990 260 1060 0 1100 Z" fill="#F3EFE6"/>
+        <path d="M0 0 H1500 V600 C1180 650 900 720 640 860 C470 950 260 1020 0 1060 Z" fill="#EDE7DA"/>
+        <path d="M60 210 C420 250 760 330 1100 300 C1300 285 1400 300 1500 320" stroke="#FFFFFF" stroke-width="14" fill="none" opacity=".85"/>
+        <path d="M40 420 C380 470 700 540 1060 520 C1260 510 1380 530 1500 560" stroke="#FFFFFF" stroke-width="10" fill="none" opacity=".7"/>
+        <path d="M120 640 C420 660 760 720 1120 700" stroke="#FFFFFF" stroke-width="8" fill="none" opacity=".6"/>
+        <path d="M560 0 C600 180 620 340 640 900" stroke="#FFFFFF" stroke-width="7" fill="none" opacity=".5"/>
+        <path d="M980 0 C990 200 1000 400 1020 760" stroke="#FFFFFF" stroke-width="7" fill="none" opacity=".5"/>
+        <text x="120" y="150" font-family="Inter" font-size="26" fill="#8CA5BC" font-weight="600" letter-spacing="6">BISCAYNE BAY</text>
+        <text x="1180" y="980" font-family="Inter" font-size="30" fill="#9FB3C6" font-weight="600" letter-spacing="8" transform="rotate(-18 1180 980)">ATLANTIC OCEAN</text>
+      </svg>
+      <div class="pin" style="left:1050px;top:520px"><b>Fisher Island Club</b></div>
+      <div class="pin" style="left:980px;top:250px"><b>Soho Beach House</b></div>
+      <div class="pin" style="left:700px;top:150px"><b>The Surf Club</b></div>
+      <div class="pin" style="left:520px;top:60px"><b>The Bath Club</b></div>
+    </div>
+    <div class="zoom"><button id="zin">+</button><button id="zout">−</button></div>
+    <div class="hint">Drag the map to browse · hover a club to fly there</div>
+  </div>
+
+  <aside class="rail">
+    <h2>Featured clubs</h2>
+    <p class="sub">Four members-only landmarks along Collins Avenue — hover any card and the map flies to it.</p>
+    <div class="club" data-i="0"><h3>The Bath Club</h3><span>5937 Collins Ave, Miami Beach, FL 33140</span><div class="meta"><span class="tag">Beach club</span><span class="tag">Tennis</span><span class="tag">Since 1926</span></div></div>
+    <div class="club" data-i="1"><h3>The Surf Club</h3><span>9011 Collins Ave, Surfside, FL 33154</span><div class="meta"><span class="tag">Four Seasons</span><span class="tag">Residences</span><span class="tag">Oceanfront</span></div></div>
+    <div class="club" data-i="2"><h3>Fisher Island Club</h3><span>1 Fisher Island Dr, Miami Beach, FL 33109</span><div class="meta"><span class="tag">Private island</span><span class="tag">Golf</span><span class="tag">Marina</span></div></div>
+    <div class="club" data-i="3"><h3>Soho Beach House</h3><span>4385 Collins Ave, Miami Beach, FL 33140</span><div class="meta"><span class="tag">Members club</span><span class="tag">Spa</span><span class="tag">Cowshed</span></div></div>
+  </aside>
+</div>
+
+<div class="agent" id="agent">
+  <div class="bubble">
+    <b>Concierge · AI agent</b>
+    “Good afternoon. I can handle this for you:”
+    <a href="#" data-act="1">Book a tour at The Bath Club →</a>
+    <a href="#" data-act="2">Compare membership fees →</a>
+    <a href="#" data-act="3">Request availability for Saturday →</a>
+  </div>
+  <button class="btnAgent" id="agentBtn" title="AI concierge">
+    <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="9" r="5.4" fill="#F1D7B8"/>
+      <path d="M13.5 9.5c0-4 2.9-6.5 6.5-6.5s6.5 2.5 6.5 6.5c-2-1.6-4-2.3-6.5-2.3S15.5 7.9 13.5 9.5z" fill="#26364B"/>
+      <path d="M20 15.5 27 19v13.5H13V19z" fill="#26364B"/>
+      <path d="M20 15.5 26 18.6 20 25 14 18.6z" fill="#F4F7FB"/>
+      <path d="M20 17.2 24 19 20 23 16 19z" fill="#26364B"/>
+      <path d="M20 23 22.6 19.7 20 30 17.4 19.7z" fill="#B4443C"/>
+    </svg>
+  </button>
+</div>
+
+<aside class="panel" id="panel">
+  <button class="close" id="closePanel">✕</button>
+  <h2>Profile &amp; settings</h2>
+  <div class="who"><div class="avatar">PL</div><div><b>Piero L.</b><div style="color:var(--muted);font-size:13px">piero@example.com · Growth plan</div></div></div>
+  <div class="field"><label>Full name</label><input value="Piero L."></div>
+  <div class="field"><label>Email</label><input value="piero@example.com"></div>
+  <div class="field"><label>Preferred locations</label><input value="Miami Beach, Surfside"></div>
+  <div class="toggle"><span>Club alerts on hover</span><span class="sw on"><i></i></span></div>
+  <div class="toggle"><span>AI concierge auto-actions</span><span class="sw on"><i></i></span></div>
+  <div class="toggle"><span>Weekly digest</span><span class="sw"><i></i></span></div>
+  <div class="toggle"><span>Public profile</span><span class="sw"><i></i></span></div>
+  <button class="pill" style="margin-top:24px;width:100%;padding:13px;background:var(--navy);color:#fff;border-color:var(--navy)">Save changes</button>
+</aside>
+
+<script>
+  const layer = document.getElementById('layer');
+  const map = document.getElementById('map');
+  const pins = Array.from(document.querySelectorAll('.pin'));
+  const clubs = Array.from(document.querySelectorAll('.club'));
+  let tx = -260, ty = -60, sc = 0.9;          /* camera */
+  let cw = 0, ch = 0;
+
+  function size() { const r = map.getBoundingClientRect(); cw = r.width; ch = r.height; }
+  function apply() {
+    layer.style.transform = `translate(${tx}px,${ty}px) scale(${sc})`;
+    layer.querySelectorAll('svg text,.pin b').forEach(e => e.style.fontSize = '');
+  }
+  function flyTo(i) {
+    size();
+    const p = pins[i];
+    const px = parseFloat(p.style.left), py = parseFloat(p.style.top);
+    tx = cw / 2 - px * sc;
+    ty = ch / 2 - py * sc;
+    layer.style.transition = 'transform 900ms cubic-bezier(.16,1,.3,1)';
+    apply();
+    setTimeout(() => layer.style.transition = '', 950);
+  }
+  clubs.forEach((c, i) => {
+    c.addEventListener('mouseenter', () => { clubs.forEach(x => x.classList.remove('on')); pins.forEach(x => x.classList.remove('on')); c.classList.add('on'); pins[i].classList.add('on'); flyTo(i); });
+  });
+  addEventListener('resize', () => { size(); apply(); });
+
+  /* drag */
+  let down = false, sx = 0, sy = 0;
+  map.addEventListener('pointerdown', e => { down = true; sx = e.clientX - tx; sy = e.clientY - ty; map.classList.add('drag'); });
+  addEventListener('pointermove', e => { if (!down) return; tx = e.clientX - sx; ty = e.clientY - sy; apply(); });
+  addEventListener('pointerup', () => { down = false; map.classList.remove('drag'); });
+  document.getElementById('zin').onclick = () => { sc = Math.min(2.2, sc + 0.18); apply(); };
+  document.getElementById('zout').onclick = () => { sc = Math.max(0.5, sc - 0.18); apply(); };
+
+  /* agent + profile */
+  document.getElementById('agentBtn').onclick = () => document.getElementById('agent').classList.toggle('open');
+  document.getElementById('openProfile').onclick = () => document.getElementById('panel').classList.add('open');
+  document.getElementById('avatar2').onclick = () => document.getElementById('panel').classList.add('open');
+  document.getElementById('closePanel').onclick = () => document.getElementById('panel').classList.remove('open');
+  document.querySelectorAll('.sw').forEach(s => s.onclick = () => s.classList.toggle('on'));
+
+  size(); apply();
+</script>
+</body>
+</html>

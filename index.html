@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>negolo — Desarrollo web, apps y chatbots</title>
+<meta name="description" content="Diseñamos y desarrollamos páginas web, tiendas, apps y chatbots para negocios. Landings desde S/300, con dominio, hosting y correos. Cotización gratis y sin compromiso.">
+<meta property="og:title" content="negolo — Tu negocio, sin vueltas en internet">
+<meta property="og:description" content="Webs, apps y chatbots que venden. Landings desde S/300 con dominio, hosting y 3 correos. Cotización gratis.">
+<meta property="og:image" content="assets/brand/og-image.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/brand/favicon.ico">
+<link rel="apple-touch-icon" href="assets/brand/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#E8B84B; --gold-soft:#F5E6A0; --plum:#2D1B36; --plum-2:#3A2447;
+    --lav:#F5F0F7; --white:#FFFFFF; --muted:#6A5B75; --muted-d:#C9BBD6;
+    --line:rgba(45,27,54,.12); --line-d:rgba(232,184,75,.22);
+    --r-s:12px; --r:18px; --r-l:28px;
+    --sh-1:0 1px 2px rgba(45,27,54,.06), 0 8px 24px rgba(45,27,54,.08);
+    --sh-2:0 2px 4px rgba(45,27,54,.08), 0 24px 60px rgba(45,27,54,.14);
+    --ff:'Nunito',-apple-system,'Segoe UI',Arial,sans-serif;
+    --max:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--ff);background:var(--lav);color:var(--plum);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.12;letter-spacing:-.02em;font-weight:900}
+  h2{font-size:clamp(28px,3.4vw,44px)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);border-radius:2px}
+  .lead{color:var(--muted);font-size:17px;max-width:62ch}
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:15px 26px;font-weight:800;font-size:15px;text-decoration:none;border:2px solid transparent;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;cursor:pointer;font-family:inherit}
+  .btn:hover{transform:translateY(-2px)}
+  .btn--gold{background:var(--gold);color:var(--plum);box-shadow:0 10px 26px rgba(232,184,75,.35)}
+  .btn--gold:hover{background:var(--gold-soft)}
+  .btn--ghost{background:transparent;color:var(--plum);border-color:var(--line)}
+  .btn--ghost-d{background:transparent;color:var(--gold);border-color:var(--line-d)}
+  .btn--wa{background:#25D366;color:#08321b;box-shadow:0 10px 26px rgba(37,211,102,.3)}
+  .btn svg{width:17px;height:17px}
+  /* ---------- nav ---------- */
+  header.nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(45,27,54,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(232,184,75,.14)}
+  .nav__in{display:flex;align-items:center;gap:26px;height:74px}
+  .nav__logo img{height:30px;width:auto}
+  .nav__links{display:flex;gap:24px;margin-left:auto}
+  .nav__links a{color:var(--muted-d);text-decoration:none;font-size:14.5px;font-weight:700;transition:color .18s}
+  .nav__links a:hover{color:var(--gold)}
+  .nav__cta{display:flex;gap:10px;align-items:center}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{display:block;width:24px;height:2.5px;background:var(--gold);border-radius:2px;margin:5px 0}
+  /* ---------- hero ---------- */
+  .hero{position:relative;background:
+      radial-gradient(1100px 620px at 78% -10%, rgba(232,184,75,.16), transparent 62%),
+      radial-gradient(900px 520px at 6% 110%, rgba(108,45,130,.28), transparent 60%),
+      var(--plum);
+    color:var(--white);padding:150px 0 96px;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,75,.35),transparent)}
+  .hero__grid{display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(36px,4.6vw,62px);color:var(--white);margin:20px 0 18px}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p.sub{color:var(--muted-d);font-size:17.5px;max-width:52ch}
+  .hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  .hero__stats{display:flex;gap:34px;margin-top:38px;flex-wrap:wrap}
+  .hero__stats b{display:block;font-size:26px;font-weight:900;color:var(--gold)}
+  .hero__stats span{font-size:13.5px;color:var(--muted-d)}
+  .hero__card{background:var(--plum-2);border:1px solid rgba(232,184,75,.18);border-radius:var(--r-l);padding:18px;box-shadow:var(--sh-2)}
+  .hero__card .bar{display:flex;gap:7px;margin-bottom:14px}
+  .hero__card .bar i{width:10px;height:10px;border-radius:50%;background:rgba(232,184,75,.35);display:block}
+  .shot{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+  .chat{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .bub{background:#fff;color:var(--plum);border-radius:14px 14px 14px 4px;padding:11px 14px;font-size:13.5px;font-weight:600;max-width:88%}
+  .bub--in{align-self:flex-end;background:var(--gold);border-radius:14px 14px 4px 14px}
+  .badge{display:inline-flex;align-items:center;gap:9px;background:rgba(232,184,75,.14);border:1px solid rgba(232,184,75,.32);color:var(--gold);border-radius:999px;padding:8px 15px;font-size:12.5px;font-weight:800;letter-spacing:.04em}
+  .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+  /* ---------- sections ---------- */
+  section{padding:86px 0}
+  .sec-head{max-width:720px;margin-bottom:44px}
+  .sec-head h2{margin:14px 0 12px}
+  .dark{background:
+      radial-gradient(900px 500px at 88% 0%, rgba(232,184,75,.12), transparent 60%),
+      var(--plum);color:var(--white)}
+  .dark .lead{color:var(--muted-d)}
+  .dark .eyebrow{color:var(--gold)}
+  /* ---------- tech strip ---------- */
+  .tech{display:flex;gap:14px;flex-wrap:wrap;padding:26px 0 0}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:800;color:var(--muted);background:var(--white)}
+  /* ---------- services ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--sh-1);transition:transform .22s ease, box-shadow .22s ease, border-color .22s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:rgba(232,184,75,.5)}
+  .card .ic{width:46px;height:46px;border-radius:14px;background:rgba(232,184,75,.16);border:1px solid rgba(232,184,75,.32);display:grid;place-items:center;color:var(--plum);font-weight:900}
+  .card h3{font-size:19px;margin:16px 0 8px}
+  .card p{color:var(--muted);font-size:14.5px}
+  .card ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:var(--muted)}
+  .card li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:8px}
+  /* ---------- portfolio ---------- */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .filters button{border:1px solid var(--line);background:var(--white);color:var(--plum);border-radius:999px;padding:9px 16px;font-weight:800;font-size:13.5px;cursor:pointer;font-family:inherit}
+  .filters button.on{background:var(--plum);color:var(--gold);border-color:var(--plum)}
+  .grid-pf{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+  .pf{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-1);text-decoration:none;display:flex;flex-direction:column;transition:transform .22s ease, box-shadow .22s ease}
+  .pf:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+  .pf__img{aspect-ratio:16/10.5;overflow:hidden;background:var(--lav)}
+  .pf__img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+  .pf:hover .pf__img img{transform:scale(1.045)}
+  .pf__b{padding:18px 20px 22px;display:flex;flex-direction:column;gap:9px;flex:1}
+  .tags{display:flex;gap:7px;flex-wrap:wrap}
+  .tg{font-size:10.5px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(232,184,75,.18);color:#7a5a10;border:1px solid rgba(232,184,75,.4)}
+  .pf h3{font-size:17.5px;line-height:1.3}
+  .pf p{color:var(--muted);font-size:13.5px;flex:1}
+  .pf .more{color:#8a6a12;font-size:13.5px;font-weight:800}
+  /* ---------- pricing ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:20px;align-items:stretch}
+  .tier{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;display:flex;flex-direction:column;position:relative;box-shadow:var(--sh-1)}
+  .tier--pop{border:2px solid var(--gold);box-shadow:0 20px 50px rgba(232,184,75,.28);transform:translateY(-6px)}
+  .tier--custom{background:linear-gradient(160deg,#fff, #fdf6e4);border-style:dashed}
+  .tier .flag{position:absolute;top:-13px;left:22px;background:var(--gold);color:var(--plum);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:6px 12px}
+  .tier h3{font-size:16.5px}
+  .tier .price{font-size:40px;font-weight:900;margin:12px 0 2px;letter-spacing:-.03em}
+  .tier .price span{font-size:14px;font-weight:700;color:var(--muted)}
+  .tier .price-note{font-size:12.5px;color:var(--muted);font-weight:700}
+  .tier ul{list-style:none;margin:18px 0 22px;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:var(--muted)}
+  .tier li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:8px}
+  .tier .btn{margin-top:auto;justify-content:center;padding:13px 20px;font-size:14px}
+  .extras{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .extra{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:13.5px;font-weight:700;color:var(--muted)}
+  .extra b{color:var(--plum)}
+  .guarantee{margin-top:22px;display:flex;gap:12px;align-items:flex-start;background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.35);border-radius:14px;padding:16px 18px;font-size:14px;font-weight:600}
+  /* ---------- process ---------- */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;counter-reset:s}
+  .step{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px 22px;position:relative}
+  .step::before{counter-increment:s;content:"0" counter(s);font-size:13px;font-weight:900;color:var(--gold);letter-spacing:.1em}
+  .step h3{font-size:17px;margin:10px 0 8px}
+  .step p{color:var(--muted);font-size:13.5px}
+  /* ---------- cases ---------- */
+  .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .case{background:var(--plum-2);border:1px solid rgba(232,184,75,.18);border-radius:var(--r);padding:26px;color:#fff}
+  .case b{display:block;font-size:32px;font-weight:900;color:var(--gold);letter-spacing:-.02em}
+  .case span{color:var(--muted-d);font-size:14px}
+  .case p{margin-top:14px;color:#e9e2ee;font-size:14px}
+  /* ---------- faq ---------- */
+  .faq{max-width:860px}
+  .qa{border-bottom:1px solid var(--line)}
+  .qa button{width:100%;background:none;border:0;text-align:left;padding:22px 0;font-family:inherit;font-size:17px;font-weight:800;color:var(--plum);cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center}
+  .qa button i{width:26px;height:26px;border-radius:50%;background:rgba(232,184,75,.2);display:grid;place-items:center;font-style:normal;font-weight:900;color:var(--plum);flex:0 0 auto;transition:transform .25s}
+  .qa.open button i{transform:rotate(45deg)}
+  .qa .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .qa .a p{color:var(--muted);font-size:15px;padding-bottom:22px;max-width:74ch}
+  /* ---------- final cta / footer ---------- */
+  .final{background:linear-gradient(120deg,var(--plum), #4a2d5a 60%, #6b3f1f);color:#fff;border-radius:var(--r-l);padding:52px;display:flex;justify-content:space-between;gap:30px;align-items:center;flex-wrap:wrap;box-shadow:var(--sh-2)}
+  .final h2{color:#fff}
+  .final p{color:#efe8f2;margin-top:12px;max-width:52ch}
+  footer{background:var(--plum);color:var(--muted-d);padding:56px 0 34px;margin-top:80px}
+  .foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:34px}
+  footer h4{color:var(--gold);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+  footer a{color:var(--muted-d);text-decoration:none;font-size:14px;display:block;padding:5px 0}
+  footer a:hover{color:var(--gold)}
+  .foot__brand img{height:32px;margin-bottom:16px}
+  .foot__bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px}
+  /* ---------- whatsapp float ---------- */
+  .wa{position:fixed;right:22px;bottom:22px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px rgba(37,211,102,.45);transition:transform .2s}
+  .wa:hover{transform:scale(1.07)}
+  .wa svg{width:32px;height:32px;fill:#08321b}
+  /* ---------- reveal ---------- */
+  .rv{opacity:0;transform:translateY(22px)}
+  .rv.in{opacity:1;transform:none;transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1)}
+  @media (prefers-reduced-motion:reduce){ .rv{opacity:1;transform:none} *{animation:none!important;transition:none!important} }
+  /* ---------- responsive ---------- */
+  @media (max-width:960px){
+    .hero__grid{grid-template-columns:1fr;gap:38px}
+    .nav__links{display:none;position:absolute;top:74px;left:0;right:0;background:var(--plum);flex-direction:column;padding:18px 24px;border-bottom:1px solid rgba(232,184,75,.2)}
+    .nav__links.open{display:flex}
+    .burger{display:block;margin-left:auto}
+    .nav__cta .btn{padding:11px 18px;font-size:13.5px}
+    .foot{grid-template-columns:1fr;gap:26px}
+    section{padding:64px 0}
+    .final{padding:34px 26px}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="nav__logo" href="#top" aria-label="negolo"><img src="assets/brand/logo-full-dark.svg" alt="negolo"></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#precios">Precios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <div class="nav__cta">
+      <a class="btn btn--wa" data-wa="Hola negolo, quiero cotizar mi página web" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.4-1-4-3.5-4.1-3.7-.1-.2-1-1.3-1-2.5s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.5.1.3.6 1 1.3 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>WhatsApp</a>
+      <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="badge">Disponible para nuevos proyectos</span>
+      <h1>Tu negocio, <em>sin vueltas</em> en internet.</h1>
+      <p class="sub">Diseñamos y desarrollamos webs, tiendas, apps y chatbots que se ven increíbles y traen clientes. Precios claros, entrega rápida y soporte real.</p>
+      <div class="hero__cta">
+        <a class="btn btn--gold" data-wa="Hola negolo, quiero cotizar mi página web sin compromiso" href="#">Cotiza gratis por WhatsApp →</a>
+        <a class="btn btn--ghost-d" href="#portafolio">Ver portafolio</a>
+      </div>
+      <div class="hero__stats">
+        <div><b>15+</b><span>proyectos entregados</span></div>
+        <div><b>&lt; 5 min</b><span>tiempo de respuesta</span></div>
+        <div><b>Desde S/300</b><span>landing lista para vender</span></div>
+      </div>
+    </div>
+    <div class="hero__card">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="shot"><img src="portafolio/11-convalt/preview.png" alt="Proyecto negolo — web 3D" loading="lazy"></div>
+      <div class="chat">
+        <div class="bub">Hola, vi su portafolio. ¿Cuánto cuesta una web para mi restaurante?</div>
+        <div class="bub bub--in">¡Hola! Podemos tener tu landing lista esta semana. Te mando 3 opciones 👇</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Servicios</span>
+      <h2>Todo lo que tu negocio necesita para vender online</h2>
+      <p class="lead">No hacemos plantillas genéricas: cada proyecto se diseña a medida, con foco en conversión, velocidad y que tú puedas administrarlo sin depender de nadie.</p>
+    </div>
+    <div class="cards">
+      <div class="card rv"><div class="ic">01</div><h3>Landing pages</h3><p>Una página rápida y directa, pensada para que el visitante te escriba o te compre.</p><ul><li>Diseño a medida</li><li>Botón de WhatsApp y formularios</li><li>Lista en 3-5 días</li></ul></div>
+      <div class="card rv"><div class="ic">02</div><h3>Webs corporativas</h3><p>Sitios de 5 a 8 secciones para presentar tu empresa, servicios y equipo con seriedad.</p><ul><li>Estructura clara y SEO básico</li><li>Autoadministrable</li><li>Dominio y correos incluidos</li></ul></div>
+      <div class="card rv"><div class="ic">03</div><h3>Tiendas y catálogos</h3><p>Vende online con carrito, pagos y gestión de pedidos simple.</p><ul><li>Shopify o WooCommerce</li><li>Pagos y envíos configurados</li><li>Capacitación para tu equipo</li></ul></div>
+      <div class="card rv"><div class="ic">04</div><h3>Apps móviles</h3><p>Aplicaciones para Android y iOS conectadas a tu web o sistema.</p><ul><li>React Native / Flutter</li><li>Notificaciones y perfiles</li><li>Publicación en tiendas</li></ul></div>
+      <div class="card rv"><div class="ic">05</div><h3>Chatbots y automatización</h3><p>Responde 24/7 y automatiza tareas repetitivas sin contratar más personal.</p><ul><li>WhatsApp y web chat</li><li>Integración con tu CRM</li><li>Flujos a medida</li></ul></div>
+      <div class="card rv"><div class="ic">06</div><h3>Diseño y marca</h3><p>Logo, identidad visual y piezas para redes, coherentes con tu web.</p><ul><li>Logo y manual de marca</li><li>Banners y posts</li><li>Aplicación en packaging</li></ul></div>
+    </div>
+    <div class="tech rv">
+      <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">WordPress</span><span class="chip">WooCommerce</span><span class="chip">Shopify</span><span class="chip">Three.js / WebGL</span><span class="chip">PWA</span>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="portafolio">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Portafolio</span>
+      <h2>Proyectos reales, no maquetas</h2>
+      <p class="lead">Cada trabajo incluye su demo navegable. Filtra por tipo y ábrelos: todo lo que ves está hecho con código, sin plantillas compradas.</p>
+    </div>
+    <div class="filters rv" id="filters">
+      <button data-f="all" class="on">Todos</button>
+      <button data-f="landing">Landing</button>
+      <button data-f="web">Web / App</button>
+      <button data-f="tienda">Tienda</button>
+      <button data-f="3d">3D / Interactivo</button>
+      <button data-f="branding">Branding</button>
+    </div>
+    <div class="grid-pf" id="pfGrid"></div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Precios</span>
+      <h2>Precios claros, sin sorpresas</h2>
+      <p class="lead">Elige un plan o pide una cotización a medida. Todas las cotizaciones son gratis y sin compromiso: si tu proyecto no encaja en un plan, lo armamos contigo.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier rv">
+        <h3>Básico</h3>
+        <div class="price">S/300</div>
+        <div class="price-note">pago único</div>
+        <ul><li>Landing de 1 página</li><li>Diseño a medida, responsive</li><li>Botón de WhatsApp y formulario</li><li>Sin dominio, correo ni hosting</li></ul>
+        <a class="btn btn--ghost" data-wa="Hola negolo, me interesa el plan Básico de S/300" href="#">Quiero este plan</a>
+      </div>
+      <div class="tier tier--pop rv">
+        <span class="flag">Más pedido</span>
+        <h3>Landing Pro</h3>
+        <div class="price">S/500<span> /año</span></div>
+        <div class="price-note">todo incluido por 1 año</div>
+        <ul><li>Landing optimizada para vender</li><li><b>Dominio .com incluido</b></li><li><b>Hosting incluido</b></li><li><b>3 correos</b> @tudominio</li><li>Soporte y ajustes menores</li></ul>
+        <a class="btn btn--gold" data-wa="Hola negolo, quiero la Landing Pro de S/500 con dominio, hosting y correos" href="#">Empezar ahora</a>
+      </div>
+      <div class="tier rv">
+        <h3>Web corporativa</h3>
+        <div class="price">S/900</div>
+        <div class="price-note">dominio + hosting + correos</div>
+        <ul><li>De 5 a 8 secciones</li><li>SEO básico y velocidad</li><li>Autoadministrable</li><li>Capacitación de uso</li></ul>
+        <a class="btn btn--ghost" data-wa="Hola negolo, me interesa la web corporativa de S/900" href="#">Quiero este plan</a>
+      </div>
+      <div class="tier rv">
+        <h3>Tienda / App / Chatbot</h3>
+        <div class="price">S/1,500</div>
+        <div class="price-note">desde, según alcance</div>
+        <ul><li>Catálogo o tienda online</li><li>Pagos y envíos</li><li>App o chatbot funcional</li><li>Capacitación y soporte</li></ul>
+        <a class="btn btn--ghost" data-wa="Hola negolo, quiero cotizar una tienda / app / chatbot" href="#">Cotizar</a>
+      </div>
+      <div class="tier tier--custom rv">
+        <h3>Cotización personalizada</h3>
+        <div class="price" style="font-size:30px">A tu medida</div>
+        <div class="price-note">hablemos de tu proyecto</div>
+        <ul><li>Cuéntanos qué necesitas y tu presupuesto</li><li>Te proponemos alcance y plazos</li><li>Ajustamos precios según tu proyecto</li><li>Sin compromiso ni costo</li></ul>
+        <a class="btn btn--gold" data-wa="Hola negolo, quiero una cotización personalizada para mi proyecto" href="#">Pedir cotización gratis</a>
+      </div>
+    </div>
+    <div class="extras rv">
+      <span class="extra">Dominio <b>.pe</b>: + S/199</span>
+      <span class="extra">Mantenimiento anual: <b>S/150</b></span>
+      <span class="extra">Cambios y ampliaciones: <b>cotización gratis</b></span>
+      <span class="extra">Aceptamos proyectos <b>por etapas</b></span>
+    </div>
+    <div class="guarantee rv">
+      <span style="font-size:20px">🤝</span>
+      <div><b>Negociable y sin miedo:</b> si tu presupuesto es menor o tu proyecto es más grande, escríbenos igual. Nos adaptamos a lo que necesitas y te decimos con franqueza qué se puede hacer en cada rango de precio.</div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Proceso</span>
+      <h2>Así trabajamos, paso a paso</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><h3>Diagnóstico gratis</h3><p>Escuchamos tu negocio y qué necesitas lograr con la web.</p></div>
+      <div class="step rv"><h3>Propuesta y precio</h3><p>Alcance, plazo y precio claro. Sin letra chica.</p></div>
+      <div class="step rv"><h3>Diseño</h3><p>Te mostramos cómo se verá antes de programar.</p></div>
+      <div class="step rv"><h3>Desarrollo</h3><p>Lo construimos con avances visibles y pruebas en celular.</p></div>
+      <div class="step rv"><h3>Entrega y soporte</h3><p>Publicamos, te capacitamos y quedamos para los ajustes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="casos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Resultados</span>
+      <h2>Lo que ya hicimos</h2>
+      <p class="lead">Tres ejemplos del portafolio: diseño premium, código propio y proyectos que la gente usa todos los días.</p>
+    </div>
+    <div class="cases">
+      <div class="case rv"><b>25</b><span>proyectos reales publicados</span><p>Valencia Visual: sitio corporativo + configurador 3D de stands, con marca diseñada desde cero.</p></div>
+      <div class="case rv"><b>$1,000</b><span>concurso internacional de diseño web</span><p>Entrada para Convalt Energy: experiencia 3D con WebGL, sin imágenes ni plantillas.</p></div>
+      <div class="case rv"><b>100%</b><span>código propio, sin constructor</span><p>Landings, dashboards y tiendas hechas a medida, rápidas y listas para escalar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <div class="sec-head rv">
+      <span class="eyebrow">Preguntas</span>
+      <h2>Dudas frecuentes</h2>
+    </div>
+    <div class="qa rv"><button>¿Qué incluye el plan de S/500?<i>+</i></button><div class="a"><p>Una landing page diseñada a medida, dominio .com por 1 año, hosting, 3 cuentas de correo con tu dominio y soporte para ajustes menores. Todo listo para que empieces a recibir clientes.</p></div></div>
+    <div class="qa rv"><button>¿Cuánto tarda mi página?<i>+</i></button><div class="a"><p>Una landing suele estar en 3 a 5 días hábiles. Una web corporativa, entre 7 y 12 días. Te damos fechas exactas cuando cerramos el alcance.</p></div></div>
+    <div class="qa rv"><button>¿Puedo administrarla yo mismo?<i>+</i></button><div class="a"><p>Sí. Entregamos la web con un panel simple para editar textos, fotos y precios, y te damos una capacitación corta para que no dependas de nadie.</p></div></div>
+    <div class="qa rv"><button>¿Los precios son fijos?<i>+</i></button><div class="a"><p>Son precios de partida. Si tu proyecto necesita algo especial, lo cotizamos a medida y buscamos la mejor forma de ajustarlo a tu presupuesto. Pedir cotización no tiene ningún costo.</p></div></div>
+    <div class="qa rv"><button>¿Incluye posicionamiento en Google?<i>+</i></button><div class="a"><p>Todas las webs salen con SEO básico: títulos, descripciones, imágenes optimizadas y velocidad. Si quieres posicionamiento fuerte, te armamos un plan aparte.</p></div></div>
+    <div class="qa rv"><button>¿Qué medios de pago aceptan?<i>+</i></button><div class="a"><p>Yape, Plin, transferencia y tarjeta. Trabajamos con 50% para iniciar y 50% contra entrega.</p></div></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section style="padding-top:0">
+    <div class="final rv">
+      <div>
+        <h2>Cuéntanos tu idea. El resto lo hacemos nosotros.</h2>
+        <p>Escríbenos por WhatsApp y en minutos te decimos cómo quedaría tu web y cuánto costaría. Cotización gratis, sin compromiso y negociable.</p>
+      </div>
+      <a class="btn btn--wa" data-wa="Hola negolo, quiero cotizar mi proyecto" href="#">Escribir por WhatsApp</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot__brand">
+        <img src="assets/brand/logo-full-dark.svg" alt="negolo">
+        <p style="font-size:14px;max-width:34ch">Estudio de desarrollo web, apps y chatbots. Diseñamos lo que tu negocio necesita para crecer online.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="#servicios">Landing pages</a>
+        <a href="#servicios">Webs corporativas</a>
+        <a href="#servicios">Tiendas online</a>
+        <a href="#servicios">Apps y chatbots</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="#" data-wa="Hola negolo, quiero información">WhatsApp: 930 227 652</a>
+        <a href="mailto:atencionalcliente@negolo.com">atencionalcliente@negolo.com</a>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#precios">Precios</a>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 negolo · Todos los derechos reservados</span>
+      <span>Lima, Perú · Atención de lunes a sábado</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" data-wa="Hola negolo, quiero cotizar mi página web" href="#" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.4-1-4-3.5-4.1-3.7-.1-.2-1-1.3-1-2.5s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.5.1.3.6 1 1.3 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2z"/></svg>
+</a>
+
+<script>
+  /* ---------- WhatsApp con mensaje prellenado ---------- */
+  const WA = '51930227652';
+  document.querySelectorAll('[data-wa]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const msg = el.getAttribute('data-wa') || 'Hola negolo';
+      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+    });
+  });
+
+  /* ---------- Portafolio ---------- */
+  const PF = [
+    ['09-valencia-visual', 'Valencia Visual — Web + Configurador 3D', 'Sitio corporativo con marca propia, 25 proyectos reales y configurador 3D de stands.', ['web','3d','branding'], 'web'],
+    ['11-convalt', 'Convalt Energy — Landing 3D WebGL', 'Experiencia cinematográfica con Three.js: 4 capítulos, paneles solares y data centers.', ['landing','3d'], '3d'],
+    ['10-digital-pillars', 'Digital Pillars — Homepage cinematográfica', 'Landing para agencia (Reino Unido) renderizada 100% con código, sin imágenes IA.', ['landing','web'], 'landing'],
+    ['12-evolmeo', 'Evolmeo.ai — Rediseño SaaS', 'Rediseño UI/UX de plataforma de coaching: home + dashboard con barra lateral.', ['web'], 'web'],
+    ['13-clubmap', 'ClubMap — Demo web con mapa y agente AI', 'Mapa interactivo con fly-to, agentes de IA y perfil de usuario.', ['web'], 'web'],
+    ['14-hemp-sticks', 'Natural Hemp Life — Stick packs', 'Packaging premium: frente, reverso y variantes de sabor listas para imprenta.', ['branding'], 'branding'],
+    ['15-bus-side-ad', 'Aaron Herbert — Anuncio bus 60×30"', 'Diseño publicitario exterior con QR y arte plano para imprenta.', ['branding'], 'branding'],
+    ['08-auditlens', 'AuditLens — Web Audit Landing', 'Micrositio de 5 páginas con checkout, calendario y pagos.', ['landing','web'], 'landing'],
+    ['07-vesta-smart-home', 'VESTA Technologies — Smart Home', 'Landing premium con dashboard de control unificado y proceso de instalación.', ['landing'], 'landing'],
+    ['06-revamp365', 'Revamp365.ai — Homepage proptech', 'Homepage con mockup 3D, ticker financiero, pricing y FAQ.', ['landing','web'], 'landing'],
+    ['04-ecommerce-zapatillas', 'ZYPHER — Ecommerce de zapatillas', 'Tienda online con catálogo, filtros y carrito interactivo.', ['tienda'], 'tienda'],
+    ['05-nova-agencia', 'NOVA — Agencia digital', 'Landing con gradientes animados, casos de éxito y CTA a WhatsApp.', ['landing','branding'], 'landing'],
+    ['03-panel-soporte', 'Panel de Soporte', 'Dashboard de tickets multi-canal con métricas y respuestas rápidas.', ['web'], 'web'],
+    ['02-gestor-citas', 'Gestor de Citas', 'Web app de agendamiento con calendario y coordinación en tiempo real.', ['web'], 'web'],
+    ['01-landing-clinica', 'Clínica Dental — Landing', 'Landing de salud con tratamientos, testimonios y contacto optimizado.', ['landing'], 'landing']
+  ];
+  const grid = document.getElementById('pfGrid');
+  grid.innerHTML = PF.map(([dir, t, d, tags, cat]) => `
+    <a class="pf rv" data-cat="${cat}" href="portafolio/${dir}/" target="_blank" rel="noopener">
+      <div class="pf__img"><img src="portafolio/${dir}/preview.png" alt="${t}" loading="lazy"></div>
+      <div class="pf__b">
+        <div class="tags">${tags.map(x => `<span class="tg">${x}</span>`).join('')}</div>
+        <h3>${t}</h3>
+        <p>${d}</p>
+        <span class="more">Ver demo →</span>
+      </div>
+    </a>`).join('');
+
+  document.getElementById('filters').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    document.querySelectorAll('#filters button').forEach(x => x.classList.toggle('on', x === b));
+    const f = b.dataset.f;
+    document.querySelectorAll('.pf').forEach(c => {
+      c.style.display = (f === 'all' || c.dataset.cat === f || (f === 'web' && c.dataset.cat === 'web')) ? '' : 'none';
+    });
+  });
+
+  /* ---------- FAQ ---------- */
+  document.querySelectorAll('.qa button').forEach(b => b.addEventListener('click', () => {
+    const qa = b.parentElement, a = qa.querySelector('.a'), open = qa.classList.contains('open');
+    document.querySelectorAll('.qa.open').forEach(o => { o.classList.remove('open'); o.querySelector('.a').style.maxHeight = 0; });
+    if (!open) { qa.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+  }));
+
+  /* ---------- menú móvil ---------- */
+  document.getElementById('burger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+  /* ---------- reveal ---------- */
+  const els = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(en => en.forEach((x, i) => { if (x.isIntersecting) { setTimeout(() => x.target.classList.add('in'), i * 55); io.unobserve(x.target); } }), { threshold: .06, rootMargin: '0px 0px 90px 0px' });
+    els.forEach(e => io.observe(e));
+    setTimeout(() => els.forEach(e => e.classList.add('in')), 2400);
+  } else els.forEach(e => e.classList.add('in'));
+</script>
+</body>
+</html>

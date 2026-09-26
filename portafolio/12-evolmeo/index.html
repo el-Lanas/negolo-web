@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evolmeo.ai — UI/UX Redesign Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F8FB; --surface:#FFFFFF; --ink:#0B1220; --muted:#5B6478; --line:#E6E8F0;
+    --accent:#4F46E5; --accent-soft:#EEF0FF; --accent-2:#0EA5E9;
+    --green:#10B981; --radius:16px;
+    --shadow:0 1px 2px rgba(16,24,40,.04), 0 12px 32px rgba(16,24,40,.06);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:13px 22px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid transparent;cursor:pointer}
+  .btn--primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(79,70,229,.25)}
+  .btn--ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border:1px solid #DDE1FF;border-radius:999px;padding:6px 12px}
+  h1,h2,h3{letter-spacing:-.02em;line-height:1.1}
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:20;background:rgba(247,248,251,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px}
+  .logo i{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:block}
+  .links{display:flex;gap:26px;font-size:14px;color:var(--muted);font-weight:500}
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:54px;font-weight:800}
+  .hero p{margin-top:20px;color:var(--muted);font-size:17px;max-width:46ch;line-height:1.6}
+  .cta-row{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+  .trust{display:flex;gap:26px;margin-top:34px;font-size:13px;color:var(--muted)}
+  .shot{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:16px}
+  .shot-top{display:flex;gap:6px;margin-bottom:12px}
+  .dot{width:9px;height:9px;border-radius:50%;background:#E6E8F0}
+  .panel{background:linear-gradient(180deg,#F2F3FB,#FFFFFF);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .bubble{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--muted);margin-bottom:10px}
+  .bubble b{color:var(--ink)}
+  .bubble--ai{background:var(--accent-soft);border-color:#DDE1FF;color:#3730A3}
+  .metric-row{display:flex;gap:10px;margin-top:12px}
+  .metric{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .metric b{display:block;font-size:19px}
+  .metric span{font-size:11.5px;color:var(--muted)}
+  /* ---------- logos ---------- */
+  .logos{display:flex;justify-content:space-between;align-items:center;padding:30px 0 8px;color:#9AA3B5;font-weight:700;letter-spacing:.08em;font-size:13px;text-transform:uppercase}
+  /* ---------- features ---------- */
+  section{padding:64px 0}
+  .sec-head{max-width:640px;margin-bottom:38px}
+  .sec-head h2{font-size:36px;font-weight:800}
+  .sec-head p{margin-top:12px;color:var(--muted);line-height:1.6}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+  .card .ic{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);border:1px solid #DDE1FF;display:grid;place-items:center;color:var(--accent);font-weight:800}
+  .card h3{margin:16px 0 8px;font-size:18px}
+  .card p{color:var(--muted);font-size:14.5px;line-height:1.6}
+  .band{background:linear-gradient(120deg,#4F46E5,#0EA5E9);border-radius:22px;color:#fff;padding:44px 48px;display:flex;justify-content:space-between;align-items:center;gap:28px}
+  .band h2{font-size:30px}
+  .band p{opacity:.9;margin-top:10px;font-size:15px}
+  /* ---------- pricing ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  .tier{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;position:relative}
+  .tier--pop{border-color:#C7CBFF;box-shadow:0 18px 44px rgba(79,70,229,.14)}
+  .badge{position:absolute;top:-12px;left:26px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:5px 11px;text-transform:uppercase}
+  .tier h3{font-size:16px}
+  .price{font-size:40px;font-weight:800;margin:14px 0 2px}
+  .price span{font-size:14px;color:var(--muted);font-weight:500}
+  .tier ul{list-style:none;margin:18px 0 22px;display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--muted)}
+  .tier li::before{content:"✓";color:var(--green);font-weight:800;margin-right:8px}
+  .tier .btn{margin-top:auto;justify-content:center}
+  /* ---------- dashboard ---------- */
+  .dash{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:236px 1fr}
+  .side{background:#0B1220;color:#C7CEDB;padding:22px 16px;display:flex;flex-direction:column;gap:6px}
+  .side .logo{color:#fff;margin-bottom:18px}
+  .side a{color:#9AA3B5;text-decoration:none;font-size:13.5px;font-weight:500;padding:10px 12px;border-radius:10px;display:flex;gap:10px;align-items:center}
+  .side a.on{background:#18cheap}
+  .side a.on{background:#151E33;color:#fff}
+  .side .me{margin-top:auto;display:flex;gap:10px;align-items:center;font-size:13px;color:#9AA3B5;border-top:1px solid #1B2438;padding-top:16px}
+  .avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#0EA5E9)}
+  .main{padding:24px 28px;background:#FAFBFD}
+  .mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+  .mhead h3{font-size:19px}
+  .search{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:13px;color:#9AA3B5;min-width:260px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+  .kpi span{font-size:12px;color:var(--muted);font-weight:600}
+  .kpi b{display:block;font-size:26px;margin-top:6px}
+  .kpi i{font-style:normal;font-size:12px;color:var(--green);font-weight:600}
+  .grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}
+  .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+  .box h4{font-size:14px;margin-bottom:14px}
+  .bars{display:flex;align-items:flex-end;gap:10px;height:130px}
+  .bars i{flex:1;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#818CF8,#4F46E5);display:block}
+  .list{display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+  .row b{color:var(--ink)}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:34px 0;color:var(--muted);font-size:13px;display:flex;justify-content:space-between}
+  @media (max-width:960px){
+    .hero{grid-template-columns:1fr;gap:32px}
+    .cards,.tiers{grid-template-columns:1fr}
+    .dash{grid-template-columns:1fr}
+    .kpis,.grid2{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:38px}
+  }
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav">
+  <div class="logo"><i></i>Evolmeo.ai</div>
+  <div class="links"><span>Product</span><span>Method</span><span>Pricing</span><span>For teams</span></div>
+  <a class="btn btn--primary" href="#">Start free trial</a>
+</div></nav>
+
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <span class="chip">● Conversation-first coaching</span>
+      <h1 style="margin-top:18px">Coaching that compounds — one conversation at a time.</h1>
+      <p>Evolmeo pairs an executive-grade AI coach with structured assessments and reflective journaling, so growth becomes a weekly habit instead of a one-off workshop.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="#">Start free trial →</a>
+        <a class="btn btn--ghost" href="#">Book a walkthrough</a>
+      </div>
+      <div class="trust"><span>No credit card</span><span>SOC 2 ready</span><span>Cancel anytime</span></div>
+    </div>
+    <div class="shot">
+      <div class="shot-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+      <div class="panel">
+        <div class="bubble"><b>You</b> — I keep postponing the hard conversation with my lead.</div>
+        <div class="bubble bubble--ai"><b>Evolmeo</b> — Let's rehearse it. What outcome would make next week feel different?</div>
+        <div class="bubble bubble--ai">Suggested focus: <b>direct feedback</b> · 12 min session</div>
+        <div class="metric-row">
+          <div class="metric"><b>8.4</b><span>Growth score</span></div>
+          <div class="metric"><b>12d</b><span>Reflection streak</span></div>
+          <div class="metric"><b>3</b><span>Assessments done</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="logos"><span>NORTHWIND</span><span>LUMEN LABS</span><span>HELIOS</span><span>ATLAS TEAMS</span><span>QUANTA</span></div>
+
+  <section>
+    <div class="sec-head">
+      <h2>Everything a growth practice needs.</h2>
+      <p>Three tools that work together — conversation, measurement and reflection — inside one calm interface.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="ic">01</div><h3>Conversational AI sessions</h3><p>Structured coaching dialogues with goals, next steps and follow-ups that carry into the next session.</p></div>
+      <div class="card"><div class="ic">02</div><h3>Diagnostic assessments</h3><p>Benchmark leadership, focus and energy, then track the delta over time with clear, honest reporting.</p></div>
+      <div class="card"><div class="ic">03</div><h3>Reflective journaling</h3><p>Prompts tuned to your last session. Private by default, with optional sharing for manager check-ins.</p></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="band">
+      <div>
+        <h2>Bring your whole team on the same growth curve.</h2>
+        <p>Shared goals, aggregate insights, and private conversations — no surveillance, just progress.</p>
+      </div>
+      <a class="btn" style="background:#fff;color:#3730A3" href="#">Talk to sales</a>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sec-head">
+      <h2>Simple, transparent pricing.</h2>
+      <p>Start on your own or roll it out across the organization. Every plan includes the full coaching engine.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Starter</h3>
+        <div class="price">$19<span> / month</span></div>
+        <ul><li>Unlimited AI sessions</li><li>1 assessment per quarter</li><li>Private journaling</li></ul>
+        <a class="btn btn--ghost" href="#">Start free trial</a>
+      </div>
+      <div class="tier tier--pop">
+        <span class="badge">Most popular</span>
+        <h3>Growth</h3>
+        <div class="price">$49<span> / month</span></div>
+        <ul><li>Everything in Starter</li><li>Monthly assessments + trends</li><li>Session summaries &amp; action plans</li><li>Manager check-in sharing</li></ul>
+        <a class="btn btn--primary" href="#">Start free trial</a>
+      </div>
+      <div class="tier">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <ul><li>SSO &amp; SCIM</li><li>Aggregate insights dashboard</li><li>Dedicated success partner</li></ul>
+        <a class="btn btn--ghost" href="#">Contact sales</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sec-head"><h2>Inside the workspace.</h2><p>A dashboard built around the next action — not around vanity metrics.</p></div>
+    <div class="dash">
+      <aside class="side">
+        <div class="logo"><i></i>Evolmeo</div>
+        <a class="on">◆ Home</a>
+        <a>💬 Sessions</a>
+        <a>📊 Assessments</a>
+        <a>📓 Journal</a>
+        <a>📈 Progress</a>
+        <a>⚙ Settings</a>
+        <div class="me"><span class="avatar"></span> Piero L. · Growth plan</div>
+      </aside>
+      <div class="main">
+        <div class="mhead">
+          <h3>Good morning, Piero.</h3>
+          <div class="search">Search sessions, notes, actions…</div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><span>Sessions this month</span><b>24</b><i>▲ +6 vs last month</i></div>
+          <div class="kpi"><span>Reflection streak</span><b>12d</b><i>▲ personal best</i></div>
+          <div class="kpi"><span>Growth score</span><b>8.4</b><i>▲ +0.7 this quarter</i></div>
+          <div class="kpi"><span>Open actions</span><b>5</b><i>2 due this week</i></div>
+        </div>
+        <div class="grid2">
+          <div class="box">
+            <h4>Engagement · last 8 weeks</h4>
+            <div class="bars">
+              <i style="height:38%"></i><i style="height:52%"></i><i style="height:44%"></i><i style="height:66%"></i><i style="height:58%"></i><i style="height:78%"></i><i style="height:71%"></i><i style="height:92%"></i>
+            </div>
+          </div>
+          <div class="box">
+            <h4>Next up</h4>
+            <div class="list">
+              <div class="row"><span><b>Session 25</b> · Direct feedback</span><span>Tomorrow 9:00</span></div>
+              <div class="row"><span><b>Assessment</b> · Focus &amp; energy</span><span>Fri</span></div>
+              <div class="row"><span><b>Journal prompt</b> · What felt hard?</span><span>Open</span></div>
+              <div class="row"><span><b>Action due</b> · 1:1 agenda</span><span>Thu</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between"><span>Evolmeo.ai — UI/UX redesign concept</span><span>Homepage + dashboard · design system included</span></div></footer>
+
+</body>
+</html>

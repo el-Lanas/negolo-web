@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bus-side Ad — 60" × 30" — Aaron Herbert</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#0B1D33; --navy-2:#122C4C; --gold:#C9A24A; --paper:#F4F5F7; --ink:#0B1D33; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);font-family:Archivo,system-ui,sans-serif;color:var(--ink);padding:44px 0 70px}
+  h2.block{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#7A8698;font-weight:700;margin:0 0 14px 40px}
+  /* ============ 1. artwork (60x30in -> 2400x1200) ============ */
+  .art{width:1200px;height:600px;margin:0 0 46px 40px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 62%,#1B3C63 100%);
+    box-shadow:0 24px 60px rgba(11,29,51,.28);border-radius:4px}
+  .art .star{position:absolute;right:-40px;top:-90px;font-size:520px;color:rgba(201,162,74,.10);line-height:1}
+  .art .rule{position:absolute;left:56px;top:210px;width:96px;height:5px;background:var(--gold)}
+  .art .head{position:absolute;left:56px;top:74px;color:#fff;font-weight:900;letter-spacing:-.02em;font-size:66px;line-height:.94;text-transform:uppercase}
+  .art .head em{font-style:normal;color:var(--gold)}
+  .art .sub{position:absolute;left:56px;top:238px;color:#D9E2EE;font-size:19px;font-weight:600;letter-spacing:.01em}
+  .art .cred{position:absolute;left:56px;top:274px;color:#9FB3CA;font-size:13.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .art .name{position:absolute;left:56px;top:310px;color:#fff;font-size:30px;font-weight:800;letter-spacing:-.01em}
+  .art .firm{position:absolute;left:56px;top:352px;color:var(--gold);font-size:12.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+  .art .phone{position:absolute;right:56px;top:250px;text-align:right;color:#fff}
+  .art .phone b{display:block;font-size:54px;font-weight:900;letter-spacing:-.02em}
+  .art .phone span{display:block;font-size:14px;color:#9FB3CA;font-weight:600;letter-spacing:.1em;margin-top:6px}
+  /* QR band = bottom 8in of 30in -> 160px of 600 */
+  .art .qrband{position:absolute;left:0;right:0;bottom:0;height:160px;background:#FFFFFF;display:flex;align-items:center;gap:28px;padding:0 56px}
+  .art .qrband .code{width:120px;height:120px;border:1px solid #E2E6EC;border-radius:8px;padding:6px;background:#fff}
+  .art .qrband .code img{width:100%;height:100%;display:block}
+  .art .qrband .txt{flex:1}
+  .art .qrband .txt b{display:block;font-size:24px;font-weight:900;letter-spacing:-.01em;text-transform:uppercase}
+  .art .qrband .txt span{display:block;font-size:13.5px;color:#5A6A7E;font-weight:600;margin-top:5px;letter-spacing:.03em}
+  .art .qrband .side{text-align:right;color:var(--navy)}
+  .art .qrband .side b{display:block;font-size:26px;font-weight:900}
+  .art .qrband .side span{font-size:12.5px;color:#5A6A7E;font-weight:700;letter-spacing:.14em}
+  /* ============ 2. bus mockup ============ */
+  .scene{width:1200px;margin-left:40px;background:linear-gradient(180deg,#E9EDF2,#DCE3EA);border-radius:16px;padding:46px 30px 0;overflow:hidden;position:relative}
+  .scene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:118px;background:#C9D2DB}
+  .scene::before{content:"";position:absolute;left:0;right:0;bottom:112px;height:10px;background:#B8C3CE}
+  .bus{position:relative;width:1120px;height:560px;margin:0 auto;z-index:2}
+  .body{position:absolute;inset:0 0 64px 0;background:linear-gradient(180deg,#FFFFFF,#EDF1F5);border-radius:26px 46px 14px 14px;box-shadow:0 24px 50px rgba(11,29,51,.22)}
+  .body::after{content:"";position:absolute;left:0;right:0;bottom:0;height:26px;background:#D7DEE6;border-radius:0 0 14px 14px}
+  .windows{position:absolute;left:26px;right:26px;top:22px;height:70px;display:flex;gap:10px}
+  .win{flex:1;background:linear-gradient(180deg,#BBD3E6,#8FB2CC);border-radius:10px}
+  .windshield{position:absolute;right:8px;top:30px;width:74px;height:196px;background:linear-gradient(160deg,#BBD3E6,#8FB2CC);border-radius:12px 30px 12px 12px}
+  .door{position:absolute;left:212px;top:22px;width:60px;height:400px;background:linear-gradient(180deg,#E7ECF1,#D6DDE5);border:1px solid #CDD6DF;border-radius:8px}
+  .strip{position:absolute;left:0;right:0;top:100px;height:6px;background:var(--navy);opacity:.85}
+  .adwrap{position:absolute;left:300px;top:126px;width:640px;height:320px;border-radius:6px;overflow:hidden;box-shadow:0 6px 18px rgba(11,29,51,.18);background:var(--navy)}
+  .adwrap .mini{width:1200px;height:600px;transform:scale(.533333);transform-origin:0 0}
+  .adwrap .art{margin:0;box-shadow:none;border-radius:0}
+  .mail{position:absolute;right:0;bottom:74px;background:var(--navy);color:var(--gold);font-size:13px;font-weight:800;padding:7px 18px;border-radius:10px 0 0 0;letter-spacing:.04em}
+  .wheel{position:absolute;bottom:0;width:132px;height:132px;border-radius:50%;background:#1B2430;border:12px solid #2B3542;box-shadow:0 10px 22px rgba(11,29,51,.3)}
+  .wheel i{position:absolute;inset:34px;border-radius:50%;background:#59646F}
+  .w1{left:120px}.w2{right:150px}
+  .shadow{position:absolute;left:40px;right:40px;bottom:52px;height:26px;background:rgba(11,29,51,.16);filter:blur(12px);z-index:1}
+</style>
+</head>
+<body>
+
+<h2 class="block">① Mockup — bus side (60" × 30")</h2>
+<div class="scene">
+  <div class="bus">
+    <div class="shadow"></div>
+    <div class="body"></div>
+    <div class="windows"><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i><i class="win"></i></div>
+    <div class="windshield"></div>
+    <div class="door"></div>
+    <div class="strip"></div>
+    <div class="adwrap"><div class="mini" id="mini"></div></div>
+    <div class="mail">injuryattorneyofdallas.com</div>
+    <div class="wheel w1"><i></i></div>
+    <div class="wheel w2"><i></i></div>
+  </div>
+</div>
+
+<h2 class="block" style="margin-top:46px">② Flat artwork — 60" × 30" (QR inside bottom 8")</h2>
+<div class="art" id="art">
+  <div class="star">★</div>
+  <div class="head">INJURED<br>in <em>Dallas?</em></div>
+  <div class="rule"></div>
+  <div class="sub">Talk it through with a board-certified trial lawyer — not a call centre.</div>
+  <div class="cred">Board Certified in Personal Injury Trial Law</div>
+  <div class="name">Attorney Aaron Herbert</div>
+  <div class="firm">Personal Injury · Dallas, Texas</div>
+  <div class="phone"><b>972-HELP-YOU</b><span>972-435-7968</span></div>
+  <div class="qrband">
+    <div class="code"><img id="qr" alt="QR code"></div>
+    <div class="txt">
+      <b>Scan for a free case review</b>
+      <span>Point your camera · No obligation · Takes about a minute</span>
+    </div>
+    <div class="side"><b>972-HELP-YOU</b><span>INJURYATTORNEYOFDALLAS.COM</span></div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('qr').src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&data=' + encodeURIComponent('https://injuryattorneyofdallas.com');
+  const art = document.getElementById('art');
+  const clone = art.cloneNode(true);
+  clone.removeAttribute('id');
+  clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  document.getElementById('mini').appendChild(clone);
+</script>
+</body>
+</html>

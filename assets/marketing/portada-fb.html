@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portada negolo</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1640px;height:856px;overflow:hidden}
+  body{font-family:Nunito,system-ui,Arial,sans-serif;color:#fff;
+    background:
+      radial-gradient(1100px 700px at 82% 10%, rgba(232,184,75,.20), transparent 62%),
+      radial-gradient(900px 600px at 6% 96%, rgba(108,45,130,.35), transparent 62%),
+      #2D1B36;
+    position:relative}
+  .frame{position:absolute;inset:46px;border:1px solid rgba(232,184,75,.28);border-radius:26px}
+  .wrap{position:relative;height:100%;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;padding:0 118px;gap:40px}
+  .logo{height:62px;margin-bottom:30px}
+  h1{font-size:76px;line-height:1.02;font-weight:900;letter-spacing:-.025em}
+  h1 em{font-style:normal;color:#E8B84B}
+  p.sub{margin-top:22px;font-size:25px;font-weight:600;color:#C9BBD6;max-width:20ch}
+  .tagline{margin-top:26px;font-size:22px;font-weight:700;color:#E8B84B}
+  /* right card */
+  .card{background:rgba(58,36,71,.86);border:1px solid rgba(232,184,75,.3);border-radius:30px;padding:38px 40px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+  .price{font-size:104px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#E8B84B}
+  .price small{display:block;font-size:26px;font-weight:800;color:#fff;letter-spacing:0;margin-bottom:6px}
+  .inc{margin-top:16px;font-size:21px;font-weight:700;color:#EFE7F3;line-height:1.45}
+  .inc b{color:#E8B84B}
+  .btns{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+  .pill{background:#25D366;color:#08321b;font-weight:900;font-size:22px;padding:16px 28px;border-radius:999px}
+  .pill2{border:2px solid rgba(232,184,75,.55);color:#E8B84B;font-weight:800;font-size:20px;padding:15px 26px;border-radius:999px}
+  .foot{position:absolute;left:118px;bottom:64px;font-size:19px;font-weight:700;color:#C9BBD6}
+  .foot b{color:#E8B84B}
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="wrap">
+    <div>
+      <img class="logo" src="../brand/logo-full-dark.svg" alt="negolo">
+      <h1>Tu negocio, <em>sin vueltas</em> en internet.</h1>
+      <p class="sub">Webs, tiendas, apps y chatbots a medida.</p>
+      <div class="tagline">Cotización gratis y sin compromiso</div>
+    </div>
+    <div class="card">
+      <div class="price"><small>Landings desde</small>S/300</div>
+      <div class="inc">El plan <b>S/500</b> incluye:<br><b>dominio .com + hosting + 3 correos</b> por 1 año</div>
+      <div class="btns"><span class="pill">WhatsApp 930 227 652</span><span class="pill2">negolo.com</span></div>
+    </div>
+  </div>
+  <div class="foot">Desarrollo web · Apps · Chatbots · <b>atencionalcliente@negolo.com</b></div>
+</body>
+</html>
