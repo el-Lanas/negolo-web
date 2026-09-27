@@ -183,6 +183,31 @@
     section{padding:64px 0}
     .final{padding:34px 26px}
   }
+  /* ---------- animaciones y transiciones ---------- */
+  @keyframes drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes sheen{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  @keyframes pulsering{0%{box-shadow:0 0 0 0 rgba(232,184,75,.45)}70%{box-shadow:0 0 0 16px rgba(232,184,75,0)}100%{box-shadow:0 0 0 0 rgba(232,184,75,0)}}
+  @keyframes wapulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .hero{background-size:180% 180%;animation:drift 18s ease-in-out infinite}
+  .btn--gold{position:relative;overflow:hidden;background-image:linear-gradient(100deg,#F5E6A0,#E8B84B 45%,#D9A63A)}
+  .btn--gold::after{content:"";position:absolute;top:0;bottom:0;width:42%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:sheen 3.4s ease-in-out infinite}
+  .card{position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+  .card:hover::before{transform:scaleX(1)}
+  .tier--pop{animation:pulsering 3.2s ease-out infinite}
+  .wa{animation:wapulse 2.8s ease-out infinite}
+  .chip{animation:floaty 5s ease-in-out infinite}
+  .chip:nth-child(2n){animation-delay:.4s}.chip:nth-child(3n){animation-delay:.9s}.chip:nth-child(4n){animation-delay:1.3s}
+  .pf .more{transition:transform .25s ease}
+  .pf:hover .more{transform:translateX(5px)}
+  .qa button i{transition:transform .3s cubic-bezier(.2,.7,.3,1),background .3s}
+  .qa button:hover i{background:var(--gold);color:#fff;transform:rotate(90deg)}
+  .badge{transition:transform .25s ease}
+  .badge:hover{transform:translateY(-2px)}
+  .hero__card{transition:transform .5s cubic-bezier(.2,.7,.3,1),box-shadow .5s}
+  .hero__card:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:0 34px 80px rgba(0,0,0,.45)}
+  @media (prefers-reduced-motion:reduce){ .hero,.chip,.tier--pop,.wa,.btn--gold::after{animation:none!important} }
 </style>
 </head>
 <body>
@@ -217,8 +242,9 @@
       <div class="hero__stats">
         <div><b>15+</b><span>proyectos entregados</span></div>
         <div><b>&lt; 5 min</b><span>tiempo de respuesta</span></div>
-        <div><b>Desde S/300</b><span>landing lista para vender</span></div>
+        <div><b>Desde S/299</b><span>landing online en 2 días</span></div>
       </div>
+      <div class="badge" style="margin-top:24px">🔥 Cupos limitados: 3 proyectos nuevos por semana</div>
     </div>
     <div class="hero__card">
       <div class="bar"><i></i><i></i><i></i></div>
@@ -242,9 +268,9 @@
       <div class="card rv"><div class="ic">01</div><h3>Landing pages</h3><p>Una página rápida y directa, pensada para que el visitante te escriba o te compre.</p><ul><li>Diseño a medida</li><li>Botón de WhatsApp y formularios</li><li>Lista en 3-5 días</li></ul></div>
       <div class="card rv"><div class="ic">02</div><h3>Webs corporativas</h3><p>Sitios de 5 a 8 secciones para presentar tu empresa, servicios y equipo con seriedad.</p><ul><li>Estructura clara y SEO básico</li><li>Autoadministrable</li><li>Dominio y correos incluidos</li></ul></div>
       <div class="card rv"><div class="ic">03</div><h3>Tiendas y catálogos</h3><p>Vende online con carrito, pagos y gestión de pedidos simple.</p><ul><li>Shopify o WooCommerce</li><li>Pagos y envíos configurados</li><li>Capacitación para tu equipo</li></ul></div>
-      <div class="card rv"><div class="ic">04</div><h3>Apps móviles</h3><p>Aplicaciones para Android y iOS conectadas a tu web o sistema.</p><ul><li>React Native / Flutter</li><li>Notificaciones y perfiles</li><li>Publicación en tiendas</li></ul></div>
-      <div class="card rv"><div class="ic">05</div><h3>Chatbots y automatización</h3><p>Responde 24/7 y automatiza tareas repetitivas sin contratar más personal.</p><ul><li>WhatsApp y web chat</li><li>Integración con tu CRM</li><li>Flujos a medida</li></ul></div>
-      <div class="card rv"><div class="ic">06</div><h3>Diseño y marca</h3><p>Logo, identidad visual y piezas para redes, coherentes con tu web.</p><ul><li>Logo y manual de marca</li><li>Banners y posts</li><li>Aplicación en packaging</li></ul></div>
+      <div class="card rv"><div class="ic">04</div><h3>Apps móviles</h3><p>Aplicaciones nativas para Android y iOS conectadas a tu web, tu CRM o tu sistema de ventas.</p><ul><li>React Native / Flutter (una base, dos tiendas)</li><li>Login, perfiles, notificaciones push y geolocalización</li><li>Pagos dentro de la app y modo offline</li><li>Publicación y actualizaciones en Play Store y App Store</li><li>Panel de administración para tu equipo</li></ul></div>
+      <div class="card rv"><div class="ic">05</div><h3>Chatbots y automatización</h3><p>Un asistente que atiende 24/7, filtra consultas y agenda citas mientras tú trabajas.</p><ul><li>WhatsApp Business API y chat en tu web</li><li>Entrenado con <b>tu</b> información: precios, horarios, servicios</li><li>Cotiza, agenda y toma pedidos solo</li><li>Deriva a un humano cuando hace falta</li><li>CRM, Google Sheets, Shopify y pasarelas de pago</li><li>Automatizaciones: recordatorios, seguimiento y reportes</li></ul></div>
+      <div class="card rv"><div class="ic">06</div><h3>Diseño y marca</h3><p>Identidad completa y coherente: la misma imagen en tu web, tus redes y tu local.</p><ul><li>Logo (vectorial AI/SVG + PNG para web)</li><li>Manual de marca: paleta, tipografías y usos</li><li>Tarjetas, banners, menús y packaging</li><li>Plantillas para Instagram y Facebook</li><li>Packaging y material impreso listo para imprenta</li></ul></div>
     </div>
     <div class="tech rv">
       <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">WordPress</span><span class="chip">WooCommerce</span><span class="chip">Shopify</span><span class="chip">Three.js / WebGL</span><span class="chip">PWA</span>
@@ -280,51 +306,44 @@
     </div>
     <div class="tiers">
       <div class="tier rv">
-        <h3>Básico</h3>
-        <div class="price">S/300</div>
-        <div class="price-note">pago único</div>
-        <ul><li>Landing de 1 página</li><li>Diseño a medida, responsive</li><li>Botón de WhatsApp y formulario</li><li>Sin dominio, correo ni hosting</li></ul>
-        <a class="btn btn--ghost" data-wa="Hola negolo, me interesa el plan Básico de S/300" href="#">Quiero este plan</a>
+        <h3>Landing Page</h3>
+        <div class="price">S/299</div>
+        <div class="price-note">+ IGV · entrega en <b>2 días</b></div>
+        <ul><li>Landing de <b>1 página</b> enfocada en vender</li><li><b>Dominio .com</b> incluido</li><li><b>Hosting</b> incluido</li><li>Botón de WhatsApp y formulario</li><li>Diseño a medida y 100% responsive</li></ul>
+        <a class="btn btn--ghost" data-wa="Hola negolo, quiero el plan Landing Page de S/299" href="#">Quiero esta opción</a>
       </div>
       <div class="tier tier--pop rv">
-        <span class="flag">Más pedido</span>
-        <h3>Landing Pro</h3>
-        <div class="price">S/500<span> /año</span></div>
-        <div class="price-note">todo incluido por 1 año</div>
-        <ul><li>Landing optimizada para vender</li><li><b>Dominio .com incluido</b></li><li><b>Hosting incluido</b></li><li><b>3 correos</b> @tudominio</li><li>Soporte y ajustes menores</li></ul>
-        <a class="btn btn--gold" data-wa="Hola negolo, quiero la Landing Pro de S/500 con dominio, hosting y correos" href="#">Empezar ahora</a>
+        <span class="flag">Más elegido</span>
+        <h3>Web Corporativa</h3>
+        <div class="price">S/499</div>
+        <div class="price-note">+ IGV · entrega en <b>5 días</b></div>
+        <ul><li>Hasta <b>5 secciones</b> (inicio, servicios, nosotros, portafolio, contacto)</li><li><b>Dominio .com + hosting</b> incluidos</li><li><b>3 correos</b> @tudominio por 1 año</li><li>SEO básico y carga rápida</li><li>Autoadministrable + capacitación</li></ul>
+        <a class="btn btn--gold" data-wa="Hola negolo, quiero el plan Web Corporativa de S/499" href="#">Empezar ahora</a>
       </div>
       <div class="tier rv">
-        <h3>Web corporativa</h3>
-        <div class="price">S/900</div>
-        <div class="price-note">dominio + hosting + correos</div>
-        <ul><li>De 5 a 8 secciones</li><li>SEO básico y velocidad</li><li>Autoadministrable</li><li>Capacitación de uso</li></ul>
-        <a class="btn btn--ghost" data-wa="Hola negolo, me interesa la web corporativa de S/900" href="#">Quiero este plan</a>
-      </div>
-      <div class="tier rv">
-        <h3>Tienda / App / Chatbot</h3>
-        <div class="price">S/1,500</div>
-        <div class="price-note">desde, según alcance</div>
-        <ul><li>Catálogo o tienda online</li><li>Pagos y envíos</li><li>App o chatbot funcional</li><li>Capacitación y soporte</li></ul>
-        <a class="btn btn--ghost" data-wa="Hola negolo, quiero cotizar una tienda / app / chatbot" href="#">Cotizar</a>
+        <h3>Tienda Virtual</h3>
+        <div class="price">S/699</div>
+        <div class="price-note">+ IGV · entrega en <b>7 días</b></div>
+        <ul><li>E-commerce con <b>catálogo y carrito</b></li><li>Pagos y envíos configurados</li><li><b>Dominio .com + hosting</b> incluidos</li><li>Panel para gestionar productos y pedidos</li><li>Capacitación para tu equipo</li></ul>
+        <a class="btn btn--gold" data-wa="Hola negolo, quiero la tienda virtual de S/699" href="#">Quiero esta opción</a>
       </div>
       <div class="tier tier--custom rv">
-        <h3>Cotización personalizada</h3>
+        <h3>Chatbots · Apps · Marca</h3>
         <div class="price" style="font-size:30px">A tu medida</div>
-        <div class="price-note">hablemos de tu proyecto</div>
-        <ul><li>Cuéntanos qué necesitas y tu presupuesto</li><li>Te proponemos alcance y plazos</li><li>Ajustamos precios según tu proyecto</li><li>Sin compromiso ni costo</li></ul>
-        <a class="btn btn--gold" data-wa="Hola negolo, quiero una cotización personalizada para mi proyecto" href="#">Pedir cotización gratis</a>
+        <div class="price-note">cotización en el día</div>
+        <ul><li><b>Chatbots</b> de WhatsApp y web con IA</li><li><b>Apps</b> para Android y iOS</li><li><b>Diseño y marca</b>: logo, identidad y piezas</li><li>Integraciones y automatizaciones</li></ul>
+        <a class="btn btn--ghost" data-wa="Hola negolo, quiero cotizar un chatbot / app / diseño de marca" href="#">Pedir cotización gratis</a>
       </div>
     </div>
     <div class="extras rv">
+      <span class="extra">Todos los precios <b>+ IGV</b></span>
       <span class="extra">Dominio <b>.pe</b>: + S/199</span>
       <span class="extra">Mantenimiento anual: <b>S/150</b></span>
-      <span class="extra">Cambios y ampliaciones: <b>cotización gratis</b></span>
-      <span class="extra">Aceptamos proyectos <b>por etapas</b></span>
+      <span class="extra">Secciones o funciones extra: <b>cotización gratis</b></span>
     </div>
     <div class="guarantee rv">
-      <span style="font-size:20px">🤝</span>
-      <div><b>Negociable y sin miedo:</b> si tu presupuesto es menor o tu proyecto es más grande, escríbenos igual. Nos adaptamos a lo que necesitas y te decimos con franqueza qué se puede hacer en cada rango de precio.</div>
+      <span style="font-size:20px">🔒</span>
+      <div><b>Sin pago previo, cero riesgo:</b> nos cuentas tu idea → te cotizamos gratis → diseñamos tu web → la corriges hasta que te encante → <b>y recién ahí pagas</b>. Nunca adelantas dinero para ver tu diseño. Si tu presupuesto es menor o tu proyecto es más grande, escríbenos igual: lo ajustamos contigo.</div>
     </div>
   </div>
 </section>
