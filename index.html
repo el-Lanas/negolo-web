@@ -184,6 +184,12 @@
     .final{padding:34px 26px}
   }
   /* ---------- animaciones y transiciones ---------- */
+  @keyframes heroIn{from{opacity:0;transform:translateY(30px) scale(.985);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+  @keyframes goldPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.28)}}
+  .anim{opacity:0;animation:heroIn 1s cubic-bezier(.16,1,.3,1) forwards}
+  .anim-1{animation-delay:.05s}.anim-2{animation-delay:.18s}.anim-3{animation-delay:.32s}.anim-4{animation-delay:.46s}.anim-5{animation-delay:.6s}
+  .hero h1 em{display:inline-block;animation:goldPulse 4.5s ease-in-out infinite}
+  .hero__grid{will-change:opacity,transform}
   @keyframes drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   @keyframes sheen{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -232,23 +238,22 @@
 <section class="hero" id="top">
   <div class="wrap hero__grid">
     <div>
-      <span class="badge">Disponible para nuevos proyectos</span>
-      <h1>Tu negocio, <em>sin vueltas</em> en internet.</h1>
-      <p class="sub">Diseñamos y desarrollamos webs, tiendas, apps y chatbots que se ven increíbles y traen clientes. Precios claros, entrega rápida y soporte real.</p>
-      <div class="hero__cta">
+      <h1 class="anim anim-2">Tu negocio, <em>sin vueltas</em> en internet.</h1>
+      <p class="sub anim anim-3">Diseñamos y desarrollamos webs, tiendas, apps y chatbots que se ven increíbles y traen clientes. Precios claros, entrega rápida y soporte real.</p>
+      <div class="hero__cta anim anim-4">
         <a class="btn btn--gold" data-wa="Hola negolo, quiero cotizar mi página web sin compromiso" href="#">Cotiza gratis por WhatsApp →</a>
         <a class="btn btn--ghost-d" href="#portafolio">Ver portafolio</a>
       </div>
-      <div class="hero__stats">
-        <div><b>15+</b><span>proyectos entregados</span></div>
+      <div class="hero__stats anim anim-5">
+        <div><b>13+</b><span>proyectos entregados</span></div>
         <div><b>&lt; 5 min</b><span>tiempo de respuesta</span></div>
         <div><b>Desde S/299</b><span>landing online en 2 días</span></div>
       </div>
-      <div class="badge" style="margin-top:24px">🔥 Cupos limitados: 3 proyectos nuevos por semana</div>
+      <div class="badge anim anim-5" style="margin-top:24px">🔥 Cupos limitados: 3 proyectos nuevos por semana</div>
     </div>
-    <div class="hero__card">
+    <div class="hero__card anim anim-3">
       <div class="bar"><i></i><i></i><i></i></div>
-      <div class="shot"><img src="portafolio/11-convalt/preview.png" alt="Proyecto negolo — web 3D" loading="lazy"></div>
+      <div class="shot"><img src="portafolio/09-valencia-visual/preview.png" alt="Caso negolo — Valencia Visual, web + configurador 3D" loading="lazy"></div>
       <div class="chat">
         <div class="bub">Hola, vi su portafolio. ¿Cuánto cuesta una web para mi restaurante?</div>
         <div class="bub bub--in">¡Hola! Podemos tener tu landing lista esta semana. Te mando 3 opciones 👇</div>
@@ -288,11 +293,11 @@
         <a class="btn btn--gold" data-wa="Hola negolo, quiero la tienda virtual de S/699" href="#">Quiero esta opción</a>
       </div>
       <div class="tier tier--custom rv">
-        <h3>Chatbots · Apps · Marca</h3>
+        <h3>Chatbots · Apps · Sistemas a medida</h3>
         <div class="price" style="font-size:30px">A tu medida</div>
-        <div class="price-note">cotización en el día</div>
-        <ul><li><b>Chatbots</b> de WhatsApp y web con IA</li><li><b>Apps</b> para Android y iOS</li><li><b>Diseño y marca</b>: logo, identidad y piezas</li><li>Integraciones y automatizaciones</li></ul>
-        <a class="btn btn--ghost" data-wa="Hola negolo, quiero cotizar un chatbot / app / diseño de marca" href="#">Pedir cotización gratis</a>
+        <div class="price-note">cotización en el día · sin pago previo</div>
+        <ul><li><b>Cualquier sistema a medida</b>: ERP, CRM, paneles de gestión, intranets, reservas, control de stock</li><li><b>Chatbots</b> de WhatsApp y web con IA</li><li><b>Apps</b> para Android y iOS</li><li><b>Diseño y marca</b>: logo, identidad y piezas</li><li>Integraciones, migraciones y automatizaciones</li></ul>
+        <a class="btn btn--ghost" data-wa="Hola negolo, quiero cotizar un sistema a medida / chatbot / app" href="#">Pedir cotización gratis</a>
       </div>
     </div>
     <div class="extras rv">
@@ -442,6 +447,16 @@
 </a>
 
 <script>
+  /* ---------- hero: salida al hacer scroll ---------- */
+  const heroGrid = document.querySelector('.hero__grid');
+  if (heroGrid && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    addEventListener('scroll', () => {
+      const k = Math.min(scrollY / (innerHeight * 0.8), 1);
+      heroGrid.style.opacity = String(1 - k * 0.92);
+      heroGrid.style.transform = 'translateY(' + (-k * 40).toFixed(1) + 'px) scale(' + (1 - k * 0.02).toFixed(3) + ')';
+    }, { passive: true });
+  }
+
   /* ---------- WhatsApp con mensaje prellenado ---------- */
   const WA = '51930227652';
   document.querySelectorAll('[data-wa]').forEach(el => {
