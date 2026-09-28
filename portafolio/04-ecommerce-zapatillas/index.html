@@ -1,463 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZYPHER sneakers — Premium Footwear</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --accent:#FF6B35;
-            --accent-dark:#E55A2B;
-            --bg-dark:#0A0A0A;
-            --bg-card:#141414;
-            --bg-card-hover:#1C1C1C;
-            --text:#FFFFFF;
-            --text-muted:#999999;
-            --border:#222222;
-            --gradient:linear-gradient(135deg, #FF6B35 0%, #FF8C61 100%);
-        }
-        html{scroll-behavior:smooth}
-        body{font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--text);overflow-x:clip;line-height:1.6}
-        .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-        .fade-up.visible{opacity:1;transform:none}
-
-        /* Topbar */
-        .topbar{background:var(--accent);padding:8px 0;text-align:center;font-size:13px;font-weight:600;letter-spacing:1px}
-        .topbar span{color:var(--bg-dark)}
-
-        /* Navbar */
-        .navbar{position:sticky;top:0;width:100%;z-index:1000;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .3s ease;background:transparent}
-        .navbar.scrolled{background:rgba(10,10,10,.95);backdrop-filter:blur(20px);padding:12px 48px;box-shadow:0 2px 20px rgba(0,0,0,.3)}
-        .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--accent);letter-spacing:3px;text-decoration:none}
-        .nav-links{display:flex;gap:32px;align-items:center}
-        .nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
-        .nav-links a:hover{color:var(--accent)}
-        .nav-cart{position:relative;cursor:pointer;font-size:20px}
-        .nav-cart .badge{position:absolute;top:-8px;right:-10px;background:var(--accent);color:#fff;font-size:10px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-        .nav-menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
-        .nav-cta{background:var(--accent);color:#fff;padding:10px 24px;border:none;border-radius:6px;font-weight:600;font-size:14px;cursor:pointer;transition:transform .2s}
-        .nav-cta:hover{transform:scale(1.05)}
-
-        /* Hero */
-        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 48px}
-        .hero-bg{position:absolute;inset:0;background:url('img/hero.jpg') center/cover no-repeat;filter:brightness(.6)}
-        .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,10,.92) 0%,rgba(10,10,10,.5) 50%,rgba(255,107,53,.15) 100%)}
-        .hero-content{position:relative;z-index:2;max-width:650px}
-        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,53,.15);border:1px solid rgba(255,107,53,.3);padding:8px 18px;border-radius:50px;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:24px}
-        .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,96px);line-height:.95;letter-spacing:4px;margin-bottom:20px}
-        .hero h1 .highlight{color:var(--accent)}
-        .hero p{font-size:18px;color:var(--text-muted);max-width:500px;margin-bottom:32px;line-height:1.7}
-        .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
-        .btn-primary{background:var(--gradient);color:#fff;padding:16px 36px;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none}
-        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,53,.4)}
-        .btn-outline{background:transparent;border:2px solid var(--border);color:#fff;padding:16px 36px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none}
-        .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-        .hero-stats{display:flex;gap:40px;margin-top:48px}
-        .hero-stat .num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--accent)}
-        .hero-stat .label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
-        .hero-float{position:absolute;right:8%;bottom:15%;z-index:2;opacity:.15;font-size:280px;font-family:'Bebas Neue',sans-serif;color:var(--accent);pointer-events:none;line-height:1}
-
-        /* Promo Banner */
-        .promo-banner{background:var(--gradient);padding:16px 0;text-align:center}
-        .promo-banner p{color:#fff;font-weight:700;font-size:15px;letter-spacing:2px}
-
-        /* Categories */
-        .categories{padding:80px 48px}
-        .section-title{text-align:center;margin-bottom:48px}
-        .section-title .tag{display:inline-block;background:rgba(255,107,53,.1);color:var(--accent);padding:6px 16px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:16px}
-        .section-title h2{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:3px}
-        .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1200px;margin:0 auto}
-        .cat-card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;cursor:pointer;transition:transform .3s}
-        .cat-card:hover{transform:translateY(-6px)}
-        .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-        .cat-card:hover img{transform:scale(1.08)}
-        .cat-card .cat-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
-        .cat-card .cat-overlay h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px}
-        .cat-card .cat-overlay span{font-size:13px;color:var(--accent);font-weight:600}
-
-        /* Featured Products */
-        .featured{padding:80px 48px;max-width:1400px;margin:0 auto}
-        .filter-bar{display:flex;justify-content:center;gap:12px;margin-bottom:40px;flex-wrap:wrap}
-        .filter-btn{background:var(--bg-card);border:1px solid var(--border);color:var(--text-muted);padding:10px 24px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
-        .filter-btn.active,.filter-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
-        .product-card{background:var(--bg-card);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:all .3s}
-        .product-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.4);border-color:var(--accent)}
-        .product-img{position:relative;height:280px;background:#1a1a1a;overflow:hidden}
-        .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-        .product-card:hover .product-img img{transform:scale(1.06)}
-        .product-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700}
-        .product-wishlist{position:absolute;top:12px;right:12px;width:36px;height:36px;background:rgba(0,0,0,.5);border:none;border-radius:50%;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-        .product-wishlist:hover{background:var(--accent)}
-        .product-info{padding:20px}
-        .product-info .brand{font-size:12px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-        .product-info h3{font-size:16px;font-weight:600;margin-bottom:8px}
-        .product-info .price{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-        .product-info .price .current{font-size:22px;font-weight:700;color:var(--accent)}
-        .product-info .price .old{font-size:14px;color:var(--text-muted);text-decoration:line-through}
-        .product-info .sizes{display:flex;gap:6px;margin-bottom:16px}
-        .product-info .sizes span{background:var(--bg-dark);border:1px solid var(--border);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;transition:all .2s}
-        .product-info .sizes span:hover{border-color:var(--accent);color:var(--accent)}
-        .add-cart{width:100%;background:var(--bg-dark);border:1px solid var(--border);color:#fff;padding:12px;border-radius:8px;font-weight:600;cursor:pointer;transition:all .2s}
-        .add-cart:hover{background:var(--accent);border-color:var(--accent)}
-
-        /* Newsletter */
-        .newsletter{padding:100px 48px;text-align:center;background:linear-gradient(180deg,var(--bg-dark) 0%,#111 100%)}
-        .newsletter h2{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:3px;margin-bottom:12px}
-        .newsletter p{color:var(--text-muted);max-width:500px;margin:0 auto 32px}
-        .newsletter-form{display:flex;max-width:500px;margin:0 auto;gap:12px}
-        .newsletter-form input{flex:1;background:var(--bg-card);border:1px solid var(--border);padding:14px 20px;border-radius:8px;color:#fff;font-size:15px;outline:none}
-        .newsletter-form input:focus{border-color:var(--accent)}
-        .newsletter-form button{background:var(--accent);color:#fff;border:none;padding:14px 32px;border-radius:8px;font-weight:700;cursor:pointer;transition:transform .2s}
-        .newsletter-form button:hover{transform:scale(1.05)}
-
-        /* Footer */
-        footer{background:#0D0D0D;padding:60px 48px 30px;border-top:1px solid var(--border)}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto}
-        .footer-brand .logo{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent);letter-spacing:3px;margin-bottom:12px}
-        .footer-brand p{color:var(--text-muted);font-size:14px;line-height:1.7}
-        .footer-col h4{font-size:14px;font-weight:700;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
-        .footer-col a{display:block;color:var(--text-muted);text-decoration:none;font-size:14px;margin-bottom:10px;transition:color .2s}
-        .footer-col a:hover{color:var(--accent)}
-        .footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:20px;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:13px}
-
-        /* Cart Drawer */
-        .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s}
-        .cart-overlay.open{opacity:1;pointer-events:all}
-        .cart-drawer{position:fixed;top:0;right:-420px;width:400px;max-width:90vw;height:100vh;background:var(--bg-card);z-index:2001;transition:right .3s ease;display:flex;flex-direction:column}
-        .cart-drawer.open{right:0}
-        .cart-header{padding:24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-        .cart-header h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px}
-        .cart-close{background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
-        .cart-items{flex:1;overflow-y:auto;padding:16px 24px}
-        .cart-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
-        .cart-item img{width:80px;height:80px;object-fit:cover;border-radius:8px}
-        .cart-item .item-info h4{font-size:14px;margin-bottom:4px}
-        .cart-item .item-info .item-price{color:var(--accent);font-weight:700}
-        .cart-item .remove-item{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:12px;margin-top:8px}
-        .cart-item .remove-item:hover{color:#e74c3c}
-        .cart-footer{padding:24px;border-top:1px solid var(--border)}
-        .cart-total{display:flex;justify-content:space-between;margin-bottom:16px;font-size:18px;font-weight:700}
-        .cart-total .total-price{color:var(--accent)}
-        .cart-checkout{width:100%;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;transition:transform .2s}
-        .cart-checkout:hover{transform:scale(1.02)}
-        .cart-empty{text-align:center;padding:40px 0;color:var(--text-muted)}
-
-        /* WhatsApp */
-        .whatsapp-float{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;z-index:999;transition:transform .2s;text-decoration:none}
-        .whatsapp-float:hover{transform:scale(1.1)}
-
-        /* Mobile */
-        @media(max-width:900px){
-            .topbar{padding:6px 12px}
-            .topbar span{font-size:11px;letter-spacing:.5px;display:block}
-            .navbar{padding:14px 20px}
-            .navbar.scrolled{padding:12px 20px}
-            .nav-links{display:none}
-            .nav-menu-btn{display:block}
-            .hero{padding:0 20px}
-            .hero-float{display:none}
-            .cat-grid{grid-template-columns:repeat(2,1fr)}
-            .categories,.featured,.newsletter{padding:60px 20px}
-            .footer-grid{grid-template-columns:1fr}
-            .newsletter-form{flex-direction:column}
-        }
-        @media(max-width:600px){
-            .cat-grid{grid-template-columns:1fr}
-            .products-grid{grid-template-columns:1fr}
-            .hero h1{font-size:42px}
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZYPHER — Ecommerce de Zapatillas — Caso negolo</title>
+<meta name="description" content="Tienda online con carrito interactivo y foco en conversión.">
+<link rel="icon" href="/assets/brand/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#E8B84B;--gold-soft:#F5E6A0;--plum:#2D1B36;--lav:#F5F0F7;--muted:#6A5B75;--muted-d:#C9BBD6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Nunito,system-ui,Arial,sans-serif;background:var(--lav);color:var(--plum);line-height:1.6}
+  a{color:inherit}
+  header{background:var(--plum);padding:16px 0;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(232,184,75,.18)}
+  .wrap{max-width:1150px;margin:0 auto;padding:0 24px}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav img{height:28px}
+  .nav a{color:var(--gold);text-decoration:none;font-weight:800;font-size:14px}
+  .hero{background:radial-gradient(900px 500px at 85% -10%,rgba(232,184,75,.16),transparent 62%),var(--plum);color:#fff;padding:56px 0 46px}
+  .tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  h1{font-size:clamp(28px,3.6vw,46px);line-height:1.1;letter-spacing:-.02em;font-weight:900;margin:14px 0 12px}
+  .hero p{color:var(--muted-d);max-width:70ch;font-size:17px}
+  .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:15px 26px;font-weight:900;text-decoration:none;font-size:15px;border:2px solid transparent}
+  .btn--gold{background:var(--gold);color:var(--plum)}
+  .btn--ghost{color:var(--gold);border-color:rgba(232,184,75,.45)}
+  section{padding:52px 0}
+  h2{font-size:26px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px}
+  .lead{color:var(--muted);margin-bottom:26px}
+  ul.bul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  ul.bul li{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:14px;padding:16px 18px;font-size:15px}
+  ul.bul li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:9px}
+  .shots{display:grid;gap:22px}
+  figure{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(45,27,54,.08)}
+  figure img{width:100%;display:block}
+  figcaption{padding:12px 16px;font-size:13.5px;font-weight:700;color:var(--muted);border-top:1px solid rgba(45,27,54,.08)}
+  footer{background:var(--plum);color:var(--muted-d);padding:34px 0;margin-top:30px;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--gold);text-decoration:none;font-weight:800}
+  @media (max-width:700px){.hero{padding:38px 0}.shots{gap:16px}}
+</style>
 </head>
 <body>
-    <!-- Topbar -->
-    <div class="topbar"><span>🔥 ENVÍO GRATIS en compras +$99 | 30 Días de Devolución</span></div>
+<header><div class="wrap nav">
+  <a href="/"><img src="/assets/brand/logo-full-dark.svg" alt="negolo"></a>
+  <a href="/#portafolio">← Volver al portafolio</a>
+</div></header>
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo">ZYPHER</a>
-        <div class="nav-links">
-            <a href="#catalogo">Catálogo</a>
-            <a href="#nuevos">Nuevos</a>
-            <a href="#ofertas">Ofertas</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px">
-            <div class="nav-cart" onclick="toggleCart()">🛒 <span class="badge" id="cart-count">0</span></div>
-            <button class="nav-cta">Mi Cuenta</button>
-            <button class="nav-menu-btn" onclick="toggleMobile()">☰</button>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content fade-up">
-            <div class="hero-badge">★ Colección Exclusiva 2026</div>
-            <h1>STEP UP<br>YOUR <span class="highlight">GAME</span></h1>
-            <p>Descubre las zapatillas que están definiendo el street style este año. Diseño premium, materiales de alta gama y comfort absoluto.</p>
-            <div class="hero-btns">
-                <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
-                <a href="#nuevos" class="btn-outline">Nuevos Lanzamientos</a>
-            </div>
-            <div class="hero-stats">
-                <div class="hero-stat"><div class="num" data-target="2500">0</div><div class="label">Pares Vendidos</div></div>
-                <div class="hero-stat"><div class="num" data-target="4">0</div><div class="label">Años Activos</div></div>
-                <div class="hero-stat"><div class="num" data-target="98">0</div><div class="label">% Satisfacción</div></div>
-            </div>
-        </div>
-        <div class="hero-float">ZW</div>
-    </section>
-
-    <!-- Promo -->
-    <div class="promo-banner"><p>⚡ FLASH SALE — HASTA 25% OFF EN MODELOS SELECCIONADOS</p></div>
-
-    <!-- Categories -->
-    <section class="categories fade-up" id="catalogo">
-        <div class="section-title">
-            <div class="tag">CATEGORÍAS</div>
-            <h2>EXPLORA POR ESTILO</h2>
-        </div>
-        <div class="cat-grid">
-            <div class="cat-card">
-                <img src="img/p1.jpg" alt="Running">
-                <div class="cat-overlay"><h3>RUNNING</h3><span>Ver colección →</span></div>
-            </div>
-            <div class="cat-card">
-                <img src="img/p2.jpg" alt="Basketball">
-                <div class="cat-overlay"><h3>BASKETBALL</h3><span>Ver colección →</span></div>
-            </div>
-            <div class="cat-card">
-                <img src="img/p3.jpg" alt="Retro">
-                <div class="cat-overlay"><h3>RETRO</h3><span>Ver colección →</span></div>
-            </div>
-            <div class="cat-card">
-                <img src="img/lifestyle.jpg" alt="Lifestyle">
-                <div class="cat-overlay"><h3>LIFESTYLE</h3><span>Ver colección →</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products -->
-    <section class="featured" id="nuevos">
-        <div class="section-title fade-up">
-            <div class="tag">NUEVOS LANZAMIENTOS</div>
-            <h2>LO MÁS TOP</h2>
-        </div>
-        <div class="filter-bar fade-up">
-            <button class="filter-btn active">Todos</button>
-            <button class="filter-btn">Running</button>
-            <button class="filter-btn">Basketball</button>
-            <button class="filter-btn">Retro</button>
-            <button class="filter-btn">Skate</button>
-        </div>
-        <div class="products-grid" id="products-grid"></div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter fade-up" id="contacto">
-        <h2>SUSCRÍBETE Y OBTÉN 15% OFF</h2>
-        <p>Sé el primero en enterarte de nuevos lanzamientos, ofertas exclusivas y drops limitados.</p>
-        <div class="newsletter-form">
-            <input type="email" placeholder="tucorreo@email.com">
-            <button>Suscribirme</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo">ZYPHER</div>
-                <p>Premium sneakers para quienes no siguen las reglas. Envíos a todo Perú y Latinoamérica.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Tienda</h4>
-                <a href="#">Nuevos Lanzamientos</a>
-                <a href="#">Más Vendidos</a>
-                <a href="#">Ofertas</a>
-                <a href="#">Gift Cards</a>
-            </div>
-            <div class="footer-col">
-                <h4>Ayuda</h4>
-                <a href="#">Guía de Tallas</a>
-                <a href="#">Envíos</a>
-                <a href="#">Devoluciones</a>
-                <a href="#">FAQ</a>
-            </div>
-            <div class="footer-col">
-                <h4>Síguenos</h4>
-                <a href="#">Instagram</a>
-                <a href="#">TikTok</a>
-                <a href="#">Twitter/X</a>
-                <a href="#">YouTube</a>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2026 ZYPHER Sneakers. Todos los derechos reservados. Hecho con ❤️ en Perú.</div>
-    </footer>
-
-    <!-- Cart Drawer -->
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header"><h3>MI CARRITO</h3><button class="cart-close" onclick="toggleCart()">✕</button></div>
-        <div class="cart-items" id="cartItems"><div class="cart-empty">Tu carrito está vacío</div></div>
-        <div class="cart-footer">
-            <div class="cart-total"><span>Total:</span><span class="total-price" id="cartTotal">$0.00</span></div>
-            <button class="cart-checkout">Finalizar Compra</button>
-        </div>
-    </div>
-
-    <!-- WhatsApp -->
-    <a href="https://wa.me/51999999999?text=Hola!%20Quiero%20info%20sobre%20sus%20zapatillas" target="_blank" class="whatsapp-float">💬</a>
-
-    <script>
-        const products = [
-            {id:1,name:"ZYPHER Air Pulse",brand:"ZYPHER",price:189,oldPrice:249,image:"img/p1.jpg",badge:"-24%",sizes:["38","39","40","41","42","43"],category:"running"},
-            {id:2,name:"ZYPHER Dunk Elite",brand:"ZYPHER",price:215,oldPrice:null,image:"img/p2.jpg",badge:"Nuevo",sizes:["39","40","41","42","43"],category:"basketball"},
-            {id:3,name:"ZYPHER Suede Classic",brand:"ZYPHER",price:165,oldPrice:null,image:"img/p3.jpg",badge:null,sizes:["38","39","40","41","42"],category:"retro"},
-            {id:4,name:"ZYPHER Pro Skate",brand:"ZYPHER",price:175,oldPrice:210,image:"img/p4.jpg",badge:"-17%",sizes:["40","41","42","43","44"],category:"skate"},
-            {id:5,name:"ZYPHER Street Runner",brand:"ZYPHER",price:199,oldPrice:259,image:"img/lifestyle.jpg",badge:"-23%",sizes:["38","39","40","41","42"],category:"running"},
-            {id:6,name:"ZYPHER One Low",brand:"ZYPHER",price:145,oldPrice:null,image:"img/p1.jpg",badge:null,sizes:["37","38","39","40","41"],category:"retro"},
-            {id:7,name:"ZYPHER Court Vision",brand:"ZYPHER",price:225,oldPrice:289,image:"img/p2.jpg",badge:"-22%",sizes:["39","40","41","42","43","44"],category:"basketball"},
-            {id:8,name:"ZYPHER Urban X",brand:"ZYPHER",price:185,oldPrice:null,image:"img/p3.jpg",badge:"Nuevo",sizes:["38","39","40","41","42"],category:"skate"}
-        ];
-
-        let cart = JSON.parse(localStorage.getItem('zypher-cart') || '[]');
-
-        function renderProducts(filter='all'){
-            const grid = document.getElementById('products-grid');
-            const filtered = filter==='all' ? products : products.filter(p=>p.category===filter);
-            grid.innerHTML = filtered.map(p=>`
-                <div class="product-card" data-category="${p.category}">
-                    <div class="product-img">
-                        <img src="${p.image}" alt="${p.name}">
-                        ${p.badge?`<div class="product-badge">${p.badge}</div>`:''}
-                        <button class="product-wishlist" onclick="event.stopPropagation()">♡</button>
-                    </div>
-                    <div class="product-info">
-                        <div class="brand">${p.brand}</div>
-                        <h3>${p.name}</h3>
-                        <div class="price">
-                            <span class="current">$${p.price}</span>
-                            ${p.oldPrice?`<span class="old">$${p.oldPrice}</span>`:''}
-                        </div>
-                        <div class="sizes">${p.sizes.map(s=>`<span>${s}</span>`).join('')}</div>
-                        <button class="add-cart" onclick="addToCart(${p.id})">Agregar al Carrito</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function addToCart(id){
-            const p = products.find(x=>x.id===id);
-            if(!cart.find(x=>x.id===id)){
-                cart.push({...p,qty:1});
-            } else {
-                cart.find(x=>x.id===id).qty++;
-            }
-            localStorage.setItem('zypher-cart',JSON.stringify(cart));
-            updateCart();
-            toggleCart();
-        }
-
-        function removeFromCart(id){
-            cart = cart.filter(x=>x.id!==id);
-            localStorage.setItem('zypher-cart',JSON.stringify(cart));
-            updateCart();
-        }
-
-        function updateCart(){
-            document.getElementById('cart-count').textContent = cart.reduce((s,x)=>s+x.qty,0);
-            const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
-            document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
-            const itemsEl = document.getElementById('cartItems');
-            if(cart.length===0){itemsEl.innerHTML='<div class="cart-empty">Tu carrito está vacío</div>';return;}
-            itemsEl.innerHTML = cart.map(x=>`
-                <div class="cart-item">
-                    <img src="${x.image}" alt="${x.name}">
-                    <div class="item-info">
-                        <h4>${x.name}</h4>
-                        <div class="item-price">$${x.price} × ${x.qty}</div>
-                        <button class="remove-item" onclick="removeFromCart(${x.id})">Eliminar</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function toggleCart(){
-            document.getElementById('cartOverlay').classList.toggle('open');
-            document.getElementById('cartDrawer').classList.toggle('open');
-        }
-
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn=>{
-            btn.addEventListener('click',()=>{
-                document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-                btn.classList.add('active');
-                const cat = btn.textContent.toLowerCase();
-                renderProducts(cat==='todos'?'all':cat);
-            });
-        });
-
-        // Navbar scroll
-        window.addEventListener('scroll',()=>{
-            document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
-        });
-
-        // Counters
-        const counterObserver = new IntersectionObserver(entries=>{
-            entries.forEach(e=>{
-                if(e.isIntersecting){
-                    const el = e.target;
-                    const target = parseInt(el.dataset.target);
-                    let current = 0;
-                    const step = Math.ceil(target/60);
-                    const timer = setInterval(()=>{
-                        current += step;
-                        if(current>=target){current=target;clearInterval(timer);}
-                        el.textContent = current.toLocaleString() + (target===98?'%':'+');
-                    },25);
-                    counterObserver.unobserve(el);
-                }
-            });
-        },{threshold:.5});
-        document.querySelectorAll('.hero-stat .num').forEach(n=>counterObserver.observe(n));
-
-        // Fade up
-        const fadeObserver = new IntersectionObserver(entries=>{
-            entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');fadeObserver.unobserve(e.target)}});
-        },{threshold:.1});
-        document.querySelectorAll('.fade-up').forEach(el=>fadeObserver.observe(el));
-
-        // Mobile
-        function toggleMobile(){
-            const links = document.querySelector('.nav-links');
-            links.style.display = links.style.display==='flex'?'none':'flex';
-            links.style.position='fixed';links.style.top='70px';links.style.left='0';links.style.right='0';
-            links.style.background='rgba(10,10,10,.98)';links.style.flexDirection='column';
-            links.style.padding='20px';links.style.gap='16px';links.style.zIndex='999';
-        }
-
-        renderProducts();
-        updateCart();
-    </script>
-
-<!-- CASE PRESENTATION negolo -->
-<section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
-  <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
-    <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
-    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">ZYPHER — Ecommerce de Zapatillas</h2>
-    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Ecommerce completo: catálogo de productos, filtros, ficha de producto, carrito con totales en vivo y checkout.</p>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
-      <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
-      <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
-    </div>
+<div class="hero"><div class="wrap">
+  <span class="tag">Caso — negolo</span>
+  <h1>ZYPHER — Ecommerce de Zapatillas</h1>
+  <p>Tienda online con carrito interactivo y foco en conversión.</p>
+  <div class="btns">
+    <a class="btn btn--gold" href="demo.html">Ver en vivo →</a>
+    <a class="btn btn--ghost" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">Quiero algo así · WhatsApp</a>
   </div>
-</section>
+</div></div>
 
+<div class="wrap">
+  <section>
+    <h2>Qué se hizo</h2>
+    <p class="lead">Secciones y piezas que forman este proyecto:</p>
+    <ul class="bul"><li>Catálogo con filtros por categoría</li><li>Ficha de producto con galería</li><li>Carrito con totales en vivo</li><li>Checkout y pasos de compra</li></ul>
+  </section>
+  <section style="padding-top:0">
+    <h2>Capturas del proyecto</h2>
+    <p class="lead">Así se ve por dentro. Puedes recorrerlo completo en “Ver en vivo”.</p>
+    <div class="shots"><figure><img src="fullpage.png" alt="ZYPHER — Ecommerce de Zapatillas — fullpage" loading="lazy"><figcaption>fullpage</figcaption></figure><figure><img src="preview.png" alt="ZYPHER — Ecommerce de Zapatillas — preview" loading="lazy"><figcaption>preview</figcaption></figure></div>
+  </section>
+</div>
+
+<footer><div class="wrap"><span>© 2026 negolo — Desarrollo web, apps y chatbots</span><span><a href="/#portafolio">← Ver más proyectos</a> · <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
 </body>
 </html>

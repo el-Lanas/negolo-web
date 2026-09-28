@@ -1,131 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestor de Citas - Demo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestor de Citas — Caso negolo</title>
+<meta name="description" content="Web app de agendamiento con coordinación de horarios en tiempo real.">
+<link rel="icon" href="/assets/brand/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', system-ui, sans-serif; }
-  body { background:#0f172a; color:#e2e8f0; min-height:100vh; padding:30px 16px; }
-  .wrap { max-width:960px; margin:auto; }
-  h1 { font-size:1.6rem; margin-bottom:6px; }
-  .sub { color:#94a3b8; font-size:.95rem; margin-bottom:24px; }
-  .panel { background:#1e293b; border-radius:14px; padding:22px; margin-bottom:20px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
-  .row { display:grid; grid-template-columns:2fr 1.4fr 1fr 1.2fr auto; gap:10px; align-items:end; }
-  label { display:block; font-size:.78rem; color:#94a3b8; margin-bottom:5px; text-transform:uppercase; letter-spacing:.04em; }
-  input, select { width:100%; padding:11px; border-radius:9px; border:1px solid #334155; background:#0f172a; color:#e2e8f0; font-size:.92rem; }
-  input:focus, select:focus { outline:2px solid #38bdf8; border-color:transparent; }
-  button.add { background:#38bdf8; color:#0f172a; font-weight:800; border:none; padding:12px 18px; border-radius:9px; cursor:pointer; }
-  button.add:hover { background:#0ea5e9; }
-  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
-  .stat { background:#1e293b; border-radius:12px; padding:16px; text-align:center; }
-  .stat b { display:block; font-size:1.7rem; color:#38bdf8; }
-  .stat span { font-size:.82rem; color:#94a3b8; }
-  table { width:100%; border-collapse:collapse; font-size:.92rem; }
-  th { text-align:left; color:#94a3b8; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; padding:8px 10px; border-bottom:1px solid #334155; }
-  td { padding:11px 10px; border-bottom:1px solid #263349; }
-  .badge { padding:4px 10px; border-radius:50px; font-size:.75rem; font-weight:700; cursor:pointer; user-select:none; }
-  .pendiente { background:#78350f; color:#fcd34d; }
-  .confirmada { background:#14532d; color:#86efac; }
-  .atendida { background:#1e3a8a; color:#93c5fd; }
-  .del { background:transparent; border:none; color:#f87171; cursor:pointer; font-size:1rem; }
-  .empty { text-align:center; color:#64748b; padding:28px; }
-  @media (max-width:760px){ .row { grid-template-columns:1fr 1fr; } .stats { grid-template-columns:1fr; } }
+  :root{--gold:#E8B84B;--gold-soft:#F5E6A0;--plum:#2D1B36;--lav:#F5F0F7;--muted:#6A5B75;--muted-d:#C9BBD6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Nunito,system-ui,Arial,sans-serif;background:var(--lav);color:var(--plum);line-height:1.6}
+  a{color:inherit}
+  header{background:var(--plum);padding:16px 0;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(232,184,75,.18)}
+  .wrap{max-width:1150px;margin:0 auto;padding:0 24px}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav img{height:28px}
+  .nav a{color:var(--gold);text-decoration:none;font-weight:800;font-size:14px}
+  .hero{background:radial-gradient(900px 500px at 85% -10%,rgba(232,184,75,.16),transparent 62%),var(--plum);color:#fff;padding:56px 0 46px}
+  .tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  h1{font-size:clamp(28px,3.6vw,46px);line-height:1.1;letter-spacing:-.02em;font-weight:900;margin:14px 0 12px}
+  .hero p{color:var(--muted-d);max-width:70ch;font-size:17px}
+  .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:15px 26px;font-weight:900;text-decoration:none;font-size:15px;border:2px solid transparent}
+  .btn--gold{background:var(--gold);color:var(--plum)}
+  .btn--ghost{color:var(--gold);border-color:rgba(232,184,75,.45)}
+  section{padding:52px 0}
+  h2{font-size:26px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px}
+  .lead{color:var(--muted);margin-bottom:26px}
+  ul.bul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  ul.bul li{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:14px;padding:16px 18px;font-size:15px}
+  ul.bul li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:9px}
+  .shots{display:grid;gap:22px}
+  figure{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(45,27,54,.08)}
+  figure img{width:100%;display:block}
+  figcaption{padding:12px 16px;font-size:13.5px;font-weight:700;color:var(--muted);border-top:1px solid rgba(45,27,54,.08)}
+  footer{background:var(--plum);color:var(--muted-d);padding:34px 0;margin-top:30px;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--gold);text-decoration:none;font-weight:800}
+  @media (max-width:700px){.hero{padding:38px 0}.shots{gap:16px}}
 </style>
 </head>
 <body>
+<header><div class="wrap nav">
+  <a href="/"><img src="/assets/brand/logo-full-dark.svg" alt="negolo"></a>
+  <a href="/#portafolio">← Volver al portafolio</a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <span class="tag">Caso — negolo</span>
+  <h1>Gestor de Citas</h1>
+  <p>Web app de agendamiento con coordinación de horarios en tiempo real.</p>
+  <div class="btns">
+    <a class="btn btn--gold" href="demo.html">Ver en vivo →</a>
+    <a class="btn btn--ghost" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">Quiero algo así · WhatsApp</a>
+  </div>
+</div></div>
+
 <div class="wrap">
-  <h1>📅 Gestor de Citas</h1>
-  <p class="sub">Demo de aplicación web — agrega, confirma y cierra citas. Datos guardados en tu navegador.</p>
-
-  <div class="stats">
-    <div class="stat"><b id="n-total">0</b><span>Total de citas</span></div>
-    <div class="stat"><b id="n-pend">0</b><span>Pendientes</span></div>
-    <div class="stat"><b id="n-conf">0</b><span>Confirmadas</span></div>
-  </div>
-
-  <div class="panel">
-    <div class="row">
-      <div><label>Cliente</label><input id="f-nombre" type="text" placeholder="Nombre del cliente"></div>
-      <div><label>Fecha</label><input id="f-fecha" type="date"></div>
-      <div><label>Hora</label><input id="f-hora" type="time"></div>
-      <div><label>Servicio</label>
-        <select id="f-servicio">
-          <option>Consulta general</option>
-          <option>Limpieza dental</option>
-          <option>Ortodoncia</option>
-          <option>Urgencia</option>
-          <option>Seguimiento</option>
-        </select>
-      </div>
-      <div><button class="add" id="btn-add">Agregar</button></div>
-    </div>
-  </div>
-
-  <div class="panel">
-    <table>
-      <thead><tr><th>Cliente</th><th>Fecha</th><th>Hora</th><th>Servicio</th><th>Estado</th><th></th></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <div class="empty" id="empty">No hay citas registradas todavía.</div>
-  </div>
+  <section>
+    <h2>Qué se hizo</h2>
+    <p class="lead">Secciones y piezas que forman este proyecto:</p>
+    <ul class="bul"><li>Calendario interactivo por día y semana</li><li>Creación de citas con datos del cliente</li><li>Recordatorios automáticos</li><li>Panel de profesionales y disponibilidad</li></ul>
+  </section>
+  <section style="padding-top:0">
+    <h2>Capturas del proyecto</h2>
+    <p class="lead">Así se ve por dentro. Puedes recorrerlo completo en “Ver en vivo”.</p>
+    <div class="shots"><figure><img src="preview.png" alt="Gestor de Citas — preview" loading="lazy"><figcaption>preview</figcaption></figure></div>
+  </section>
 </div>
 
-<script>
-  const KEY = 'demo_citas_v1';
-  let citas = JSON.parse(localStorage.getItem(KEY) || '[]');
-  const $ = id => document.getElementById(id);
-  const guardar = () => localStorage.setItem(KEY, JSON.stringify(citas));
-  const formatear = f => f ? f.split('-').reverse().join('/') : '';
-
-  function render(){
-    const tb = $('tbody'); tb.innerHTML = '';
-    citas.sort((a,b) => (a.fecha+a.hora).localeCompare(b.fecha+b.hora));
-    citas.forEach((c,i) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${c.nombre}</td><td>${formatear(c.fecha)}</td><td>${c.hora}</td><td>${c.servicio}</td>
-        <td><span class="badge ${c.estado}" data-i="${i}">${c.estado}</span></td>
-        <td><button class="del" data-i="${i}" title="Eliminar">🗑️</button></td>`;
-      tb.appendChild(tr);
-    });
-    $('empty').style.display = citas.length ? 'none' : 'block';
-    $('n-total').textContent = citas.length;
-    $('n-pend').textContent = citas.filter(c=>c.estado==='pendiente').length;
-    $('n-conf').textContent = citas.filter(c=>c.estado==='confirmada').length;
-
-    document.querySelectorAll('.badge').forEach(b => b.onclick = () => {
-      const i = +b.dataset.i;
-      citas[i].estado = citas[i].estado === 'pendiente' ? 'confirmada' : citas[i].estado === 'confirmada' ? 'atendida' : 'pendiente';
-      guardar(); render();
-    });
-    document.querySelectorAll('.del').forEach(b => b.onclick = () => {
-      citas.splice(+b.dataset.i,1); guardar(); render();
-    });
-  }
-
-  $('btn-add').onclick = () => {
-    const nombre = $('f-nombre').value.trim(), fecha = $('f-fecha').value, hora = $('f-hora').value;
-    if (!nombre || !fecha || !hora) { alert('Completa nombre, fecha y hora.'); return; }
-    citas.push({ nombre, fecha, hora, servicio: $('f-servicio').value, estado:'pendiente' });
-    $('f-nombre').value = ''; $('f-fecha').value = ''; $('f-hora').value = '';
-    guardar(); render();
-  };
-
-  render();
-</script>
-
-<!-- CASE PRESENTATION negolo -->
-<section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
-  <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
-    <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
-    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">Gestor de Citas</h2>
-    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Web app de agendamiento: calendario interactivo, recordatorios automáticos y coordinación de horarios en tiempo real.</p>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
-      <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
-      <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
-    </div>
-  </div>
-</section>
-
+<footer><div class="wrap"><span>© 2026 negolo — Desarrollo web, apps y chatbots</span><span><a href="/#portafolio">← Ver más proyectos</a> · <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
 </body>
 </html>

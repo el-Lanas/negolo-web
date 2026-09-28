@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestor de Citas - Demo</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', system-ui, sans-serif; }
+  body { background:#0f172a; color:#e2e8f0; min-height:100vh; padding:30px 16px; }
+  .wrap { max-width:960px; margin:auto; }
+  h1 { font-size:1.6rem; margin-bottom:6px; }
+  .sub { color:#94a3b8; font-size:.95rem; margin-bottom:24px; }
+  .panel { background:#1e293b; border-radius:14px; padding:22px; margin-bottom:20px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
+  .row { display:grid; grid-template-columns:2fr 1.4fr 1fr 1.2fr auto; gap:10px; align-items:end; }
+  label { display:block; font-size:.78rem; color:#94a3b8; margin-bottom:5px; text-transform:uppercase; letter-spacing:.04em; }
+  input, select { width:100%; padding:11px; border-radius:9px; border:1px solid #334155; background:#0f172a; color:#e2e8f0; font-size:.92rem; }
+  input:focus, select:focus { outline:2px solid #38bdf8; border-color:transparent; }
+  button.add { background:#38bdf8; color:#0f172a; font-weight:800; border:none; padding:12px 18px; border-radius:9px; cursor:pointer; }
+  button.add:hover { background:#0ea5e9; }
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
+  .stat { background:#1e293b; border-radius:12px; padding:16px; text-align:center; }
+  .stat b { display:block; font-size:1.7rem; color:#38bdf8; }
+  .stat span { font-size:.82rem; color:#94a3b8; }
+  table { width:100%; border-collapse:collapse; font-size:.92rem; }
+  th { text-align:left; color:#94a3b8; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; padding:8px 10px; border-bottom:1px solid #334155; }
+  td { padding:11px 10px; border-bottom:1px solid #263349; }
+  .badge { padding:4px 10px; border-radius:50px; font-size:.75rem; font-weight:700; cursor:pointer; user-select:none; }
+  .pendiente { background:#78350f; color:#fcd34d; }
+  .confirmada { background:#14532d; color:#86efac; }
+  .atendida { background:#1e3a8a; color:#93c5fd; }
+  .del { background:transparent; border:none; color:#f87171; cursor:pointer; font-size:1rem; }
+  .empty { text-align:center; color:#64748b; padding:28px; }
+  @media (max-width:760px){ .row { grid-template-columns:1fr 1fr; } .stats { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📅 Gestor de Citas</h1>
+  <p class="sub">Demo de aplicación web — agrega, confirma y cierra citas. Datos guardados en tu navegador.</p>
+
+  <div class="stats">
+    <div class="stat"><b id="n-total">0</b><span>Total de citas</span></div>
+    <div class="stat"><b id="n-pend">0</b><span>Pendientes</span></div>
+    <div class="stat"><b id="n-conf">0</b><span>Confirmadas</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="row">
+      <div><label>Cliente</label><input id="f-nombre" type="text" placeholder="Nombre del cliente"></div>
+      <div><label>Fecha</label><input id="f-fecha" type="date"></div>
+      <div><label>Hora</label><input id="f-hora" type="time"></div>
+      <div><label>Servicio</label>
+        <select id="f-servicio">
+          <option>Consulta general</option>
+          <option>Limpieza dental</option>
+          <option>Ortodoncia</option>
+          <option>Urgencia</option>
+          <option>Seguimiento</option>
+        </select>
+      </div>
+      <div><button class="add" id="btn-add">Agregar</button></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <table>
+      <thead><tr><th>Cliente</th><th>Fecha</th><th>Hora</th><th>Servicio</th><th>Estado</th><th></th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty" id="empty">No hay citas registradas todavía.</div>
+  </div>
+</div>
+
+<script>
+  const KEY = 'demo_citas_v1';
+  let citas = JSON.parse(localStorage.getItem(KEY) || '[]');
+  const $ = id => document.getElementById(id);
+  const guardar = () => localStorage.setItem(KEY, JSON.stringify(citas));
+  const formatear = f => f ? f.split('-').reverse().join('/') : '';
+
+  function render(){
+    const tb = $('tbody'); tb.innerHTML = '';
+    citas.sort((a,b) => (a.fecha+a.hora).localeCompare(b.fecha+b.hora));
+    citas.forEach((c,i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${c.nombre}</td><td>${formatear(c.fecha)}</td><td>${c.hora}</td><td>${c.servicio}</td>
+        <td><span class="badge ${c.estado}" data-i="${i}">${c.estado}</span></td>
+        <td><button class="del" data-i="${i}" title="Eliminar">🗑️</button></td>`;
+      tb.appendChild(tr);
+    });
+    $('empty').style.display = citas.length ? 'none' : 'block';
+    $('n-total').textContent = citas.length;
+    $('n-pend').textContent = citas.filter(c=>c.estado==='pendiente').length;
+    $('n-conf').textContent = citas.filter(c=>c.estado==='confirmada').length;
+
+    document.querySelectorAll('.badge').forEach(b => b.onclick = () => {
+      const i = +b.dataset.i;
+      citas[i].estado = citas[i].estado === 'pendiente' ? 'confirmada' : citas[i].estado === 'confirmada' ? 'atendida' : 'pendiente';
+      guardar(); render();
+    });
+    document.querySelectorAll('.del').forEach(b => b.onclick = () => {
+      citas.splice(+b.dataset.i,1); guardar(); render();
+    });
+  }
+
+  $('btn-add').onclick = () => {
+    const nombre = $('f-nombre').value.trim(), fecha = $('f-fecha').value, hora = $('f-hora').value;
+    if (!nombre || !fecha || !hora) { alert('Completa nombre, fecha y hora.'); return; }
+    citas.push({ nombre, fecha, hora, servicio: $('f-servicio').value, estado:'pendiente' });
+    $('f-nombre').value = ''; $('f-fecha').value = ''; $('f-hora').value = '';
+    guardar(); render();
+  };
+
+  render();
+</script>
+
+<!-- CASE PRESENTATION negolo -->
+<section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
+  <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
+    <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
+    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">Gestor de Citas</h2>
+    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Web app de agendamiento: calendario interactivo, recordatorios automáticos y coordinación de horarios en tiempo real.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
+      <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
+      <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- demo back button -->
+<a href="./" style="position:fixed;left:18px;bottom:18px;z-index:99999;background:#E8B84B;color:#2D1B36;font-family:Nunito,system-ui,Arial,sans-serif;font-weight:900;text-decoration:none;padding:13px 22px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.35)">← Volver al caso</a>
+
+</body>
+</html>

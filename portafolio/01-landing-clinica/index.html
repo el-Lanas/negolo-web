@@ -1,512 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Clínica Sonrisa — Odontología integral con tecnología moderna. Reserva tu cita en línea.">
-<title>Clínica Sonrisa | Tu sonrisa en las mejores manos</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Dental — Landing Page — Caso negolo</title>
+<meta name="description" content="Landing para clínica dental pensada para convertir visitas en citas.">
+<link rel="icon" href="/assets/brand/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --teal:#0d9488; --teal-2:#14b8a6; --teal-dark:#0f766e; --navy:#0b1626; --navy-2:#12233b;
-    --ink:#1e293b; --muted:#64748b; --line:#e2e8f0; --bg:#f6f9fb; --amber:#f59e0b;
-    --radius:18px; --shadow:0 12px 40px rgba(11,22,38,.10); --shadow-sm:0 6px 20px rgba(11,22,38,.08);
-  }
+  :root{--gold:#E8B84B;--gold-soft:#F5E6A0;--plum:#2D1B36;--lav:#F5F0F7;--muted:#6A5B75;--muted-d:#C9BBD6}
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
-  h1,h2,h3,h4{font-family:'Poppins',system-ui,sans-serif;line-height:1.2;color:var(--navy)}
-  img{max-width:100%;display:block}
-  a{text-decoration:none;color:inherit}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
-
-  /* Top bar */
-  .topbar{background:var(--navy);color:#cbd5e1;font-size:.83rem}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:9px 22px;flex-wrap:wrap;gap:8px}
-  .topbar b{color:#fff;font-weight:600}
-
-  /* Nav */
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
-  header.nav.scrolled{box-shadow:0 6px 24px rgba(11,22,38,.08)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;max-width:1160px;margin:auto}
-  .logo{display:flex;align-items:center;gap:10px;font-family:'Poppins';font-weight:800;font-size:1.28rem;color:var(--navy)}
-  .logo .mark{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--teal),#22d3ee);display:grid;place-items:center;color:#fff;font-size:1.2rem;box-shadow:0 6px 16px rgba(13,148,136,.35)}
-  .logo span b{color:var(--teal)}
-  .menu{display:flex;align-items:center;gap:30px;font-size:.95rem;font-weight:500}
-  .menu a{position:relative;color:#334155}
-  .menu a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--teal);transition:.25s}
-  .menu a:hover{color:var(--teal-dark)}
-  .menu a:hover::after{width:100%}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;border-radius:50px;padding:13px 26px;transition:.25s;border:none;cursor:pointer;font-size:.95rem}
-  .btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal-2));color:#fff;box-shadow:0 10px 24px rgba(13,148,136,.32)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(13,148,136,.42)}
-  .btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.55)}
-  .btn-ghost:hover{background:rgba(255,255,255,.24)}
-  .btn-white{background:#fff;color:var(--teal-dark);box-shadow:var(--shadow-sm)}
-  .burger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--navy)}
-
-  /* Hero */
-  .hero{position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;overflow:hidden}
-  .hero .bg{position:absolute;inset:0;background:url('img/hero.jpg') center/cover no-repeat;transform:scale(1.04)}
-  .hero .overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,20,35,.92) 0%,rgba(8,20,35,.72) 45%,rgba(8,20,35,.25) 100%)}
-  .hero .wrap{position:relative;z-index:2;padding-top:70px;padding-bottom:70px}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(20,184,166,.18);border:1px solid rgba(20,184,166,.45);color:#a7f3d0;font-size:.82rem;font-weight:600;padding:8px 16px;border-radius:50px;margin-bottom:22px;letter-spacing:.03em}
-  .hero h1{font-size:clamp(2.1rem,4.6vw,3.5rem);color:#fff;max-width:760px;font-weight:800}
-  .hero h1 em{font-style:normal;color:#5eead4}
-  .hero p.lead{max-width:600px;margin:20px 0 32px;font-size:1.08rem;color:#dbe4ee}
-  .hero .actions{display:flex;gap:14px;flex-wrap:wrap}
-  .hero .mini{margin-top:44px;display:flex;gap:30px;flex-wrap:wrap}
-  .mini div{font-size:.9rem;color:#cbd5e1}
-  .mini b{display:block;font-family:'Poppins';font-size:1.35rem;color:#fff}
-
-  /* Stats strip */
-  .stats{background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#fff}
-  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:34px 22px;text-align:center}
-  .stats b{display:block;font-family:'Poppins';font-size:2rem;font-weight:800}
-  .stats span{font-size:.88rem;opacity:.92}
-
-  /* Sections */
-  section.block{padding:86px 0}
-  .eyebrow{display:inline-block;color:var(--teal-dark);background:rgba(13,148,136,.10);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 16px;border-radius:50px;margin-bottom:16px}
-  .sect-head{text-align:center;max-width:680px;margin:0 auto 52px}
-  .sect-head h2{font-size:clamp(1.7rem,3vw,2.35rem);margin-bottom:12px}
-  .sect-head p{color:var(--muted)}
-
-  /* Especialidades */
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:26px}
-  .card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.3s;border:1px solid rgba(226,232,240,.7)}
-  .card:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(11,22,38,.16)}
-  .card .photo{height:190px;overflow:hidden}
-  .card .photo img{width:100%;height:100%;object-fit:cover;transition:.5s}
-  .card:hover .photo img{transform:scale(1.07)}
-  .card .body{padding:24px}
-  .card h3{font-size:1.12rem;margin-bottom:8px}
-  .card p{color:var(--muted);font-size:.93rem}
-  .card .tag{display:inline-block;margin-top:14px;color:var(--teal-dark);font-weight:600;font-size:.88rem}
-
-  /* Lista de tratamientos */
-  .treat{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:46px}
-  .treat div{display:flex;gap:12px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:15px 18px;font-weight:500;font-size:.94rem}
-  .treat .ico{width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;box-shadow:var(--shadow-sm);flex-shrink:0}
-
-  /* Split why-us */
-  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
-  .split .pic{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);position:relative}
-  .split .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,148,136,.12),transparent)}
-  .feature{display:flex;gap:16px;margin-bottom:22px}
-  .feature .ico{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(13,148,136,.14),rgba(34,211,238,.14));display:grid;place-items:center;font-size:1.25rem;flex-shrink:0}
-  .feature h4{font-size:1.02rem;margin-bottom:3px}
-  .feature p{color:var(--muted);font-size:.9rem}
-
-  /* Testimonios */
-  .testi{background:var(--bg)}
-  .tcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-  .tcard{background:#fff;border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);border:1px solid rgba(226,232,240,.7)}
-  .stars{color:var(--amber);letter-spacing:2px;margin-bottom:14px}
-  .tcard p{color:#475569;font-size:.95rem;font-style:italic}
-  .tuser{display:flex;align-items:center;gap:12px;margin-top:20px}
-  .avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;font-family:'Poppins'}
-  .tuser b{display:block;font-size:.92rem}
-  .tuser span{font-size:.8rem;color:var(--muted)}
-
-  /* Booking */
-  .booking{background:linear-gradient(120deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;position:relative;overflow:hidden}
-  .booking::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(20,184,166,.28),transparent 70%);top:-200px;right:-120px}
-  .booking .split{align-items:stretch}
-  .booking h2{color:#fff}
-  .booking p{color:#c7d2de}
-  .form-card{background:#fff;border-radius:22px;padding:34px;box-shadow:0 30px 70px rgba(0,0,0,.35);color:var(--ink)}
-  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .field{margin-bottom:14px}
-  .field label{display:block;font-size:.82rem;font-weight:600;color:#334155;margin-bottom:6px}
-  .field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;font-family:inherit;font-size:.93rem;transition:.2s;background:#fbfdfe}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal-2);box-shadow:0 0 0 4px rgba(20,184,166,.14)}
-  .check{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--muted);margin:6px 0 16px}
-  .check input{width:auto;margin-top:3px}
-  .success{display:none;margin-top:14px;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;padding:13px;border-radius:11px;font-size:.9rem;text-align:center}
-
-  /* FAQ */
-  .faq{max-width:780px;margin:auto}
-  .qa{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;background:#fff}
-  .qa button{width:100%;background:none;border:none;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;font-family:'Poppins';font-weight:600;font-size:1rem;cursor:pointer;color:var(--navy);text-align:left}
-  .qa .ans{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--muted);font-size:.93rem}
-  .qa.open .ans{max-height:220px}
-  .qa .ans p{padding:0 22px 20px}
-  .qa .plus{font-size:1.3rem;color:var(--teal);transition:.3s}
-  .qa.open .plus{transform:rotate(45deg)}
-
-  /* Footer */
-  footer{background:var(--navy);color:#94a3b8;padding:64px 0 0}
-  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:44px}
-  footer h5{color:#fff;font-family:'Poppins';font-size:.95rem;margin-bottom:16px}
-  footer a{color:#94a3b8;font-size:.9rem;display:block;margin-bottom:9px;transition:.2s}
-  footer a:hover{color:#5eead4}
-  .fcontact div{display:flex;gap:10px;margin-bottom:10px;font-size:.9rem}
-  .bottom{border-top:1px solid rgba(148,163,184,.18);padding:20px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.83rem}
-  .socials{display:flex;gap:10px}
-  .socials a{width:36px;height:36px;border-radius:10px;background:rgba(148,163,184,.14);display:grid;place-items:center;margin:0}
-
-  /* WhatsApp float */
-  .whats{position:fixed;bottom:24px;right:24px;z-index:60;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 12px 30px rgba(37,211,102,.45);animation:pulse 2.6s infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 12px 30px rgba(37,211,102,.45)}50%{box-shadow:0 12px 42px rgba(37,211,102,.75)}}
-
-  /* Reveal */
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-
-  @media(max-width:900px){
-    .split{grid-template-columns:1fr;gap:36px}
-    .stats .wrap{grid-template-columns:1fr 1fr}
-    .fgrid{grid-template-columns:1fr 1fr}
-  }
-  @media(max-width:760px){
-    .menu{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);background:#fff;flex-direction:column;align-items:flex-start;padding:90px 30px;gap:22px;box-shadow:-20px 0 50px rgba(0,0,0,.14);transform:translateX(100%);transition:.3s}
-    .menu.open{transform:none}
-    .burger{display:block}
-    .hero{min-height:auto}
-    .frow{grid-template-columns:1fr}
-    section.block{padding:64px 0}
-  }
+  body{font-family:Nunito,system-ui,Arial,sans-serif;background:var(--lav);color:var(--plum);line-height:1.6}
+  a{color:inherit}
+  header{background:var(--plum);padding:16px 0;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(232,184,75,.18)}
+  .wrap{max-width:1150px;margin:0 auto;padding:0 24px}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav img{height:28px}
+  .nav a{color:var(--gold);text-decoration:none;font-weight:800;font-size:14px}
+  .hero{background:radial-gradient(900px 500px at 85% -10%,rgba(232,184,75,.16),transparent 62%),var(--plum);color:#fff;padding:56px 0 46px}
+  .tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  h1{font-size:clamp(28px,3.6vw,46px);line-height:1.1;letter-spacing:-.02em;font-weight:900;margin:14px 0 12px}
+  .hero p{color:var(--muted-d);max-width:70ch;font-size:17px}
+  .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:15px 26px;font-weight:900;text-decoration:none;font-size:15px;border:2px solid transparent}
+  .btn--gold{background:var(--gold);color:var(--plum)}
+  .btn--ghost{color:var(--gold);border-color:rgba(232,184,75,.45)}
+  section{padding:52px 0}
+  h2{font-size:26px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px}
+  .lead{color:var(--muted);margin-bottom:26px}
+  ul.bul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  ul.bul li{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:14px;padding:16px 18px;font-size:15px}
+  ul.bul li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:9px}
+  .shots{display:grid;gap:22px}
+  figure{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(45,27,54,.08)}
+  figure img{width:100%;display:block}
+  figcaption{padding:12px 16px;font-size:13.5px;font-weight:700;color:var(--muted);border-top:1px solid rgba(45,27,54,.08)}
+  footer{background:var(--plum);color:var(--muted-d);padding:34px 0;margin-top:30px;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--gold);text-decoration:none;font-weight:800}
+  @media (max-width:700px){.hero{padding:38px 0}.shots{gap:16px}}
 </style>
 </head>
 <body>
+<header><div class="wrap nav">
+  <a href="/"><img src="/assets/brand/logo-full-dark.svg" alt="negolo"></a>
+  <a href="/#portafolio">← Volver al portafolio</a>
+</div></header>
 
-<div class="topbar">
-  <div class="wrap">
-    <span>🕐 Lunes a Viernes 9:00–19:00 · Sábados 9:00–13:00</span>
-    <span>📞 <b>+51 999 999 999</b> · 📍 Av. Ejemplo 123, Lima</span>
+<div class="hero"><div class="wrap">
+  <span class="tag">Caso — negolo</span>
+  <h1>Clínica Dental — Landing Page</h1>
+  <p>Landing para clínica dental pensada para convertir visitas en citas.</p>
+  <div class="btns">
+    <a class="btn btn--gold" href="demo.html">Ver en vivo →</a>
+    <a class="btn btn--ghost" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">Quiero algo así · WhatsApp</a>
   </div>
+</div></div>
+
+<div class="wrap">
+  <section>
+    <h2>Qué se hizo</h2>
+    <p class="lead">Secciones y piezas que forman este proyecto:</p>
+    <ul class="bul"><li>Hero con propuesta de valor y CTA a WhatsApp</li><li>Tratamientos en tarjetas con imagen</li><li>Testimonios de pacientes</li><li>Formulario de contacto y ubicación</li></ul>
+  </section>
+  <section style="padding-top:0">
+    <h2>Capturas del proyecto</h2>
+    <p class="lead">Así se ve por dentro. Puedes recorrerlo completo en “Ver en vivo”.</p>
+    <div class="shots"><figure><img src="fullpage.png" alt="Clínica Dental — Landing Page — fullpage" loading="lazy"><figcaption>fullpage</figcaption></figure><figure><img src="hero-shot.png" alt="Clínica Dental — Landing Page — hero shot" loading="lazy"><figcaption>hero shot</figcaption></figure><figure><img src="preview.png" alt="Clínica Dental — Landing Page — preview" loading="lazy"><figcaption>preview</figcaption></figure></div>
+  </section>
 </div>
 
-<header class="nav" id="header">
-  <div class="nav-inner">
-    <a class="logo" href="#inicio">
-      <span class="mark">🦷</span>
-      <span>Clínica <b>Sonrisa</b></span>
-    </a>
-    <nav class="menu" id="menu">
-      <a href="#especialidades">Especialidades</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#opiniones">Opiniones</a>
-      <a href="#faq">Preguntas</a>
-      <a href="#contacto">Contacto</a>
-      <a class="btn btn-primary" href="#cita">Cita en línea</a>
-    </nav>
-    <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
-  </div>
-</header>
-
-<section class="hero" id="inicio">
-  <div class="bg"></div>
-  <div class="overlay"></div>
-  <div class="wrap">
-    <span class="badge">⭐⭐⭐⭐⭐ +2.500 pacientes satisfechos</span>
-    <h1>Tu sonrisa en las <em>mejores manos</em></h1>
-    <p class="lead">Odontología integral con tecnología moderna y un trato humano. Reserva tu cita en línea en menos de un minuto y recibe confirmación por WhatsApp.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#cita">Reservar cita ahora</a>
-      <a class="btn btn-ghost" href="#especialidades">Ver especialidades</a>
-    </div>
-    <div class="mini">
-      <div><b>+15 años</b> de experiencia</div>
-      <div><b>Urgencias</b> el mismo día</div>
-      <div><b>Pagos</b> en cuotas sin interés</div>
-    </div>
-  </div>
-</section>
-
-<div class="stats">
-  <div class="wrap">
-    <div><b data-count="15">0</b><span>Años de experiencia</span></div>
-    <div><b data-count="2500" data-suffix="+">0</b><span>Pacientes atendidos</span></div>
-    <div><b data-count="12">0</b><span>Especialistas</span></div>
-    <div><b data-count="98" data-suffix="%">0</b><span>Satisfacción</span></div>
-  </div>
-</div>
-
-<section class="block" id="especialidades">
-  <div class="wrap">
-    <div class="sect-head reveal">
-      <span class="eyebrow">Especialidades</span>
-      <h2>Tratamientos para toda la familia</h2>
-      <p>Desde la prevención hasta la estética dental avanzada, con especialistas certificados y equipos de última generación.</p>
-    </div>
-    <div class="cards">
-      <article class="card reveal">
-        <div class="photo"><img src="img/ortodoncia.jpg" alt="Ortodoncia con alineadores invisibles"></div>
-        <div class="body">
-          <h3>Ortodoncia</h3>
-          <p>Brackets y alineadores invisibles para alinear tu sonrisa con comodidad y resultados predecibles.</p>
-          <span class="tag">Ver opciones →</span>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="photo"><img src="img/implantes.jpg" alt="Implantes dentales"></div>
-        <div class="body">
-          <h3>Implantes dentales</h3>
-          <p>Recupera dientes fijos y función masticatoria con implantes de titanio y planificación digital.</p>
-          <span class="tag">Evaluación gratis →</span>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="photo"><img src="img/estetica.jpg" alt="Estética dental y blanqueamiento"></div>
-        <div class="body">
-          <h3>Estética dental</h3>
-          <p>Blanqueamiento, carillas y diseño de sonrisa para una imagen luminosa y natural.</p>
-          <span class="tag">Diseño de sonrisa →</span>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="photo"><img src="img/ninos.jpg" alt="Odontopediatría"></div>
-        <div class="body">
-          <h3>Odontopediatría</h3>
-          <p>Atención especializada y divertida para que los niños crezcan sin miedo al dentista.</p>
-          <span class="tag">Primera cita →</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="treat reveal">
-      <div><span class="ico">🦷</span> Odontología general y preventiva</div>
-      <div><span class="ico">🩺</span> Periodoncia (encias)</div>
-      <div><span class="ico">💉</span> Endodoncia (conductos)</div>
-      <div><span class="ico">😁</span> Rehabilitación oral</div>
-      <div><span class="ico">🕒</span> Urgencias dentales</div>
-      <div><span class="ico">📷</span> Radiografía digital</div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="nosotros" style="padding-top:0">
-  <div class="wrap split">
-    <div class="pic reveal"><img src="img/clinica.jpg" alt="Interior de Clínica Sonrisa"></div>
-    <div class="reveal">
-      <span class="eyebrow">¿Por qué elegirnos?</span>
-      <h2 style="margin-bottom:26px">Una experiencia dental diferente</h2>
-      <div class="feature">
-        <span class="ico">🔬</span>
-        <div><h4>Tecnología de diagnóstico digital</h4><p>Radiografías digitales y escáner intraoral para planes de tratamiento precisos.</p></div>
-      </div>
-      <div class="feature">
-        <span class="ico">🤝</span>
-        <div><h4>Trato cercano y sin dolor</h4><p>Protocolos de manejo de ansiedad y anestesia cómoda para una visita tranquila.</p></div>
-      </div>
-      <div class="feature">
-        <span class="ico">💰</span>
-        <div><h4>Planes y cuotas accesibles</h4><p>Presupuestos claros desde la primera cita, con opciones de pago flexibles.</p></div>
-      </div>
-      <div class="feature">
-        <span class="ico">⚡</span>
-        <div><h4>Urgencias el mismo día</h4><p>Si tienes dolor, te atendemos hoy mismo. Llámanos y te damos prioridad.</p></div>
-      </div>
-      <a class="btn btn-primary" href="#cita" style="margin-top:10px">Agendar mi primera cita</a>
-    </div>
-  </div>
-</section>
-
-<section class="block testi" id="opiniones">
-  <div class="wrap">
-    <div class="sect-head reveal">
-      <span class="eyebrow">Opiniones</span>
-      <h2>Lo que dicen nuestros pacientes</h2>
-    </div>
-    <div class="tcards">
-      <div class="tcard reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Tenía mucho miedo al dentista y me hicieron sentir súper cómoda. Me explicaron todo el tratamiento y el presupuesto fue claro desde el inicio."</p>
-        <div class="tuser"><span class="avatar" style="background:linear-gradient(135deg,#0d9488,#22d3ee)">MV</span><div><b>María V.</b><span>Paciente de ortodoncia</span></div></div>
-      </div>
-      <div class="tcard reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Me atendieron de urgencia un domingo por un dolor fuerte. Rápidos, amables y el doctor explicó cada paso. 100% recomendados."</p>
-        <div class="tuser"><span class="avatar" style="background:linear-gradient(135deg,#f59e0b,#f97316)">JC</span><div><b>Jorge C.</b><span>Urgencia dental</span></div></div>
-      </div>
-      <div class="tcard reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Llevo a mis hijos desde hace años. Tienen mucha paciencia con los niños y la clínica es impecable. El recordatorio por WhatsApp es súper útil."</p>
-        <div class="tuser"><span class="avatar" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">LP</span><div><b>Lucía P.</b><span>Mamá de dos pacientes</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block booking" id="cita">
-  <div class="wrap split">
-    <div class="reveal">
-      <span class="eyebrow" style="background:rgba(94,234,212,.15);color:#99f6e4">Cita en línea</span>
-      <h2 style="margin-bottom:14px">Reserva en menos de 1 minuto</h2>
-      <p style="margin-bottom:26px">Completa el formulario y te confirmamos por WhatsApp o llamada. Si prefieres, escríbenos directamente:</p>
-      <a class="btn btn-white" href="https://wa.me/51999999999?text=Hola%20Clínica%20Sonrisa,%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
-      <div class="mini">
-        <div><b>Respuesta</b> en minutos</div>
-        <div><b>Confirmación</b> por WhatsApp</div>
-        <div><b>Sin</b> costo de reserva</div>
-      </div>
-    </div>
-    <div class="form-card reveal">
-      <form id="form-cita" novalidate>
-        <div class="frow">
-          <div class="field"><label>Nombre completo *</label><input type="text" id="nombre" required placeholder="Tu nombre"></div>
-          <div class="field"><label>Teléfono / WhatsApp *</label><input type="tel" id="telefono" required placeholder="+51 999 999 999"></div>
-        </div>
-        <div class="frow">
-          <div class="field"><label>Especialidad</label>
-            <select id="especialidad">
-              <option>Odontología general</option><option>Ortodoncia</option><option>Implantes</option>
-              <option>Estética dental</option><option>Odontopediatría</option><option>Urgencia</option>
-            </select>
-          </div>
-          <div class="field"><label>Fecha preferida</label><input type="date" id="fecha"></div>
-        </div>
-        <div class="field"><label>Cuéntanos tu caso (opcional)</label><textarea id="mensaje" rows="3" placeholder="Ej.: me duele una muela desde ayer..."></textarea></div>
-        <label class="check"><input type="checkbox" id="consent" required> Acepto el tratamiento de mis datos personales según la política de privacidad.</label>
-        <button class="btn btn-primary" type="submit" style="width:100%">Solicitar mi cita</button>
-        <div class="success" id="success">✅ ¡Solicitud enviada! Te contactaremos para confirmar tu cita.</div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="faq">
-  <div class="wrap">
-    <div class="sect-head reveal">
-      <span class="eyebrow">Preguntas frecuentes</span>
-      <h2>Resolvemos tus dudas</h2>
-    </div>
-    <div class="faq">
-      <div class="qa reveal open">
-        <button type="button">¿Atienden urgencias? <span class="plus">+</span></button>
-        <div class="ans"><p>Sí. Reservamos cupos diarios para urgencias. Si tienes dolor, escríbenos por WhatsApp y te damos prioridad para el mismo día.</p></div>
-      </div>
-      <div class="qa reveal">
-        <button type="button">¿Cuánto cuesta la primera consulta? <span class="plus">+</span></button>
-        <div class="ans"><p>La evaluación inicial incluye diagnóstico y presupuesto detallado. Consúltanos por promociones vigentes para primera visita.</p></div>
-      </div>
-      <div class="qa reveal">
-        <button type="button">¿Tienen planes de pago? <span class="plus">+</span></button>
-        <div class="ans"><p>Sí, ofrecemos pago en cuotas sin interés con tarjetas participantes y planes de tratamiento por etapas.</p></div>
-      </div>
-      <div class="qa reveal">
-        <button type="button">¿Atienden niños? <span class="plus">+</span></button>
-        <div class="ans"><p>Contamos con odontopediatría. Nuestro equipo está capacitado para que la primera experiencia de los niños sea positiva y sin miedo.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer id="contacto">
-  <div class="wrap">
-    <div class="fgrid">
-      <div>
-        <a class="logo" href="#inicio" style="color:#fff;margin-bottom:16px">
-          <span class="mark">🦷</span><span>Clínica <b style="color:#5eead4">Sonrisa</b></span>
-        </a>
-        <p style="font-size:.9rem;max-width:280px">Odontología integral con tecnología moderna y trato humano. Tu sonrisa, nuestra prioridad.</p>
-      </div>
-      <div>
-        <h5>Clínica</h5>
-        <a href="#especialidades">Especialidades</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#opiniones">Opiniones</a>
-        <a href="#faq">Preguntas frecuentes</a>
-      </div>
-      <div>
-        <h5>Especialidades</h5>
-        <a href="#especialidades">Ortodoncia</a>
-        <a href="#especialidades">Implantes</a>
-        <a href="#especialidades">Estética dental</a>
-        <a href="#especialidades">Odontopediatría</a>
-      </div>
-      <div class="fcontact">
-        <h5>Contacto</h5>
-        <div>📍 Av. Ejemplo 123, Lima</div>
-        <div>📞 +51 999 999 999</div>
-        <div>✉️ hola@clinicasonrisa.demo</div>
-        <div>🕐 Lun–Vie 9–19 · Sáb 9–13</div>
-      </div>
-    </div>
-    <div class="bottom">
-      <span>© 2026 Clínica Sonrisa — Proyecto demo de portafolio.</span>
-      <div class="socials">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Instagram">◎</a>
-        <a href="#" aria-label="YouTube">▶</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<a class="whats" href="https://wa.me/51999999999?text=Hola%20Clínica%20Sonrisa" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-
-<script>
-  // Header shadow
-  const header = document.getElementById('header');
-  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 20));
-
-  // Mobile menu
-  const burger = document.getElementById('burger'), menu = document.getElementById('menu');
-  burger.onclick = () => menu.classList.toggle('open');
-  menu.querySelectorAll('a').forEach(a => a.onclick = () => menu.classList.remove('open'));
-
-  // Reveal on scroll
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.14 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Counters
-  const counters = document.querySelectorAll('[data-count]');
-  const cio = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
-      let cur = 0, steps = 40, inc = target / steps;
-      const t = setInterval(() => { cur += inc; if (cur >= target) { cur = target; clearInterval(t); } el.textContent = Math.round(cur) + suffix; }, 28);
-      cio.unobserve(el);
-    });
-  }, { threshold: 0.6 });
-  counters.forEach(c => cio.observe(c));
-
-  // FAQ
-  document.querySelectorAll('.qa button').forEach(b => b.onclick = () => {
-    const qa = b.parentElement, open = qa.classList.contains('open');
-    document.querySelectorAll('.qa').forEach(x => x.classList.remove('open'));
-    if (!open) qa.classList.add('open');
-  });
-
-  // Form
-  document.getElementById('form-cita').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre'), tel = document.getElementById('telefono'), consent = document.getElementById('consent');
-    if (!nombre.value.trim() || !tel.value.trim()) { alert('Completa nombre y teléfono.'); return; }
-    if (!consent.checked) { alert('Debes aceptar el tratamiento de datos.'); return; }
-    document.getElementById('success').style.display = 'block';
-    const btn = this.querySelector('button[type=submit]');
-    btn.textContent = 'Solicitud enviada ✓'; btn.style.background = '#16a34a';
-    btn.disabled = true;
-  });
-
-  // Smooth anchor offset
-  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', ev => {
-    const id = a.getAttribute('href'); if (id.length < 2) return;
-    const el = document.querySelector(id); if (!el) return;
-    ev.preventDefault(); window.scrollTo({ top: el.offsetTop - 78, behavior: 'smooth' });
-  }));
-</script>
-
-<!-- CASE PRESENTATION negolo -->
-<section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
-  <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
-    <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
-    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">Clínica Dental — Landing Page</h2>
-    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Landing para clínica dental: presentación de tratamientos, testimonios de pacientes y formulario de contacto optimizado para convertir visitas en citas.</p>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
-      <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
-      <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
-    </div>
-  </div>
-</section>
-
+<footer><div class="wrap"><span>© 2026 negolo — Desarrollo web, apps y chatbots</span><span><a href="/#portafolio">← Ver más proyectos</a> · <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
 </body>
 </html>

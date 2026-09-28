@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA Creativa — Agencia de Publicidad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --accent:#8B5CF6;
+            --accent2:#06B6D4;
+            --accent3:#F59E0B;
+            --bg:#09090B;
+            --bg-card:#18181B;
+            --bg-card-hover:#27272A;
+            --text:#FAFAFA;
+            --text-muted:#A1A1AA;
+            --border:#27272A;
+            --gradient:linear-gradient(135deg,#8B5CF6 0%,#06B6D4 100%);
+            --gradient2:linear-gradient(135deg,#F59E0B 0%,#EF4444 100%);
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+        .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+        .fade-up.visible{opacity:1;transform:none}
+
+        /* Navbar */
+        .navbar{position:fixed;top:0;width:100%;z-index:1000;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .3s ease}
+        .navbar.scrolled{background:rgba(9,9,11,.95);backdrop-filter:blur(20px);padding:12px 48px;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+        .nav-logo{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;text-decoration:none}
+        .nav-logo .nova{color:var(--accent)}
+        .nav-logo .cre{color:var(--accent2)}
+        .nav-links{display:flex;gap:32px;align-items:center}
+        .nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+        .nav-links a:hover{color:var(--text)}
+        .nav-cta-btn{background:var(--gradient);color:#fff;padding:10px 24px;border:none;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;transition:transform .2s;text-decoration:none}
+        .nav-cta-btn:hover{transform:scale(1.05)}
+        .nav-menu-btn{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+
+        /* Hero */
+        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 48px 80px}
+        .hero-bg{position:absolute;inset:0}
+        .hero-bg::before{content:'';position:absolute;top:-40%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(139,92,246,.15) 0%,transparent 70%);border-radius:50%}
+        .hero-bg::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(6,182,212,.12) 0%,transparent 70%);border-radius:50%}
+        .hero-content{position:relative;z-index:2;max-width:800px;min-width:0}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);padding:8px 18px;border-radius:50px;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:28px}
+        .hero-badge .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(44px,7vw,88px);line-height:1;letter-spacing:-2px;margin-bottom:24px}
+        .hero h1 .grad{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero p{font-size:18px;color:var(--text-muted);max-width:560px;margin-bottom:40px;line-height:1.8}
+        .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+        .btn-primary{background:var(--gradient);color:#fff;padding:16px 36px;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;text-decoration:none;border:none}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(139,92,246,.35)}
+        .btn-outline{background:transparent;border:2px solid var(--border);color:#fff;padding:16px 36px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none}
+        .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+        .hero-logos{margin-top:60px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+        .hero-logos span{font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px}
+        .hero-logos .logo-list{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+        .hero-logos .logo-item{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--border);transition:color .3s}
+        .hero-logos .logo-item:hover{color:var(--accent)}
+
+        /* Stats Bar */
+        .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:0 48px;border-radius:16px;overflow:hidden}
+        .stat-item{background:var(--bg-card);padding:40px 32px;text-align:center}
+        .stat-item .num{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .stat-item .label{font-size:13px;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+
+        /* Services */
+        .services{padding:100px 48px;max-width:1200px;margin:0 auto}
+        .section-label{display:inline-block;background:rgba(139,92,246,.1);color:var(--accent);padding:6px 16px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:16px}
+        .section-title{font-family:'Space Grotesk',sans-serif;font-size:48px;letter-spacing:-1px;margin-bottom:16px}
+        .section-desc{color:var(--text-muted);max-width:560px;margin-bottom:48px}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .service-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:36px;transition:all .3s;position:relative;overflow:hidden}
+        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+        .service-card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.3);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+        .service-card:hover::before{transform:scaleX(1)}
+        .service-icon{width:56px;height:56px;background:rgba(139,92,246,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
+        .service-card h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;margin-bottom:12px}
+        .service-card p{color:var(--text-muted);font-size:14px;line-height:1.7}
+        .service-card .learn-more{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:13px;font-weight:600;margin-top:16px;text-decoration:none;transition:gap .2s}
+        .service-card:hover .learn-more{gap:10px}
+
+        /* Cases */
+        .cases{padding:100px 48px;max-width:1200px;margin:0 auto}
+        .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .case-card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;cursor:pointer}
+        .case-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+        .case-card:hover img{transform:scale(1.06)}
+        .case-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.9));padding:32px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .3s}
+        .case-card:hover .case-overlay{opacity:1}
+        .case-overlay .tag{background:var(--accent);color:#fff;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;width:fit-content;margin-bottom:12px}
+        .case-overlay h3{font-family:'Space Grotesk',sans-serif;font-size:22px;margin-bottom:8px}
+        .case-overlay p{color:var(--text-muted);font-size:13px}
+
+        /* Process */
+        .process{padding:100px 48px;background:linear-gradient(180deg,var(--bg) 0%,#0F0F12 100%)}
+        .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:0 auto}
+        .step-card{text-align:center;padding:32px 20px}
+        .step-num{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.3;margin-bottom:12px}
+        .step-card h3{font-size:18px;font-weight:600;margin-bottom:8px}
+        .step-card p{color:var(--text-muted);font-size:14px}
+
+        /* Team */
+        .team{padding:100px 48px;max-width:1200px;margin:0 auto}
+        .team-visual{position:relative;border-radius:20px;overflow:hidden;margin-top:48px;aspect-ratio:16/9}
+        .team-visual img{width:100%;height:100%;object-fit:cover}
+        .team-visual .team-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.3),rgba(6,182,212,.2));display:flex;align-items:center;justify-content:center}
+        .team-visual .team-play{width:80px;height:80px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:transform .2s;border:2px solid rgba(255,255,255,.3)}
+        .team-visual .team-play:hover{transform:scale(1.1)}
+
+        /* Testimonials */
+        .testimonials{padding:100px 48px;max-width:1200px;margin:0 auto}
+        .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .test-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:border-color .3s}
+        .test-card:hover{border-color:rgba(139,92,246,.3)}
+        .test-stars{color:var(--accent3);font-size:16px;margin-bottom:16px;letter-spacing:2px}
+        .test-card blockquote{font-size:15px;line-height:1.8;color:var(--text-muted);margin-bottom:20px;font-style:italic}
+        .test-author{display:flex;align-items:center;gap:12px}
+        .test-avatar{width:44px;height:44px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+        .test-author .name{font-size:14px;font-weight:600}
+        .test-author .role{font-size:12px;color:var(--text-muted)}
+
+        /* CTA */
+        .cta-section{padding:100px 48px;text-align:center;position:relative;overflow:hidden}
+        .cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,.12) 0%,transparent 70%);border-radius:50%}
+        .cta-section h2{font-family:'Space Grotesk',sans-serif;font-size:56px;letter-spacing:-2px;margin-bottom:16px;position:relative}
+        .cta-section p{color:var(--text-muted);max-width:500px;margin:0 auto 40px;font-size:17px;position:relative}
+        .cta-section .btn-primary{font-size:18px;padding:18px 48px;position:relative}
+
+        /* Footer */
+        footer{background:#0D0D0F;padding:60px 48px 30px;border-top:1px solid var(--border)}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto}
+        .footer-brand .logo{font-family:'Space Grotesk',sans-serif;font-size:22px;margin-bottom:12px}
+        .footer-brand .logo .nova{color:var(--accent)}
+        .footer-brand p{color:var(--text-muted);font-size:14px;line-height:1.7}
+        .footer-col h4{font-size:14px;font-weight:700;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+        .footer-col a{display:block;color:var(--text-muted);text-decoration:none;font-size:14px;margin-bottom:10px;transition:color .2s}
+        .footer-col a:hover{color:var(--accent)}
+        .footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;color:var(--text-muted);font-size:13px}
+
+        /* WhatsApp */
+        .whatsapp-float{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;z-index:999;transition:transform .2s;text-decoration:none}
+        .whatsapp-float:hover{transform:scale(1.1)}
+
+        /* Mobile */
+        @media(max-width:900px){
+            .navbar{padding:14px 20px}
+            .nav-links{display:none}
+            .nav-menu-btn{display:block}
+            .hero{padding:100px 20px 60px}
+            .stats-bar{grid-template-columns:repeat(2,1fr);margin:0 20px}
+            .services,.cases,.testimonials,.team,.process,.cta-section{padding:60px 20px}
+            .services-grid,.cases-grid,.test-grid{grid-template-columns:1fr}
+            .process-steps{grid-template-columns:repeat(2,1fr)}
+            .footer-grid{grid-template-columns:1fr}
+            .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo"><span class="nova">NOVA</span><span class="cre">Creativa</span></a>
+        <div class="nav-links">
+            <a href="#servicios">Servicios</a>
+            <a href="#portafolio">Portafolio</a>
+            <a href="#proceso">Proceso</a>
+            <a href="#testimonios">Testimonios</a>
+        </div>
+        <a href="#contacto" class="nav-cta-btn">Proyecto Gratis</a>
+        <button class="nav-menu-btn" onclick="toggleMobile()">☰</button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content fade-up">
+            <div class="hero-badge"><span class="dot"></span> Agencia Creativa 2026</div>
+            <h1>Hacemos que tu marca <span class="grad">brille</span> en digital</h1>
+            <p>Somos un equipo de creativos, estrategas y desarrolladores que transforman marcas en experiencias digitales inolvidables. Desde branding hasta campañas completas.</p>
+            <div class="hero-btns">
+                <a href="#contacto" class="btn-primary">Empezar Proyecto</a>
+                <a href="#portafolio" class="btn-outline">Ver Portafolio</a>
+            </div>
+            <div class="hero-logos">
+                <span>Confían en nosotros:</span>
+                <div class="logo-list">
+                    <div class="logo-item">TechCo</div>
+                    <div class="logo-item">Orinoco</div>
+                    <div class="logo-item">MedLife</div>
+                    <div class="logo-item">FitPro</div>
+                    <div class="logo-item">Urban</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar fade-up">
+        <div class="stat-item"><div class="num" data-target="150">0</div><div class="label">Proyectos</div></div>
+        <div class="stat-item"><div class="num" data-target="98">0</div><div class="label">% Satisfacción</div></div>
+        <div class="stat-item"><div class="num" data-target="12">0</div><div class="label">Premios</div></div>
+        <div class="stat-item"><div class="num" data-target="40">0</div><div class="label">Creativos</div></div>
+    </div>
+
+    <!-- Services -->
+    <section class="services" id="servicios">
+        <div class="fade-up">
+            <div class="section-label">SERVICIOS</div>
+            <h2 class="section-title">Todo lo que tu marca necesita</h2>
+            <p class="section-desc">Ofrecemos soluciones completas de marketing digital y creatividad para llevar tu negocio al siguiente nivel.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-up">
+                <div class="service-icon">🎨</div>
+                <h3>Branding & Identidad</h3>
+                <p>Creamos identidades de marca memorables que conectan con tu audiencia y destacan en el mercado.</p>
+                <a href="#contacto" class="learn-more">Saber más →</a>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">📱</div>
+                <h3>Marketing Digital</h3>
+                <p>Estrategias data-driven en redes sociales, Google Ads y email marketing que generan resultados reales.</p>
+                <a href="#contacto" class="learn-more">Saber más →</a>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">🌐</div>
+                <h3>Diseño Web</h3>
+                <p>Sitios web y landing pages que convierten visitantes en clientes. Diseño moderno y optimizado.</p>
+                <a href="#contacto" class="learn-more">Saber más →</a>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">🎬</div>
+                <h3>Producción Audiovisual</h3>
+                <p>Videos promocionales, spots publicitarios y contenido visual que cuenta historias.</p>
+                <a href="#contacto" class="learn-more">Saber más →</a>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">📊</div>
+                <h3>Analytics & SEO</h3>
+                <p>Optimización para buscadores y análisis de datos para maximizar tu retorno de inversión.</p>
+                <a href="#contacto" class="learn-more">Saber más →</a>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">🎯</div>
+                <h3>Campañas Publicitarias</h3>
+                <p>Campañas multicanal creativas que generan awareness, engagement y conversiones.</p>
+                <a href="#contacto" class="learn-more">Saber más →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases -->
+    <section class="cases" id="portafolio">
+        <div class="fade-up">
+            <div class="section-label">PORTAFOLIO</div>
+            <h2 class="section-title">Proyectos que hablan por sí solos</h2>
+            <p class="section-desc">Casos de éxito reales de marcas que transformamos.</p>
+        </div>
+        <div class="cases-grid">
+            <div class="case-card fade-up">
+                <img src="img/case1.jpg" alt="Branding">
+                <div class="case-overlay">
+                    <div class="tag">BRANDING</div>
+                    <h3>Rebranding TechCo</h3>
+                    <p>Rediseño completo de identidad visual y guidelines de marca.</p>
+                </div>
+            </div>
+            <div class="case-card fade-up">
+                <img src="img/case2.jpg" alt="Campaña">
+                <div class="case-overlay">
+                    <div class="tag">CAMPAÑA</div>
+                    <h3>Lanzamiento Orinoco</h3>
+                    <p>Campaña multicanal con +2M de impresiones y 15% conversión.</p>
+                </div>
+            </div>
+            <div class="case-card fade-up">
+                <img src="img/case3.jpg" alt="App">
+                <div class="case-overlay">
+                    <div class="tag">DIGITAL</div>
+                    <h3>App FitPro</h3>
+                    <p>Diseño UX/UI de app fitness con 50K descargas en 3 meses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process" id="proceso">
+        <div style="text-align:center;margin-bottom:48px" class="fade-up">
+            <div class="section-label">PROCESO</div>
+            <h2 class="section-title">Cómo trabajamos</h2>
+        </div>
+        <div class="process-steps">
+            <div class="step-card fade-up">
+                <div class="step-num">01</div>
+                <h3>Descubrimiento</h3>
+                <p>Escuchamos tu visión, analizamos tu mercado y definimos la estrategia.</p>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-num">02</div>
+                <h3>Concepto</h3>
+                <p>Nuestro equipo creativo desarrolla conceptos originales y diferenciadores.</p>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-num">03</div>
+                <h3>Ejecución</h3>
+                <p>Producción profesional con los más altos estándares de calidad.</p>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-num">04</div>
+                <h3>Resultados</h3>
+                <p>Medimos, optimizamos y escalamos lo que funciona.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team fade-up">
+        <div class="section-label">EQUIPO</div>
+        <h2 class="section-title">El equipo detrás de la magia</h2>
+        <div class="team-visual">
+            <img src="img/team.jpg" alt="Equipo NOVA Creativa">
+            <div class="team-overlay">
+                <div class="team-play">▶</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonios">
+        <div class="fade-up" style="text-align:center;margin-bottom:48px">
+            <div class="section-label">TESTIMONIOS</div>
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        </div>
+        <div class="test-grid">
+            <div class="test-card fade-up">
+                <div class="test-stars">★★★★★</div>
+                <blockquote>"NOVA transformó nuestra presencia digital por completo. Las ventas subieron 340% en 6 meses."</blockquote>
+                <div class="test-author">
+                    <div class="test-avatar">MC</div>
+                    <div><div class="name">María Castillo</div><div class="role">CEO, MedLife Peru</div></div>
+                </div>
+            </div>
+            <div class="test-card fade-up">
+                <div class="test-stars">★★★★★</div>
+                <blockquote>"El equipo más creativo y profesional con el que hemos trabajado. Superaron todas las expectativas."</blockquote>
+                <div class="test-author">
+                    <div class="test-avatar">JR</div>
+                    <div><div class="name">Juan Ramírez</div><div class="role">CMO, TechCo</div></div>
+                </div>
+            </div>
+            <div class="test-card fade-up">
+                <div class="test-stars">★★★★★</div>
+                <blockquote>"Desde que trabajamos con NOVA, nuestra marca tiene una identidad única y reconocible."</blockquote>
+                <div class="test-author">
+                    <div class="test-avatar">LP</div>
+                    <div><div class="name">Laura Paredes</div><div class="role">Fundadora, FitPro</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section fade-up" id="contacto">
+        <h2>¿Listo para hacer <span class="grad">realidad</span> tu proyecto?</h2>
+        <p>Cuéntanos tu idea y te haremos una propuesta personalizada sin compromiso.</p>
+        <a href="https://wa.me/51999999999?text=Hola!%20Quiero%20una%20propuesta%20para%20mi%20marca" target="_blank" class="btn-primary">WhatsApp Directo</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><span class="nova">NOVA</span><span class="cre">Creativa</span></div>
+                <p>Agencia de publicidad y marketing digital. Transformamos marcas en experiencias memorables.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <a href="#">Branding</a>
+                <a href="#">Marketing Digital</a>
+                <a href="#">Diseño Web</a>
+                <a href="#">Producción</a>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <a href="#">Sobre Nosotros</a>
+                <a href="#">Portafolio</a>
+                <a href="#">Blog</a>
+                <a href="#">Carreras</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <a href="#">hola@novacreativa.com</a>
+                <a href="#">+51 999 888 777</a>
+                <a href="#">Lima, Perú</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 NOVA Creativa. Todos los derechos reservados.</span>
+            <span>Hecho con ❤️ en Lima, Perú</span>
+        </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/51999999999?text=Hola!%20Quiero%20una%20propuesta%20para%20mi%20marca" target="_blank" class="whatsapp-float">💬</a>
+
+    <script>
+        // Navbar scroll
+        window.addEventListener('scroll',()=>{
+            document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+        });
+
+        // Counters
+        const counterObserver = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    const el = e.target;
+                    const target = parseInt(el.dataset.target);
+                    let current = 0;
+                    const step = Math.ceil(target/50);
+                    const timer = setInterval(()=>{
+                        current += step;
+                        if(current>=target){current=target;clearInterval(timer);}
+                        el.textContent = current + (target===98?'%':target===40?'+':'+');
+                    },30);
+                    counterObserver.unobserve(el);
+                }
+            });
+        },{threshold:.5});
+        document.querySelectorAll('.stat-item .num').forEach(n=>counterObserver.observe(n));
+
+        // Fade up
+        const fadeObserver = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');fadeObserver.unobserve(e.target)}});
+        },{threshold:.1});
+        document.querySelectorAll('.fade-up').forEach(el=>fadeObserver.observe(el));
+
+        // Mobile
+        function toggleMobile(){
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display==='flex'?'none':'flex';
+            links.style.position='fixed';links.style.top='60px';links.style.left='0';links.style.right='0';
+            links.style.background='rgba(9,9,11,.98)';links.style.flexDirection='column';
+            links.style.padding='20px';links.style.gap='16px';links.style.zIndex='999';
+        }
+    </script>
+
+<!-- CASE PRESENTATION negolo -->
+<section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
+  <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
+    <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
+    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">NOVA — Agencia Digital</h2>
+    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Landing de agencia digital: gradientes animados, servicios en tarjetas, casos de éxito, proceso en 4 pasos y CTA directo a WhatsApp.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
+      <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
+      <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- demo back button -->
+<a href="./" style="position:fixed;left:18px;bottom:18px;z-index:99999;background:#E8B84B;color:#2D1B36;font-family:Nunito,system-ui,Arial,sans-serif;font-weight:900;text-decoration:none;padding:13px 22px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.35)">← Volver al caso</a>
+
+</body>
+</html>

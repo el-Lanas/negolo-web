@@ -1,114 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel de Soporte - Demo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de Soporte al Cliente — Caso negolo</title>
+<meta name="description" content="Panel para gestionar tickets y conversaciones multicanal.">
+<link rel="icon" href="/assets/brand/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', system-ui, sans-serif; }
-  body { background:#f1f5f9; color:#0f172a; padding:28px 16px; }
-  .wrap { max-width:1050px; margin:auto; }
-  h1 { font-size:1.5rem; }
-  .sub { color:#64748b; font-size:.92rem; margin:4px 0 22px; }
-  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-bottom:22px; }
-  .kpi { background:#fff; border-radius:13px; padding:18px; box-shadow:0 4px 14px rgba(15,23,42,.06); }
-  .kpi span { font-size:.78rem; color:#64748b; text-transform:uppercase; letter-spacing:.04em; }
-  .kpi b { display:block; font-size:1.6rem; margin-top:6px; }
-  .up { color:#16a34a; font-size:.8rem; font-weight:700; }
-  .down { color:#dc2626; font-size:.8rem; font-weight:700; }
-  .panel { background:#fff; border-radius:13px; padding:20px; box-shadow:0 4px 14px rgba(15,23,42,.06); margin-bottom:20px; }
-  .panel h2 { font-size:1.05rem; margin-bottom:14px; }
-  table { width:100%; border-collapse:collapse; font-size:.9rem; }
-  th { text-align:left; color:#64748b; font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; padding:8px 8px; border-bottom:1px solid #e2e8f0; }
-  td { padding:11px 8px; border-bottom:1px solid #f1f5f9; }
-  .pill { padding:4px 11px; border-radius:50px; font-size:.74rem; font-weight:700; }
-  .abierto { background:#fee2e2; color:#b91c1c; }
-  .proceso { background:#fef3c7; color:#92400e; }
-  .resuelto { background:#dcfce7; color:#166534; }
-  .prioridad { font-weight:700; }
-  .bars { display:grid; gap:10px; }
-  .bar-row { display:grid; grid-template-columns:130px 1fr 46px; align-items:center; gap:10px; font-size:.85rem; }
-  .track { background:#e2e8f0; border-radius:50px; height:12px; overflow:hidden; }
-  .fill { height:100%; border-radius:50px; background:linear-gradient(90deg,#38bdf8,#0ea5e9); }
-  select { padding:8px 10px; border-radius:8px; border:1px solid #cbd5e1; font-size:.85rem; }
-  .toolbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap; }
+  :root{--gold:#E8B84B;--gold-soft:#F5E6A0;--plum:#2D1B36;--lav:#F5F0F7;--muted:#6A5B75;--muted-d:#C9BBD6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Nunito,system-ui,Arial,sans-serif;background:var(--lav);color:var(--plum);line-height:1.6}
+  a{color:inherit}
+  header{background:var(--plum);padding:16px 0;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(232,184,75,.18)}
+  .wrap{max-width:1150px;margin:0 auto;padding:0 24px}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav img{height:28px}
+  .nav a{color:var(--gold);text-decoration:none;font-weight:800;font-size:14px}
+  .hero{background:radial-gradient(900px 500px at 85% -10%,rgba(232,184,75,.16),transparent 62%),var(--plum);color:#fff;padding:56px 0 46px}
+  .tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  h1{font-size:clamp(28px,3.6vw,46px);line-height:1.1;letter-spacing:-.02em;font-weight:900;margin:14px 0 12px}
+  .hero p{color:var(--muted-d);max-width:70ch;font-size:17px}
+  .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:15px 26px;font-weight:900;text-decoration:none;font-size:15px;border:2px solid transparent}
+  .btn--gold{background:var(--gold);color:var(--plum)}
+  .btn--ghost{color:var(--gold);border-color:rgba(232,184,75,.45)}
+  section{padding:52px 0}
+  h2{font-size:26px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px}
+  .lead{color:var(--muted);margin-bottom:26px}
+  ul.bul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  ul.bul li{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:14px;padding:16px 18px;font-size:15px}
+  ul.bul li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:9px}
+  .shots{display:grid;gap:22px}
+  figure{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(45,27,54,.08)}
+  figure img{width:100%;display:block}
+  figcaption{padding:12px 16px;font-size:13.5px;font-weight:700;color:var(--muted);border-top:1px solid rgba(45,27,54,.08)}
+  footer{background:var(--plum);color:var(--muted-d);padding:34px 0;margin-top:30px;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--gold);text-decoration:none;font-weight:800}
+  @media (max-width:700px){.hero{padding:38px 0}.shots{gap:16px}}
 </style>
 </head>
 <body>
+<header><div class="wrap nav">
+  <a href="/"><img src="/assets/brand/logo-full-dark.svg" alt="negolo"></a>
+  <a href="/#portafolio">← Volver al portafolio</a>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <span class="tag">Caso — negolo</span>
+  <h1>Panel de Soporte al Cliente</h1>
+  <p>Panel para gestionar tickets y conversaciones multicanal.</p>
+  <div class="btns">
+    <a class="btn btn--gold" href="demo.html">Ver en vivo →</a>
+    <a class="btn btn--ghost" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">Quiero algo así · WhatsApp</a>
+  </div>
+</div></div>
+
 <div class="wrap">
-  <h1>🎧 Panel de Soporte al Cliente</h1>
-  <p class="sub">Demo de tablero de métricas y tickets — proyecto personal de portafolio.</p>
-
-  <div class="kpis">
-    <div class="kpi"><span>Tickets abiertos</span><b id="k-abiertos">0</b><em class="up">▼ 12% vs. ayer</em></div>
-    <div class="kpi"><span>Tiempo 1ª respuesta</span><b>0m 48s</b><em class="up">▼ 22% esta semana</em></div>
-    <div class="kpi"><span>Satisfacción (CSAT)</span><b>96%</b><em class="up">▲ 3 pts</em></div>
-    <div class="kpi"><span>Resueltos hoy</span><b id="k-resueltos">0</b><em class="down">meta: 35</em></div>
-  </div>
-
-  <div class="panel">
-    <div class="toolbar">
-      <h2>Tickets recientes</h2>
-      <select id="filtro">
-        <option value="todos">Todos los estados</option>
-        <option value="abierto">Abiertos</option>
-        <option value="proceso">En proceso</option>
-        <option value="resuelto">Resueltos</option>
-      </select>
-    </div>
-    <table>
-      <thead><tr><th>#</th><th>Cliente</th><th>Asunto</th><th>Canal</th><th>Prioridad</th><th>Estado</th></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
-
-  <div class="panel">
-    <h2>Motivos de contacto más frecuentes</h2>
-    <div class="bars">
-      <div class="bar-row"><span>Estado de pedido</span><div class="track"><div class="fill" style="width:82%"></div></div><b>82</b></div>
-      <div class="bar-row"><span>Cambios/devolución</span><div class="track"><div class="fill" style="width:54%"></div></div><b>54</b></div>
-      <div class="bar-row"><span>Facturación</span><div class="track"><div class="fill" style="width:37%"></div></div><b>37</b></div>
-      <div class="bar-row"><span>Producto dañado</span><div class="track"><div class="fill" style="width:21%"></div></div><b>21</b></div>
-      <div class="bar-row"><span>Otros</span><div class="track"><div class="fill" style="width:12%"></div></div><b>12</b></div>
-    </div>
-  </div>
+  <section>
+    <h2>Qué se hizo</h2>
+    <p class="lead">Secciones y piezas que forman este proyecto:</p>
+    <ul class="bul"><li>Bandeja unificada de tickets</li><li>Métricas de satisfacción y tiempos</li><li>Respuestas rápidas guardadas</li><li>Estados, prioridades y asignación</li></ul>
+  </section>
+  <section style="padding-top:0">
+    <h2>Capturas del proyecto</h2>
+    <p class="lead">Así se ve por dentro. Puedes recorrerlo completo en “Ver en vivo”.</p>
+    <div class="shots"><figure><img src="preview.png" alt="Panel de Soporte al Cliente — preview" loading="lazy"><figcaption>preview</figcaption></figure></div>
+  </section>
 </div>
 
-<script>
-  const tickets = [
-    { id:1041, cliente:'María G.', asunto:'Pedido no llega', canal:'WhatsApp', prioridad:'Alta', estado:'abierto' },
-    { id:1040, cliente:'Carlos R.', asunto:'Reembolso pendiente', canal:'Email', prioridad:'Alta', estado:'proceso' },
-    { id:1039, cliente:'Lucía P.', asunto:'Cambio de talla', canal:'Chat web', prioridad:'Media', estado:'resuelto' },
-    { id:1038, cliente:'Jorge M.', asunto:'Error en factura', canal:'Email', prioridad:'Media', estado:'abierto' },
-    { id:1037, cliente:'Ana T.', asunto:'Producto dañado', canal:'WhatsApp', prioridad:'Alta', estado:'proceso' },
-    { id:1036, cliente:'Pedro S.', asunto:'Consulta de stock', canal:'Chat web', prioridad:'Baja', estado:'resuelto' }
-  ];
-  const $ = id => document.getElementById(id);
-  function render(){
-    const filtro = $('filtro').value;
-    const visibles = tickets.filter(t => filtro==='todos' || t.estado===filtro);
-    $('tbody').innerHTML = visibles.map(t => `<tr>
-      <td>#${t.id}</td><td>${t.cliente}</td><td>${t.asunto}</td><td>${t.canal}</td>
-      <td class="prioridad">${t.prioridad}</td><td><span class="pill ${t.estado}">${t.estado}</span></td></tr>`).join('');
-    $('k-abiertos').textContent = tickets.filter(t=>t.estado==='abierto').length;
-    $('k-resueltos').textContent = tickets.filter(t=>t.estado==='resuelto').length + 31;
-  }
-  $('filtro').onchange = render;
-  render();
-</script>
-
-<!-- CASE PRESENTATION negolo -->
-<section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
-  <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
-    <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
-    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">Panel de Soporte al Cliente</h2>
-    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Panel de soporte: bandeja unificada de tickets multicanal, métricas de satisfacción, respuestas rápidas y backoffice ordenado.</p>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
-      <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
-      <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
-    </div>
-  </div>
-</section>
-
+<footer><div class="wrap"><span>© 2026 negolo — Desarrollo web, apps y chatbots</span><span><a href="/#portafolio">← Ver más proyectos</a> · <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20caso%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener">WhatsApp</a></span></div></footer>
 </body>
 </html>

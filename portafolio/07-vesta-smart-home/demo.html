@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VESTA Technologies — Enterprise-Grade Home Infrastructure</title>
+<meta name="description" content="VESTA Technologies retrofits existing homes with enterprise-grade networking, security, automation and AI-ready infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F8FA;
+    --surface: #FFFFFF;
+    --ink: #0B1220;
+    --ink-2: #2A3342;
+    --muted: #5C6675;
+    --line: rgba(11,18,32,.08);
+    --line-strong: rgba(11,18,32,.14);
+    --blue: #2B59FF;
+    --blue-deep: #1E3FCC;
+    --cyan: #06B6D4;
+    --dark: #090E18;
+    --dark-2: #0F1626;
+    --radius: 20px;
+    --radius-sm: 14px;
+    --shadow-lg: 0 30px 80px -20px rgba(11,18,32,.18);
+    --shadow-md: 0 14px 40px -12px rgba(11,18,32,.14);
+    --shadow-sm: 0 6px 20px -6px rgba(11,18,32,.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, .sg { font-family: 'Space Grotesk', sans-serif; letter-spacing: -.02em; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--blue);
+  }
+  .eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--blue); }
+  .section { padding: 96px 0; }
+  .section-head { max-width: 640px; margin-bottom: 56px; }
+  .section-head h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: 700; line-height: 1.12; margin: 16px 0 14px; }
+  .section-head p { color: var(--muted); font-size: 17px; }
+  .center { text-align: center; margin-left: auto; margin-right: auto; }
+  .center .eyebrow { justify-content: center; }
+  .center .eyebrow::before { display: none; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,248,250,.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .nav.scrolled { border-bottom-color: var(--line); box-shadow: 0 8px 30px -18px rgba(11,18,32,.15); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .logo-mark { width: 34px; height: 34px; flex: 0 0 34px; }
+  .logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: .01em; }
+  .logo-text span { color: var(--blue); }
+  .logo-sub { display: block; font-family: 'Inter', sans-serif; font-size: 9.5px; font-weight: 600; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; margin-top: -2px; }
+  .nav-links { display: flex; gap: 34px; }
+  .nav-links a {
+    color: var(--ink-2); text-decoration: none; font-size: 14.5px; font-weight: 500; position: relative;
+    transition: color .2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan)); border-radius: 2px;
+    transition: width .25s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { display: flex; align-items: center; gap: 18px; }
+  .nav-phone { font-size: 14px; font-weight: 600; color: var(--ink-2); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
+  .nav-phone:hover { color: var(--blue); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-weight: 600; font-size: 14.5px; text-decoration: none; border: none; cursor: pointer;
+    border-radius: 100px; padding: 13px 26px; font-family: 'Inter', sans-serif;
+    transition: transform .2s, box-shadow .25s, background .25s, color .25s;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+  .btn-primary::after {
+    content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.25), transparent);
+    transform: skewX(-20deg); transition: left .5s ease;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -10px rgba(11,18,32,.4); }
+  .btn-primary:hover::after { left: 130%; }
+  .btn-blue { background: linear-gradient(120deg, var(--blue), var(--blue-deep)); color: #fff; }
+  .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 16px 38px -10px rgba(43,89,255,.45); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line-strong); }
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: .3s; }
+
+  /* ============ HERO ============ */
+  .hero { position: relative; padding: 78px 0 90px; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(900px 480px at 88% 8%, rgba(43,89,255,.07), transparent 60%),
+      radial-gradient(700px 420px at 6% 90%, rgba(6,182,212,.06), transparent 60%);
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.02fr .98fr; gap: 60px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-copy .eyebrow { margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(38px, 4.6vw, 62px); font-weight: 700; line-height: 1.06; letter-spacing: -.03em; }
+  .hero h1 .grad {
+    background: linear-gradient(100deg, var(--blue), var(--cyan));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-sub { color: var(--muted); font-size: 17.5px; max-width: 520px; margin: 24px 0 34px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .hero-proof {
+    display: flex; align-items: center; gap: 14px; margin-top: 38px; flex-wrap: wrap;
+  }
+  .avatars { display: flex; }
+  .avatar {
+    width: 38px; height: 38px; border-radius: 50%; border: 2.5px solid var(--bg);
+    background: linear-gradient(135deg, #DCE3F0, #B9C6E4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--ink-2); margin-left: -10px;
+  }
+  .avatar:first-child { margin-left: 0; }
+  .hero-proof-text { font-size: 13.5px; color: var(--muted); }
+  .hero-proof-text strong { color: var(--ink); }
+  .stars { color: #F5A623; letter-spacing: 2px; font-size: 13px; }
+
+  .hero-visual { position: relative; }
+  .hero-photo {
+    position: relative; border-radius: 26px; overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 5 / 4.35;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-photo::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(200deg, transparent 40%, rgba(9,14,24,.5) 100%);
+  }
+  .hero-scan {
+    position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background: linear-gradient(180deg, transparent 0%, rgba(6,182,212,.14) 48%, transparent 52%, transparent 100%);
+    background-size: 100% 260%;
+    animation: scan 7s linear infinite;
+  }
+  @keyframes scan { 0% { background-position: 0 -130%; } 100% { background-position: 0 130%; } }
+  .float-card {
+    position: absolute; z-index: 3; background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.6);
+    border-radius: 16px; padding: 14px 18px;
+    box-shadow: 0 20px 50px -16px rgba(9,14,24,.35);
+    display: flex; align-items: center; gap: 12px;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  .fc-1 { top: 26px; left: -34px; animation-delay: 0s; }
+  .fc-2 { bottom: 88px; right: -30px; animation-delay: 1.6s; }
+  .fc-3 { bottom: -18px; left: 38px; animation-delay: 3.1s; }
+  .fc-icon {
+    width: 38px; height: 38px; border-radius: 11px; flex: 0 0 38px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fc-icon.blue { background: rgba(43,89,255,.1); color: var(--blue); }
+  .fc-icon.green { background: rgba(22,163,74,.1); color: #16A34A; }
+  .fc-icon.violet { background: rgba(124,58,237,.1); color: #7C3AED; }
+  .fc-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .fc-value { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+  .fc-value .dot-live {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22C55E;
+    margin-right: 6px; box-shadow: 0 0 8px #22C55E; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+  /* ============ TRUST STRIP ============ */
+  .trust { padding: 34px 0 10px; }
+  .trust-label { text-align: center; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 26px; }
+  .trust-logos {
+    display: flex; justify-content: center; align-items: center; gap: 54px; flex-wrap: wrap;
+    opacity: .75;
+  }
+  .trust-logos span {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: .04em;
+    color: #7C8698; transition: color .25s, opacity .25s;
+  }
+  .trust-logos span:hover { color: var(--ink); }
+
+  /* ============ METRICS (dark band) ============ */
+  .metrics { background: var(--dark); color: #fff; position: relative; overflow: hidden; margin: 80px 0 0; }
+  .metrics::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(700px 300px at 15% 0%, rgba(43,89,255,.18), transparent 60%),
+      radial-gradient(600px 300px at 90% 100%, rgba(6,182,212,.12), transparent 60%);
+  }
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+    padding: 64px 0; position: relative; z-index: 1;
+  }
+  .metric { text-align: center; }
+  .metric strong { font-family: 'Space Grotesk', sans-serif; font-size: clamp(34px, 3.6vw, 46px); font-weight: 700; display: block; letter-spacing: -.02em;
+    background: linear-gradient(120deg, #fff, #9DB4FF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .metric span { color: rgba(255,255,255,.55); font-size: 13.5px; letter-spacing: .02em; }
+
+  /* ============ SERVICES ============ */
+  .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .svc-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 30px 26px 26px; display: flex; flex-direction: column; gap: 14px;
+    transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s, border-color .35s;
+    position: relative; overflow: hidden;
+  }
+  .svc-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    transform: scaleX(0); transform-origin: left; transition: transform .4s cubic-bezier(.2,.7,.3,1);
+  }
+  .svc-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-md); border-color: transparent; }
+  .svc-card:hover::before { transform: scaleX(1); }
+  .svc-icon {
+    width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(43,89,255,.1), rgba(6,182,212,.1));
+    color: var(--blue); margin-bottom: 6px;
+  }
+  .svc-card h3 { font-size: 19px; font-weight: 700; }
+  .svc-card p { color: var(--muted); font-size: 14px; flex: 1; }
+  .svc-link {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600;
+    color: var(--blue); text-decoration: none; margin-top: 4px;
+  }
+  .svc-link svg { transition: transform .25s; }
+  .svc-card:hover .svc-link svg { transform: translateX(4px); }
+
+  /* ============ CONTROL DASHBOARD ============ */
+  .control { background: var(--dark); color: #fff; position: relative; overflow: hidden; }
+  .control::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(800px 400px at 80% 0%, rgba(43,89,255,.2), transparent 60%),
+      radial-gradient(600px 360px at 10% 100%, rgba(6,182,212,.12), transparent 60%);
+  }
+  .control .container { position: relative; z-index: 1; }
+  .control .section-head h2 { color: #fff; }
+  .control .section-head p { color: rgba(255,255,255,.58); }
+  .control .eyebrow { color: #7FA3FF; }
+  .dash {
+    background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 24px; padding: 26px; backdrop-filter: blur(8px);
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,.6);
+  }
+  .dash-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; gap: 16px; flex-wrap: wrap; }
+  .dash-title { display: flex; align-items: center; gap: 12px; }
+  .dash-title .dot-live { width: 8px; height: 8px; }
+  .dash-title strong { font-family: 'Space Grotesk', sans-serif; font-size: 15.5px; letter-spacing: .01em; }
+  .dash-title span { color: rgba(255,255,255,.5); font-size: 12.5px; }
+  .dash-tabs { display: flex; gap: 6px; }
+  .dash-tabs span {
+    font-size: 12px; font-weight: 600; padding: 7px 15px; border-radius: 100px;
+    color: rgba(255,255,255,.55); border: 1px solid transparent; transition: .25s;
+  }
+  .dash-tabs span.on { background: rgba(43,89,255,.22); color: #fff; border-color: rgba(43,89,255,.4); }
+  .dash-grid { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 16px; }
+  .dash-card {
+    background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 16px; padding: 20px; transition: background .25s, border-color .25s;
+  }
+  .dash-card:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); }
+  .dash-card h4 { font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 14px; }
+  .temp-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .temp-big { font-family: 'Space Grotesk', sans-serif; font-size: 44px; font-weight: 700; line-height: 1; }
+  .temp-big small { font-size: 19px; color: rgba(255,255,255,.5); font-weight: 500; }
+  .temp-tag { font-size: 11.5px; color: #7FE3A1; background: rgba(34,197,94,.14); border-radius: 100px; padding: 4px 10px; font-weight: 600; }
+  .temp-desc { color: rgba(255,255,255,.55); font-size: 13px; margin-bottom: 18px; }
+  .seg { display: flex; gap: 5px; background: rgba(255,255,255,.06); border-radius: 11px; padding: 4px; }
+  .seg span { flex: 1; text-align: center; font-size: 12px; font-weight: 600; padding: 8px 0; border-radius: 8px; color: rgba(255,255,255,.55); }
+  .seg span.on { background: rgba(255,255,255,.14); color: #fff; }
+  .scene-list { display: flex; flex-direction: column; gap: 9px; }
+  .scene {
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,.05); border-radius: 11px; padding: 11px 13px;
+    font-size: 13px; color: rgba(255,255,255,.85); transition: background .2s;
+  }
+  .scene:hover { background: rgba(255,255,255,.09); }
+  .scene .st { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 100px; }
+  .st.on { background: rgba(34,197,94,.16); color: #7FE3A1; }
+  .st.off { background: rgba(255,255,255,.08); color: rgba(255,255,255,.45); }
+  .cam-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .cam {
+    aspect-ratio: 16/10.5; border-radius: 11px; position: relative; overflow: hidden;
+    background: linear-gradient(150deg, #1A2436, #0D1420);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .cam::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(70px 44px at 60% 40%, rgba(43,89,255,.24), transparent 70%);
+  }
+  .cam-live {
+    position: absolute; top: 7px; left: 7px; z-index: 2;
+    font-size: 9px; font-weight: 700; letter-spacing: .06em; color: #fff;
+    background: rgba(220,38,38,.85); padding: 2.5px 8px; border-radius: 100px;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .cam-live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #fff; animation: pulse 1.6s infinite; }
+  .cam-name { position: absolute; bottom: 7px; left: 7px; z-index: 2; font-size: 10.5px; color: rgba(255,255,255,.72); }
+  .energy-bars { display: flex; align-items: flex-end; gap: 7px; height: 96px; margin: 6px 0 14px; }
+  .energy-bars i {
+    flex: 1; border-radius: 5px 5px 2px 2px; display: block;
+    background: linear-gradient(180deg, #3E6BFF, rgba(62,107,255,.25));
+    animation: bars 2.6s ease-in-out infinite; transform-origin: bottom;
+  }
+  .energy-bars i:nth-child(2n) { animation-delay: .5s; }
+  .energy-bars i:nth-child(3n) { animation-delay: 1s; }
+  @keyframes bars { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.82); } }
+  .energy-meta { display: flex; justify-content: space-between; font-size: 12.5px; color: rgba(255,255,255,.55); }
+  .energy-meta strong { color: #fff; font-family: 'Space Grotesk', sans-serif; }
+  .lock-row { display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .lock { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,.85); }
+  .lock .ok { color: #7FE3A1; font-weight: 600; font-size: 11.5px; }
+  .dash-note { text-align: center; color: rgba(255,255,255,.42); font-size: 12.5px; margin-top: 24px; letter-spacing: .03em; }
+
+  /* ============ PROCESS ============ */
+  .process { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; counter-reset: step; }
+  .proc-item { position: relative; padding-top: 26px; }
+  .proc-item::before {
+    counter-increment: step; content: '0' counter(step);
+    font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 700; line-height: 1;
+    color: transparent; -webkit-text-stroke: 1.5px var(--line-strong);
+    position: absolute; top: -12px; right: 0;
+  }
+  .proc-item::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 34px; height: 3px; border-radius: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+  }
+  .proc-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .proc-item p { color: var(--muted); font-size: 14px; }
+
+  /* ============ SHOWCASE ============ */
+  .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+  .showcase-photo { position: relative; border-radius: 26px; overflow: hidden; box-shadow: var(--shadow-lg); aspect-ratio: 4/3.4; }
+  .showcase-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .showcase-badge {
+    position: absolute; bottom: 22px; left: 22px; z-index: 2;
+    background: rgba(9,14,24,.72); backdrop-filter: blur(10px);
+    color: #fff; border-radius: 14px; padding: 13px 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .showcase-badge .fc-value { color: #fff; }
+  .checklist { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
+  .check-item { display: flex; gap: 14px; align-items: flex-start; }
+  .check-icon {
+    width: 26px; height: 26px; flex: 0 0 26px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    display: flex; align-items: center; justify-content: center; color: #fff; margin-top: 2px;
+  }
+  .check-item h4 { font-size: 15.5px; font-weight: 700; font-family: 'Inter', sans-serif; }
+  .check-item p { color: var(--muted); font-size: 13.5px; }
+
+  /* ============ TESTIMONIALS ============ */
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testi-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 32px 28px; display: flex; flex-direction: column; gap: 20px;
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+  }
+  .testi-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: transparent; }
+  .testi-stars { color: #F5A623; letter-spacing: 3px; font-size: 14px; }
+  .testi-quote { font-size: 15px; color: var(--ink-2); line-height: 1.65; flex: 1; }
+  .testi-person { display: flex; align-items: center; gap: 12px; }
+  .testi-ava {
+    width: 42px; height: 42px; border-radius: 50%; flex: 0 0 42px;
+    background: linear-gradient(135deg, #E3E9F5, #C6D2EA);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; color: var(--ink-2);
+  }
+  .testi-name { font-weight: 700; font-size: 14px; }
+  .testi-role { font-size: 12.5px; color: var(--muted); }
+
+  /* ============ CTA BAND ============ */
+  .cta-band {
+    position: relative; overflow: hidden; border-radius: 30px;
+    background: var(--dark); color: #fff;
+    padding: 74px 70px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: center;
+    box-shadow: var(--shadow-lg);
+  }
+  .cta-band::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(600px 320px at 90% 10%, rgba(43,89,255,.28), transparent 60%),
+      radial-gradient(500px 300px at 5% 100%, rgba(6,182,212,.16), transparent 60%);
+  }
+  .cta-band > * { position: relative; z-index: 1; }
+  .cta-band h2 { font-size: clamp(28px, 3.2vw, 40px); font-weight: 700; line-height: 1.14; margin-bottom: 16px; }
+  .cta-band .cta-sub { color: rgba(255,255,255,.62); font-size: 16px; max-width: 460px; }
+  .cta-band .btn-blue { padding: 16px 32px; font-size: 15.5px; }
+  .cta-form-note { display: flex; gap: 18px; margin-top: 22px; flex-wrap: wrap; }
+  .cta-form-note span { color: rgba(255,255,255,.55); font-size: 13px; display: inline-flex; align-items: center; gap: 7px; }
+
+  /* ============ FAQ ============ */
+  .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .faq-item {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    overflow: hidden; transition: border-color .25s, box-shadow .25s;
+  }
+  .faq-item.open { border-color: rgba(43,89,255,.3); box-shadow: var(--shadow-sm); }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+    padding: 21px 24px; display: flex; justify-content: space-between; align-items: center; gap: 18px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 16.5px; font-weight: 600; color: var(--ink);
+  }
+  .faq-q svg { flex: 0 0 auto; transition: transform .3s; color: var(--blue); }
+  .faq-item.open .faq-q svg { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .faq-a-inner { padding: 0 24px 22px; color: var(--muted); font-size: 14.5px; }
+
+  /* ============ CONTACT ============ */
+  .contact { background: var(--surface); border-top: 1px solid var(--line); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; }
+  .contact-info { display: flex; flex-direction: column; gap: 26px; margin-top: 34px; }
+  .ci-item { display: flex; gap: 15px; align-items: flex-start; }
+  .ci-icon {
+    width: 44px; height: 44px; flex: 0 0 44px; border-radius: 13px;
+    background: linear-gradient(135deg, rgba(43,89,255,.1), rgba(6,182,212,.1)); color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ci-item h4 { font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; margin-bottom: 3px; }
+  .ci-item a, .ci-item p { color: var(--muted); font-size: 14.5px; text-decoration: none; }
+  .ci-item a:hover { color: var(--blue); }
+  .form-card {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 24px; padding: 38px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .field label { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+  .field input, .field select, .field textarea {
+    background: var(--surface); border: 1.5px solid var(--line-strong); border-radius: 12px;
+    padding: 13px 15px; font-family: 'Inter', sans-serif; font-size: 14.5px; color: var(--ink);
+    transition: border-color .2s, box-shadow .2s; width: 100%;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(43,89,255,.12);
+  }
+  .field textarea { resize: vertical; min-height: 110px; }
+  .form-note { font-size: 12.5px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--dark); color: rgba(255,255,255,.62); padding: 58px 0 34px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+  .footer-brand .logo-text { color: #fff; }
+  .footer-brand p { font-size: 13.5px; margin-top: 14px; max-width: 280px; line-height: 1.7; }
+  .footer-col h5 { font-family: 'Inter', sans-serif; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 18px; }
+  .footer-col a { display: block; color: rgba(255,255,255,.55); text-decoration: none; font-size: 13.5px; padding: 4px 0; transition: color .2s; }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1); padding-top: 26px;
+    display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;
+    font-size: 12.5px;
+  }
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a { color: rgba(255,255,255,.55); text-decoration: none; }
+  .footer-legal a:hover { color: #fff; }
+
+  /* ============ REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(26px); }
+  .reveal.in { opacity: 1; transform: none; transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.3,1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1080px) {
+    .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    .proc-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 70px; }
+    .hero-sub { max-width: none; }
+    .fc-1 { left: 10px; } .fc-2 { right: 6px; }
+    .showcase-grid { grid-template-columns: 1fr; gap: 50px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .cta-band { grid-template-columns: 1fr; gap: 40px; padding: 54px 40px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav-phone { display: none; }
+    .hamburger { display: block; }
+    .nav-cta { gap: 12px; }
+    .nav-cta .btn { padding: 11px 17px; font-size: 13px; }
+    .logo-sub { font-size: 8px; letter-spacing: .18em; }
+    .nav.open .nav-links {
+      display: flex; flex-direction: column; gap: 0;
+      position: absolute; top: 74px; left: 0; right: 0;
+      background: rgba(247,248,250,.98); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line); box-shadow: 0 30px 50px -30px rgba(11,18,32,.25);
+      padding: 10px 28px 20px;
+    }
+    .nav.open .nav-links a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+    .nav.open .nav-links a:last-child { border-bottom: none; }
+    .section { padding: 70px 0; }
+    .metrics-grid { gap: 34px 20px; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-card { padding: 26px; }
+    .cta-band { padding: 44px 28px; border-radius: 22px; }
+    .hero { padding: 52px 0 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo" aria-label="VESTA Technologies home">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0" stop-color="#2B59FF"/><stop offset="1" stop-color="#06B6D4"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 3 L36 12 V22 C36 30.5 29 36.2 20 38.5 C11 36.2 4 30.5 4 22 V12 Z" stroke="url(#lg)" stroke-width="2.4" fill="none" stroke-linejoin="round"/>
+        <path d="M13 20.5 L18 25.5 L28 14.5" stroke="url(#lg)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="9.5" r="1.6" fill="url(#lg)"/>
+      </svg>
+      <span class="logo-text">VESTA<span>.</span> <span class="logo-sub" style="display:block;">Technologies</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a class="nav-phone" href="tel:+10000000000">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (000) 000-0000
+      </a>
+      <a class="btn btn-primary" href="#contact">Book a consultation</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Enterprise-grade home infrastructure</span>
+      <h1>Your home, engineered like a <span class="grad">data center.</span></h1>
+      <p class="hero-sub">We retrofit existing homes with pro-grade networking, security, automation and AI-ready infrastructure — designed, installed and monitored by specialists.</p>
+      <div class="hero-actions">
+        <a class="btn btn-blue" href="#contact">Book a free assessment
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#services">Explore services</a>
+      </div>
+      <div class="hero-proof">
+        <div class="avatars" aria-hidden="true">
+          <div class="avatar">MR</div><div class="avatar">JK</div><div class="avatar">AL</div><div class="avatar">+9</div>
+        </div>
+        <div class="hero-proof-text">
+          <span class="stars">★★★★★</span><br>
+          <strong>250+ homes</strong> upgraded across the region
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1100&q=80&auto=format&fit=crop" alt="Modern luxury home at dusk with connected smart technology">
+        <div class="hero-scan" aria-hidden="true"></div>
+      </div>
+      <div class="float-card fc-1">
+        <div class="fc-icon blue">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+        </div>
+        <div>
+          <div class="fc-label">Network</div>
+          <div class="fc-value"><span class="dot-live"></span>99.99% uptime</div>
+        </div>
+      </div>
+      <div class="float-card fc-2">
+        <div class="fc-icon green">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div>
+          <div class="fc-label">Security</div>
+          <div class="fc-value">All zones armed</div>
+        </div>
+      </div>
+      <div class="float-card fc-3">
+        <div class="fc-icon violet">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3m6.36-.36-2.12 2.12M21 12h-3m.36 6.36-2.12-2.12M12 18v3m-6.36-.36 2.12-2.12M3 12h3m-.36-6.36 2.12 2.12"/><circle cx="12" cy="12" r="3.2"/></svg>
+        </div>
+        <div>
+          <div class="fc-label">Automation</div>
+          <div class="fc-value">14 scenes live</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust">
+  <div class="container reveal">
+    <p class="trust-label">Engineered with industry leaders</p>
+    <div class="trust-logos" aria-label="Technology partners">
+      <span>UNIFI</span><span>CONTROL4</span><span>LUTRON</span><span>AXIS</span><span>SONOS</span><span>SCHNEIDER</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METRICS ===== -->
+<section class="metrics">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric reveal"><strong>250+</strong><span>Homes upgraded</span></div>
+      <div class="metric reveal"><strong>99.99%</strong><span>Network uptime</span></div>
+      <div class="metric reveal"><strong>24/7</strong><span>Proactive monitoring</span></div>
+      <div class="metric reveal"><strong>15+</strong><span>Years of engineering</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>Four systems. One seamless home.</h2>
+      <p>Every installation is designed as one integrated platform — not a pile of disconnected gadgets.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc-card reveal">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 18h.01M10 18h.01M6.5 10.5a7.5 7.5 0 0 1 11 0M3.5 7.5a11.5 11.5 0 0 1 17 0"/></svg>
+        </div>
+        <h3>Network Infrastructure</h3>
+        <p>Enterprise Wi-Fi 7, structured cabling, VLANs and automatic failover for a connection that never drops — even at the far end of the property.</p>
+        <a class="svc-link" href="#contact">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="svc-card reveal">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Security &amp; Surveillance</h3>
+        <p>4K cameras with on-device AI detection, smart locks, and 24/7 monitoring — intelligent enough to tell a delivery from a threat.</p>
+        <a class="svc-link" href="#contact">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="svc-card reveal">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3m6.36-.36-2.12 2.12M21 12h-3m.36 6.36-2.12-2.12M12 18v3m-6.36-.36 2.12-2.12M3 12h3m-.36-6.36 2.12 2.12"/><circle cx="12" cy="12" r="3.2"/></svg>
+        </div>
+        <h3>Home Automation</h3>
+        <p>Lighting, climate, shades and audio that respond to routines, presence and voice — programmed around how your household actually lives.</p>
+        <a class="svc-link" href="#contact">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="svc-card reveal">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 1 5 5c0 1.5-.7 2.8-1.7 3.7A6 6 0 0 1 18 16v1a2 2 0 0 0 2 2H4a2 2 0 0 0 2-2v-1a6 6 0 0 1 2.7-5.3A5 5 0 0 1 7 7a5 5 0 0 1 5-5z"/></svg>
+        </div>
+        <h3>AI-Ready Systems</h3>
+        <p>A local compute backbone built for what's next — private AI assistants, predictive routines and future devices, with no cloud dependency.</p>
+        <a class="svc-link" href="#contact">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTROL DASHBOARD ===== -->
+<section class="section control">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">One app. Total control.</span>
+      <h2>Every system — in the palm of your hand.</h2>
+      <p>One unified interface for network, security, climate and energy. Designed around clarity, not gadgetry.</p>
+    </div>
+    <div class="dash reveal">
+      <div class="dash-top">
+        <div class="dash-title">
+          <span class="dot-live" aria-hidden="true"></span>
+          <strong>VESTA Home</strong>
+          <span>·  Main Residence  ·  All systems nominal</span>
+        </div>
+        <div class="dash-tabs" aria-hidden="true">
+          <span class="on">Home</span><span>Cameras</span><span>Network</span><span>Energy</span>
+        </div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <h4>Climate</h4>
+          <div class="temp-row">
+            <div class="temp-big">21.5<small>°C</small></div>
+            <span class="temp-tag">Eco −12%</span>
+          </div>
+          <p class="temp-desc">Living areas · auto-balancing across 3 zones</p>
+          <div class="seg" aria-hidden="true"><span>Cool</span><span class="on">Auto</span><span>Heat</span></div>
+          <h4 style="margin-top:22px;">Scenes</h4>
+          <div class="scene-list">
+            <div class="scene">Good morning <span class="st on">Active 7:00</span></div>
+            <div class="scene">Away mode <span class="st off">Standby</span></div>
+            <div class="scene">Movie night <span class="st off">Standby</span></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <h4>Live security</h4>
+          <div class="cam-grid">
+            <div class="cam"><span class="cam-live">LIVE</span><span class="cam-name">Driveway</span></div>
+            <div class="cam"><span class="cam-live">LIVE</span><span class="cam-name">Back gate</span></div>
+            <div class="cam"><span class="cam-live">LIVE</span><span class="cam-name">Pool deck</span></div>
+            <div class="cam"><span class="cam-live">LIVE</span><span class="cam-name">Entry hall</span></div>
+          </div>
+          <h4 style="margin-top:20px;">Access</h4>
+          <div class="lock-row">
+            <div class="lock">Front door <span class="ok">Locked</span></div>
+            <div class="lock">Garage <span class="ok">Locked</span></div>
+            <div class="lock">Side entry <span class="ok">Locked</span></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <h4>Energy today</h4>
+          <div class="energy-bars" aria-hidden="true">
+            <i style="height:34%"></i><i style="height:58%"></i><i style="height:44%"></i><i style="height:72%"></i>
+            <i style="height:52%"></i><i style="height:88%"></i><i style="height:64%"></i><i style="height:46%"></i>
+            <i style="height:78%"></i><i style="height:56%"></i><i style="height:38%"></i><i style="height:50%"></i>
+          </div>
+          <div class="energy-meta">
+            <span>Consumption <strong>14.2 kWh</strong></span>
+            <span>Solar offset <strong>63%</strong></span>
+          </div>
+          <h4 style="margin-top:20px;">Network</h4>
+          <div class="lock-row">
+            <div class="lock">Mesh nodes online <span class="ok">6 / 6</span></div>
+            <div class="lock">WAN failover <span class="ok">Ready</span></div>
+            <div class="lock">Intrusion attempts <span class="ok">0 today</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="dash-note">Illustrative interface — included with every VESTA installation</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="section process" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>From first walkthrough to lifetime care.</h2>
+      <p>A proven four-step process, refined over 250+ installations.</p>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-item reveal">
+        <h3>Assessment</h3>
+        <p>A full technical walkthrough of your home — coverage, wiring, risks and goals mapped into a documented report.</p>
+      </div>
+      <div class="proc-item reveal">
+        <h3>Design</h3>
+        <p>A tailored system architecture with equipment plan, budget tiers and a clear installation timeline — approved before we touch a wall.</p>
+      </div>
+      <div class="proc-item reveal">
+        <h3>Installation</h3>
+        <p>Certified technicians install and label everything, then tune the whole system and hand over a fully configured home.</p>
+      </div>
+      <div class="proc-item reveal">
+        <h3>Lifetime Support</h3>
+        <p>Remote monitoring, priority service visits and upgrades for as long as you own the system. We don't disappear after handoff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHOWCASE ===== -->
+<section class="section" id="results">
+  <div class="container showcase-grid">
+    <div class="showcase-photo reveal">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=80&auto=format&fit=crop" alt="Modern connected living room with integrated smart home technology">
+      <div class="showcase-badge">
+        <div class="fc-icon blue" style="width:34px;height:34px;flex:0 0 34px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+        </div>
+        <div>
+          <div class="fc-label" style="color:rgba(255,255,255,.55);">Whole-home coverage</div>
+          <div class="fc-value">Every room. No dead zones.</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Built to a higher standard</span>
+      <h2 class="sg" style="font-size:clamp(28px,3.4vw,40px);font-weight:700;line-height:1.14;margin:16px 0 10px;">The difference is in what you don't see.</h2>
+      <p style="color:var(--muted);font-size:16.5px;">Consumer devices are plug-and-play until they aren't. We build the invisible layer that makes everything else feel effortless.</p>
+      <div class="checklist">
+        <div class="check-item">
+          <div class="check-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Rack-mounted core, professionally labeled</h4><p>Enterprise switching, UPS backup and clean cable management — documented for any future technician.</p></div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Network segmented by design</h4><p>Cameras, work, smart devices and guests stay isolated — faster, safer and easier to troubleshoot.</p></div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Internet stays up when the ISP doesn't</h4><p>Automatic failover keeps security and automation running through any outage.</p></div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><h4>Vendor-agnostic, no lock-in</h4><p>We recommend what fits your home — and document everything so you always own your system.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Client results</span>
+      <h2>Trusted in the homes that can't afford downtime.</h2>
+    </div>
+    <div class="testi-grid">
+      <article class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"I run my business from home and the network has to be perfect. VESTA rebuilt everything in two days — zero meetings dropped since. The rack looks better than our office."</p>
+        <div class="testi-person">
+          <div class="testi-ava">MR</div>
+          <div><div class="testi-name">Marcus R.</div><div class="testi-role">Home office, 4,200 sq ft</div></div>
+        </div>
+      </article>
+      <article class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"What sold me was the documentation. Every cable, every device, labeled and mapped. When we added cameras a year later, it took hours — not weeks."</p>
+        <div class="testi-person">
+          <div class="testi-ava">JK</div>
+          <div><div class="testi-name">Julia K.</div><div class="testi-role">Full retrofit, 1970s property</div></div>
+        </div>
+      </article>
+      <article class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Other installers quoted gadgets. VESTA quoted a system. The difference shows every day — lighting, security and Wi-Fi just work, together."</p>
+        <div class="testi-person">
+          <div class="testi-ava">AL</div>
+          <div><div class="testi-name">Andre L.</div><div class="testi-role">Automation + security build</div></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="section" style="padding-top:0;padding-bottom:90px;">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <h2>Find out what your home could feel like.</h2>
+        <p class="cta-sub">Book a free assessment. We'll map your home's current setup and show you exactly what's possible — no obligation, no jargon.</p>
+        <div class="cta-form-note">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 60-minute home walkthrough</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Same-week scheduling</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <a class="btn btn-blue" href="#contact">Book a free assessment
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.25);color:#fff;" href="tel:+10000000000">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Or call us directly
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Straight answers.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">Can you retrofit a home that was never pre-wired?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Yes — that's our specialty. Roughly 80% of our projects are retrofits. We use existing pathways, discreet cable routing and mesh-capable hardware to avoid invasive construction whenever possible.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">How long does a full installation take?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Most residences are completed in 2–5 days on-site, depending on size and scope. You receive a full schedule after the assessment — and we stick to it.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Do I have to replace my existing smart devices?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Not necessarily. We're vendor-agnostic and will integrate what you already own where it makes sense. When something should be replaced, we'll tell you honestly — and why.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">What happens if something fails at 2am?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Our monitoring detects most issues before you do — often dispatching a fix remotely. For anything physical, priority clients get same-day response windows.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Do you provide the documentation after handoff?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Always. You receive network diagrams, labeled equipment records, credentials management and a plain-language guide. Everything is yours, permanently.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Get started</span>
+      <h2 class="sg" style="font-size:clamp(30px,3.6vw,42px);font-weight:700;line-height:1.14;margin:16px 0 12px;">Let's design your home's nervous system.</h2>
+      <p style="color:var(--muted);font-size:16.5px;">Tell us a little about your home and what you'd like to improve. We'll reply within one business day.</p>
+      <div class="contact-info">
+        <div class="ci-item">
+          <div class="ci-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><h4>Call us</h4><a href="tel:+10000000000">(000) 000-0000</a></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div>
+          <div><h4>Email</h4><a href="mailto:hello@vesta.example">hello@vesta.example</a></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>Service area</h4><p>Metro area + surrounding counties — onsite assessments available</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <div class="field"><label for="f-name">Name</label><input id="f-name" type="text" placeholder="Your name" autocomplete="name"></div>
+          <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" placeholder="(000) 000-0000" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+        <div class="field"><label for="f-topic">What are you interested in?</label>
+          <select id="f-topic">
+            <option>Full home retrofit</option>
+            <option>Networking / Wi-Fi</option>
+            <option>Security &amp; cameras</option>
+            <option>Automation &amp; lighting</option>
+            <option>AI-ready infrastructure</option>
+            <option>Not sure yet — advise me</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg">Tell us about your home</label><textarea id="f-msg" placeholder="Property size, current setup, main frustrations…"></textarea></div>
+        <button class="btn btn-blue" style="width:100%;padding:16px;" type="submit">Request my free assessment
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="form-note">Protected form · We reply within 1 business day · No spam, ever</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">VESTA<span style="color:#5B8CFF;">.</span> <span class="logo-sub" style="display:block;">Technologies</span></span>
+        <p>Enterprise-grade networking, security, automation and AI-ready infrastructure for existing homes.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Networking</a>
+        <a href="#services">Security</a>
+        <a href="#services">Automation</a>
+        <a href="#services">AI Infrastructure</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#process">Our process</a>
+        <a href="#results">Results</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+10000000000">(000) 000-0000</a>
+        <a href="mailto:hello@vesta.example">hello@vesta.example</a>
+        <a href="#contact">Book a consultation</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 VESTA Technologies. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 12), { passive: true });
+
+  // Mobile menu
+  const burger = document.getElementById('hamburger');
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Scroll reveal (with safety fallback)
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('in'), (i % 4) * 90);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px 140px 0px' });
+    revealEls.forEach(el => io.observe(el));
+    setTimeout(() => revealEls.forEach(el => el.classList.add('in')), 2400);
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+<!-- CASE PRESENTATION negolo -->
+<section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
+  <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
+    <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
+    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">VESTA Technologies — Smart Home</h2>
+    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Landing premium de hogar inteligente: visualizaciones de red, dashboard de control unificado, servicios, proceso en 4 pasos y formulario.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
+      <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
+      <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- demo back button -->
+<a href="./" style="position:fixed;left:18px;bottom:18px;z-index:99999;background:#E8B84B;color:#2D1B36;font-family:Nunito,system-ui,Arial,sans-serif;font-weight:900;text-decoration:none;padding:13px 22px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.35)">← Volver al caso</a>
+
+</body>
+</html>
