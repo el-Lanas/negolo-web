@@ -2,28 +2,27 @@
 
 ## 1. La publicación que vamos a usar
 
-**Publicación base: “Landing Pro — S/500 todo incluido”.**
+**Publicación base: “Los 3 planes — S/299 · S/499 · S/699, sin pago previo”.**
 
 Por qué esa y no otra:
-- Es la que **comunica el valor completo en 2 segundos**: dominio .com + hosting + 3 correos + soporte por 1 año. La de S/300 obliga a explicar lo que NO incluye (más fricción).
-- **Ancla el precio**: quien no pueda con S/500 pedirá la de S/300 o una cotización personalizada → igual gana la conversación.
+- **Comunica el valor completo en 2 segundos**: precios claros y entrega en días (Landing 2 días · Corporativa 5 días · Tienda 7 días), todo + IGV.
+- **El “sin pago previo” quita la fricción**: el mensaje central (págas recién cuando apruebas tu web) es lo que más conversaciones genera.
 - Se puede **promocionar directamente desde la Page** (“Promocionar publicación”), que es el camino más simple y barato para empezar.
 
-**Creativo recomendado**: `assets/marketing/portada-fb.png` (el mismo diseño de la portada) o un creativo hermano con la misma estructura:
-- Titular: **Tu negocio, sin vueltas en internet**
-- Oferta grande: **Landing Pro S/500** · “dominio .com + hosting + 3 correos incluidos (1 año)”
-- Prueba: **15+ proyectos entregados · respuesta en minutos**
-- CTA visual: **Cotización gratis**
+**Creativos (rotación A/B):**
+- **A** — `assets/marketing/post-planes.png`: los 3 planes con precio y entrega en tarjetas + banda “Sin pago previo · Cotización gratis”.
+- **B** — `assets/marketing/post-sinpago.png`: mensaje “No pagas hasta aprobar tu web” con los 4 pasos y el badge “Landings desde S/299 · + IGV”.
+- Estructura recomendada (3 planes y “sin pago previo”): titular **“Páginas web para tu negocio”**, prueba **“Web lista en días, no en meses · 15+ proyectos entregados”** y CTA visual **“Cotización gratis”**.
 
 **Copy de la publicación (pegar tal cual):**
-> ¿Tu negocio todavía no tiene web? Esta semana la dejamos lista.
-> Landing Pro **S/500** con **dominio .com + hosting + 3 correos por 1 año**.
-> Diseño a medida, adaptado a celular y con botón de WhatsApp para que te escriban.
-> También hay plan básico desde S/300 y cotización personalizada: cuéntanos tu proyecto y lo ajustamos a tu presupuesto.
-> Cotización gratis, sin compromiso y negociable.
+> ¿Tu negocio todavía no tiene web? La dejamos lista en días.
+> Landing Page **S/299** (2 días) · Web Corporativa **S/499** (5 días) · Tienda Virtual **S/699** (7 días). Precios **+ IGV**.
+> Con dominio .com, hosting y diseño a medida adaptado a celular, con botón de WhatsApp para que te escriban.
+> Y lo mejor: **sin pago previo**. Nos cuentas tu idea, te cotizamos gratis, diseñamos tu web, la corriges y recién ahí pagas.
+> Chatbots, apps y sistemas a medida: cotización en el día.
 > Escríbenos por WhatsApp: 930 227 652
 
-**Segundo anuncio (A/B, mismo conjunto)**: carrusel del portafolio (Valencia Visual → Convalt → ClubMap) con el copy: *“Esto es lo que podemos hacer por tu negocio. Landings desde S/300. Cotización gratis por WhatsApp.”*
+**Segundo anuncio (A/B, mismo conjunto)**: carrusel del portafolio (Valencia Visual → Convalt → ClubMap) con el copy: *“Esto es lo que podemos hacer por tu negocio. Páginas web desde S/299, sin pago previo. Cotización gratis por WhatsApp.”*
 
 ---
 
@@ -31,7 +30,7 @@ Por qué esa y no otra:
 
 | Campo | Valor |
 |---|---|
-| Objetivo | **Interacción** (Engagement) |
+| Objetivo | **Mensajes (Click to WhatsApp)** |
 | Ubicación de conversión | **Mensajes** → **WhatsApp** |
 | Cuenta de WhatsApp | WhatsApp Business **+51 930 227 652** (vinculada a la Page Negolo) |
 | Mensaje prellenado | “Hola, vi su anuncio y quiero cotizar mi página web” |
@@ -60,7 +59,7 @@ Automáticas (Advantage+ placements). Si hay que elegir: Facebook Feed, Instagra
 | 4 | Revisar: conversaciones iniciadas y **costo por conversación**. Apagar solo si un anuncio tiene CTR < 0,6% y 0 conversaciones. |
 | 7 | Comparar los 2 anuncios: pausar el peor, subir el presupuesto del ganador a **S/6–7** (máx. +20%/día). |
 | 10 | Si el costo por conversación ≤ S/5 y hay cierres: subir a **S/10/día** y añadir un tercer creativo (caso real del portafolio). |
-| 14 | Balance: si hay 1 cierre de S/500, la campaña ya es rentable (S/70 invertidos). Renovar creativos cada 2 semanas para no saturar. |
+| 14 | Balance: si hay 1 cierre de S/499 o S/699, la campaña ya es rentable (S/70 invertidos). Renovar creativos cada 2 semanas para no saturar. |
 
 **Esperado con S/5/día (realista, sin prometer):** ~400–800 impresiones/día, 5–15 clics/día y **2–6 conversaciones por semana** en las primeras semanas. El costo por conversación suele arrancar alto (S/8–15) y bajar al estabilizarse (S/3–7).
 
@@ -70,8 +69,8 @@ Automáticas (Advantage+ placements). Si hay que elegir: Facebook Feed, Instagra
 1. **Responder en menos de 5 minutos**: es el factor que más sube el cierre (y Meta premia la respuesta rápida con mejor entrega).
 2. **Nunca poner teléfono, correo ni URL en la imagen del anuncio** (Meta penaliza contacto fuera de su plataforma en el creativo). El contacto va en el botón de WhatsApp.
 3. **Sin promesas de resultados** (“más clientes garantizados”): mejora la aprobación y evita rechazos.
-4. Un solo mensaje de bienvenida con 3 preguntas de calificación (negocio, si tiene web, urgencia) y enviar los 3 paquetes + enlace al portafolio.
-5. Seguimiento a las 24 h y 48 h si no responde. Cerrar con “50% para iniciar, 50% contra entrega”.
+4. Un solo mensaje de bienvenida con 3 preguntas de calificación (negocio, si tiene web, urgencia) y enviar los 3 planes vigentes (S/299 · S/499 · S/699, + IGV) + enlace al portafolio.
+5. Seguimiento a las 24 h y 48 h si no responde. Cerrar con **“sin pago previo: págas recién cuando apruebas tu web”**.
 
 ## 5. Medición semanal
 - Conversaciones iniciadas · **costo por conversación** · % que pide precio · cierres · ticket promedio.

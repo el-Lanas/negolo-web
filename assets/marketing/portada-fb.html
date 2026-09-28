@@ -21,14 +21,22 @@
   p.sub{margin-top:22px;font-size:25px;font-weight:600;color:#C9BBD6;max-width:20ch}
   .tagline{margin-top:26px;font-size:22px;font-weight:700;color:#E8B84B}
   /* right card */
-  .card{background:rgba(58,36,71,.86);border:1px solid rgba(232,184,75,.3);border-radius:30px;padding:38px 40px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
-  .price{font-size:104px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#E8B84B}
-  .price small{display:block;font-size:26px;font-weight:800;color:#fff;letter-spacing:0;margin-bottom:6px}
-  .inc{margin-top:16px;font-size:21px;font-weight:700;color:#EFE7F3;line-height:1.45}
+  .card{background:rgba(58,36,71,.86);border:1px solid rgba(232,184,75,.3);border-radius:30px;padding:30px 36px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+  .chead{display:flex;justify-content:space-between;align-items:baseline;font-size:20px;font-weight:800;color:#C9BBD6;letter-spacing:.01em;margin-bottom:18px}
+  .chead b{color:#E8B84B}
+  .plan{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid rgba(232,184,75,.14)}
+  .plan:last-of-type{border-bottom:0}
+  .pname{font-size:23px;font-weight:800;color:#fff}
+  .pname i{display:block;font-style:normal;font-size:16px;font-weight:700;color:#C9BBD6;margin-top:2px}
+  .pprice{font-size:40px;font-weight:900;letter-spacing:-.03em;color:#E8B84B;white-space:nowrap}
+  .pprice small{display:block;font-size:15px;font-weight:800;color:#EFE7F3;text-align:right;margin-top:2px}
+  .plan.hot{background:rgba(232,184,75,.10);border-radius:16px;padding:13px 14px;margin:2px -14px;border-bottom:0}
+  .plan.hot .pname::after{content:"Más elegido";display:inline-block;margin-left:8px;font-size:13px;font-weight:900;color:#2D1B36;background:#E8B84B;border-radius:999px;padding:2px 10px;vertical-align:middle}
+  .inc{margin-top:18px;font-size:19px;font-weight:700;color:#EFE7F3;line-height:1.4}
   .inc b{color:#E8B84B}
-  .btns{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
-  .pill{background:#25D366;color:#08321b;font-weight:900;font-size:22px;padding:16px 28px;border-radius:999px}
-  .pill2{border:2px solid rgba(232,184,75,.55);color:#E8B84B;font-weight:800;font-size:20px;padding:15px 26px;border-radius:999px}
+  .btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+  .pill{background:#25D366;color:#08321b;font-weight:900;font-size:21px;padding:14px 26px;border-radius:999px}
+  .pill2{border:2px solid rgba(232,184,75,.55);color:#E8B84B;font-weight:800;font-size:19px;padding:13px 24px;border-radius:999px}
   .foot{position:absolute;left:118px;bottom:64px;font-size:19px;font-weight:700;color:#C9BBD6}
   .foot b{color:#E8B84B}
 </style>
@@ -43,8 +51,20 @@
       <div class="tagline">Cotización gratis y sin compromiso</div>
     </div>
     <div class="card">
-      <div class="price"><small>Landings desde</small>S/300</div>
-      <div class="inc">El plan <b>S/500</b> incluye:<br><b>dominio .com + hosting + 3 correos</b> por 1 año</div>
+      <div class="chead"><span>Planes vigentes</span><b>Precios + IGV</b></div>
+      <div class="plan">
+        <span class="pname">Landing Page<i>1 página + dominio .com y hosting</i></span>
+        <span class="pprice">S/299<small>en 2 días</small></span>
+      </div>
+      <div class="plan hot">
+        <span class="pname">Web Corporativa<i>hasta 5 secciones + dominio, hosting y 3 correos</i></span>
+        <span class="pprice">S/499<small>en 5 días</small></span>
+      </div>
+      <div class="plan">
+        <span class="pname">Tienda Virtual<i>catálogo + carrito + pagos y envíos</i></span>
+        <span class="pprice">S/699<small>en 7 días</small></span>
+      </div>
+      <div class="inc"><b>Sin pago previo</b> · Cotizamos gratis y pagas al aprobar</div>
       <div class="btns"><span class="pill">WhatsApp 930 227 652</span><span class="pill2">negolo.com</span></div>
     </div>
   </div>
