@@ -27,7 +27,7 @@
       var g = document.getElementById('mark-g');
       var bb = g.getBBox();
       svg.setAttribute('viewBox', bb.x + ' ' + bb.y + ' ' + bb.width + ' ' + bb.height);
-      var target = 512 * 0.64;
+      var target = 512 * 0.84;
       var h = target * (bb.height / bb.width);
       svg.setAttribute('width', target);
       svg.setAttribute('height', h);
