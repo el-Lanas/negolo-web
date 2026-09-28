@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>negolo · favicon source</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:transparent}
+  body{width:512px;height:512px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .tile{width:512px;height:512px;background:#2D1B36;border-radius:110px;display:flex;align-items:center;justify-content:center}
+  .mark{
+    font-family:'Nunito',-apple-system,'Segoe UI',Arial,sans-serif;
+    font-weight:900;color:#E8B84B;letter-spacing:-0.06em;
+    line-height:1;white-space:nowrap;display:block;
+  }
+</style>
+</head>
+<body>
+  <div class="tile"><span class="mark" id="mark">olo</span></div>
+  <script>
+    (async function(){
+      var mark = document.getElementById('mark');
+      var TARGET = 512 * 0.62;
+      try { await document.fonts.load('900 100px Nunito'); await document.fonts.ready; } catch(e){}
+      // 1) fit to ~62% of the tile width
+      mark.style.fontSize = '400px';
+      var w = mark.getBoundingClientRect().width || 1;
+      mark.style.fontSize = (400 * TARGET / w) + 'px';
+      var fs = parseFloat(getComputedStyle(mark).fontSize);
+      // 2) optical centering: measure the real ink bbox on a canvas with the same font + tracking
+      var c = document.createElement('canvas'); c.width = 1600; c.height = 1600;
+      var ctx = c.getContext('2d');
+      ctx.font = '900 ' + fs + 'px Nunito, sans-serif';
+      try { ctx.letterSpacing = '-0.06em'; } catch(e){}
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = '#fff';
+      var m = ctx.measureText('olo');
+      var x0 = 300, y0 = 1000;
+      ctx.fillText('olo', x0, y0);
+      var d = ctx.getImageData(0, 0, 1600, 1600).data;
+      var minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+      for (var py = 0; py < 1600; py++){
+        var row = py * 1600;
+        for (var px = 0; px < 1600; px++){
+          if (d[(row + px) * 4 + 3] > 10){
+            if (px < minX) minX = px; if (px > maxX) maxX = px;
+            if (py < minY) minY = py; if (py > maxY) maxY = py;
+          }
+        }
+      }
+      var inkL = minX - x0, inkR = maxX - x0, inkT = minY - y0, inkB = maxY - y0;
+      var inkCx = (inkL + inkR) / 2;
+      var inkCy = (inkT + inkB) / 2;
+      var asc = m.fontBoundingBoxAscent || fs * 0.79;
+      var desc = m.fontBoundingBoxDescent || fs * 0.21;
+      var shiftX = (m.width / 2) - inkCx;
+      var shiftY = ((asc - desc) / 2) + inkCy;
+      mark.style.transform = 'translate(' + shiftX.toFixed(2) + 'px,' + shiftY.toFixed(2) + 'px)';
+      mark.dataset.ready = '1';
+    })();
+  </script>
+</body>
+</html>
