@@ -1,4 +1,4 @@
-# negolo — Plan de lanzamiento y promoción
+﻿# negolo — Plan de lanzamiento y promoción
 
 > Generado el 26-sep-2026. Todo lo de este documento está listo para ejecutar.
 > Contacto: WhatsApp **930 227 652** · correo **atencionalcliente@negolo.com** · web **negolo.com**
@@ -31,7 +31,7 @@
 5. **Casos: Valencia Visual** — "Sitio corporativo + configurador 3D de stands con marca diseñada desde cero. Hecho 100% con código."
 6. **Chatbots** — "Responde de noche, filtra consultas y agenda citas solo. Tu negocio atendiendo mientras duermes. A medida, cotización en el día."
 7. **Error común** — "3 errores que hacen que tu web no venda" (tip educativo, sin vender).
-8. **Precio .pe y mantenimiento** — "¿Necesitas dominio .pe? Súmalo por +S/199 (todo el año). Mantenimiento opcional por S/150/año."
+8. **Precio .pe y mantenimiento** — "¿Necesitas dominio .pe? Súmalo por +S/199 (todo el año). Mantenimiento opcional por S/199/año."
 9. **Testimonio / prueba** — captura real de un demo del portafolio + "todos nuestros proyectos tienen demo navegable".
 10. **CTA fuerte** — "Cuéntanos tu idea por WhatsApp y en el día te cotizamos gratis. Sin pago previo: diseñas, corriges y recién ahí pagas."
 
@@ -58,7 +58,7 @@
 - **S/499 Web Corporativa** (hasta 5 secciones + dominio .com + hosting + 3 correos por 1 año, entrega en 5 días) ← recomendar (el más elegido)
 - S/699 **Tienda Virtual** (catálogo + carrito + pagos y envíos, entrega en 7 días)
 
-Todos los precios son **+ IGV**. Extras: dominio **.pe + S/199**, **mantenimiento S/150/año**. Para chatbots, apps, ERP/CRM o cualquier sistema a medida: **cotización en el día**.
+Todos los precios son **+ IGV**. Extras: dominio **.pe + S/199**, **mantenimiento S/199/año**. Para chatbots, apps, ERP/CRM o cualquier sistema a medida: **cotización en el día**.
 
 **Cierres:** "Empezamos **sin pago previo**: nos cuentas tu idea, te cotizamos gratis, diseñamos tu web, la corriges y recién ahí pagas." · seguimiento a las 24 h y 48 h.
 
