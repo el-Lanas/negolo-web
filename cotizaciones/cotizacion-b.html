@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cotización COT-2026-002 — negolo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oro:#E8B84B;
+    --oro-claro:#F5E6A0;
+    --ciruela:#2D1B36;
+    --ciruela-2:#3A2447;
+    --lavanda:#F5F0F7;
+    --gris:#6A5B75;
+    --linea:#E7DEEE;
+    --blanco:#FFFFFF;
+    --ff:'Nunito','Segoe UI',Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  @page{size:A4;margin:14mm}
+  html,body{margin:0;padding:0;background:var(--blanco)}
+  body{
+    font-family:var(--ff);
+    color:var(--ciruela);
+    font-size:10.2pt;
+    line-height:1.5;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    -webkit-font-smoothing:antialiased;
+  }
+  p{margin:0 0 7px}
+  strong{font-weight:800}
+
+  /* ---------- Barra superior ---------- */
+  .topbar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--oro) 0%,var(--oro) 62%,var(--ciruela) 62%,var(--ciruela) 100%);margin-bottom:16px}
+
+  /* ---------- Cabecera ---------- */
+  .masthead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .brandblock{display:flex;flex-direction:column;gap:8px}
+  .brandblock img{height:44px;width:auto;display:block}
+  .tagline{font-size:8.6pt;letter-spacing:.09em;text-transform:uppercase;color:var(--gris);font-weight:800}
+  .branddata{font-size:9pt;color:var(--gris);line-height:1.55;margin-top:4px}
+  .branddata b{color:var(--ciruela)}
+  .docmeta{text-align:right;min-width:210px}
+  .docmeta .kicker{display:inline-block;background:var(--ciruela);color:var(--oro-claro);font-weight:900;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .docmeta .num{font-size:17pt;font-weight:900;color:var(--ciruela);margin-top:8px;letter-spacing:-.01em}
+  .docmeta table{border-collapse:collapse;margin:6px 0 0 auto}
+  .docmeta td{padding:1.5px 0;font-size:9.2pt}
+  .docmeta td.l{color:var(--gris);font-weight:700;padding-right:12px;text-align:right}
+  .docmeta td.v{font-weight:800;color:var(--ciruela);text-align:right;white-space:nowrap}
+
+  .rule{height:2px;background:var(--oro);border:0;margin:16px 0 14px}
+
+  /* ---------- Cajas de datos ---------- */
+  .parties{display:flex;gap:12px;margin-bottom:16px}
+  .card{flex:1;border:1px solid var(--linea);border-radius:10px;overflow:hidden}
+  .card .card-h{background:var(--lavanda);border-bottom:1px solid var(--linea);padding:6px 12px;font-size:8.6pt;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--ciruela)}
+  .card .card-b{padding:9px 12px;font-size:9.4pt;line-height:1.6}
+  .card .card-b .row{display:flex;gap:6px}
+  .card .card-b .row .lbl{color:var(--gris);font-weight:700;min-width:66px}
+  .card .card-b .row .val{font-weight:700}
+
+  /* ---------- Secciones ---------- */
+  .sec{margin-bottom:15px}
+  .sec h2{font-size:11.6pt;font-weight:900;color:var(--ciruela);margin:0 0 8px;display:flex;align-items:center;gap:9px;break-after:avoid;page-break-after:avoid}
+  .sec h2 .num{flex:none;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:7px;background:var(--oro);color:var(--ciruela);font-size:11pt;font-weight:900}
+  .sec p.lead{margin-bottom:8px}
+
+  /* ---------- Listas ---------- */
+  ul.feat{list-style:none;margin:0;padding:0}
+  ul.feat>li{position:relative;padding:5px 0 5px 18px;border-bottom:1px dashed var(--linea)}
+  ul.feat>li:last-child{border-bottom:0}
+  ul.feat>li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:2px;background:var(--oro)}
+  ul.feat>li b{color:var(--ciruela)}
+  ul.feat>li .sub{display:block;color:var(--gris);font-size:9.2pt;margin-top:2px}
+
+  ul.plain{margin:4px 0 7px;padding-left:17px}
+  ul.plain li{margin-bottom:3px}
+  ul.plain li::marker{color:var(--oro)}
+
+  .note{background:var(--lavanda);border-left:3px solid var(--oro);border-radius:0 8px 8px 0;padding:8px 12px;font-size:9.2pt;color:var(--gris);margin-top:6px}
+  .note b{color:var(--ciruela)}
+
+  /* ---------- Tablas ---------- */
+  table.grid{width:100%;border-collapse:collapse;font-size:9.4pt;margin:4px 0 4px}
+  table.grid thead th{background:var(--ciruela);color:#fff;text-align:left;padding:7px 10px;font-weight:800;font-size:8.8pt;letter-spacing:.04em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.14)}
+  table.grid thead th:last-child{border-right:0}
+  table.grid tbody td{padding:7px 10px;border-bottom:1px solid var(--linea);vertical-align:top}
+  table.grid tbody tr:nth-child(even){background:var(--lavanda)}
+  table.grid td.c,table.grid th.c{text-align:center}
+  table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+  table.grid tr.total td{background:var(--oro-claro)!important;font-weight:900;color:var(--ciruela);border-top:2px solid var(--oro);border-bottom:2px solid var(--oro)}
+  table.grid tr.total td.r{font-size:11pt}
+  .tbl-cap{font-size:8.6pt;color:var(--gris);margin-top:2px}
+
+  .fineprint{font-size:8.4pt;color:var(--gris);margin-top:5px;line-height:1.45}
+  .opts{font-size:9.2pt;margin-top:6px}
+  .opts b{color:var(--ciruela)}
+
+  /* ---------- Firma ---------- */
+  .sign{display:flex;gap:40px;margin-top:26px}
+  .sign .sig{flex:1}
+  .sign .line{border-top:1.4px solid var(--ciruela);margin-top:40px;padding-top:6px;font-size:9.2pt;color:var(--ciruela);font-weight:800}
+  .sign .line span{display:block;color:var(--gris);font-weight:600;font-size:8.6pt;margin-top:1px}
+
+  .footer{margin-top:20px;border-top:1px solid var(--linea);padding-top:8px;display:flex;justify-content:space-between;font-size:8pt;color:var(--gris)}
+  .footer b{color:var(--ciruela)}
+
+  .block{break-inside:avoid;page-break-inside:avoid}
+
+  /* Marco A4 solo en pantalla (el PDF usa @page) */
+  @media screen{
+    html{background:#EDE7F0}
+    body{width:210mm;min-height:297mm;margin:12mm auto;padding:14mm;background:var(--blanco);box-shadow:0 8px 28px rgba(45,27,54,.18)}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar"></div>
+
+  <!-- ================= CABECERA ================= -->
+  <header class="masthead">
+    <div class="brandblock">
+      <img src="../assets/brand/logo-full-light.svg" alt="negolo">
+      <div class="tagline">Desarrollo web, apps y chatbots</div>
+      <div class="branddata">
+        <b>negolo</b> · Desarrollo web, apps y chatbots<br>
+        WhatsApp <b>930 227 652</b><br>
+        atencionalcliente@negolo.com · <b>negolo.com</b>
+      </div>
+    </div>
+    <div class="docmeta">
+      <span class="kicker">Cotización</span>
+      <div class="num">COT-2026-002</div>
+      <table>
+        <tr><td class="l">Fecha</td><td class="v">28/09/2026</td></tr>
+        <tr><td class="l">Validez</td><td class="v">15 días</td></tr>
+      </table>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <div class="parties">
+    <div class="card">
+      <div class="card-h">Cliente</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Cliente</span><span class="val">Oscar Paz Soldan</span></div>
+        <div class="row"><span class="lbl">Proyecto</span><span class="val">Tienda digital de cursos con entrega automática y protección de contenido</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h">Referencia</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Documento</span><span class="val">Cotización formal</span></div>
+        <div class="row"><span class="lbl">Moneda</span><span class="val">Soles (S/) — IGV según detalle</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 1 ================= -->
+  <section class="sec block">
+    <h2><span class="num">1</span> Resumen ejecutivo</h2>
+    <p class="lead">Propuesta para implementar una <strong>tienda virtual de productos digitales</strong> con pago en línea (Yape y tarjetas) y <strong>entrega 100&nbsp;% automática</strong> del curso al correo del comprador, protegida por un <strong>sistema propio de protección de contenido con lector de ebooks</strong>. Todo queda alojado y operativo por <strong>1 año</strong>, con dominio incluido.</p>
+  </section>
+
+  <!-- ================= 2 ================= -->
+  <section class="sec">
+    <h2><span class="num">2</span> Alcance técnico detallado</h2>
+    <ul class="feat">
+      <li><b>Plataforma</b>
+        <span class="sub">WordPress + WooCommerce (productos digitales y descargables) sobre servidor VPS Linux (Contabo) con nginx/PHP 8 + MySQL/MariaDB, SSL Let&rsquo;s Encrypt y <b>Cloudflare</b> (CDN, caché y protección).</span>
+      </li>
+      <li><b>Secciones de la tienda (7)</b>
+        <span class="sub">Home (según boceto del cliente) · Conózcanos · Cursos online · Consultorías · Ofertas · Promociones · Contáctenos — diseño responsive replicando el boceto entregado.</span>
+      </li>
+      <li><b>Catálogo</b>
+        <span class="sub">7 cursos (PDF) + documentos legales (1,000 páginas ya en PDF), administrables desde el panel (precios, descripciones, portadas).</span>
+      </li>
+      <li><b>Pago</b>
+        <span class="sub">Integración con <b>MercadoPago</b> (acepta <b>Yape y tarjetas</b>) con <b>webhook de confirmación</b>; las ventas se abonan <b>directo a la cuenta del cliente</b> (negolo no retiene dinero).</span>
+      </li>
+      <li><b>Entrega automática (sin intervención manual)</b>
+        <span class="sub">El comprador ingresa su email en el checkout → paga → al confirmarse el pago, el sistema genera un <b>enlace seguro con caducidad de 72&nbsp;h y máximo 3 descargas</b> y lo envía automáticamente al correo del comprador, junto con su comprobante.</span>
+      </li>
+      <li><b>Correos transaccionales</b>
+        <span class="sub">Salen por un servicio dedicado (Brevo/Resend) con <b>SPF, DKIM y DMARC</b> configurados, para que no caigan en spam (no se usan los buzones corporativos para envíos masivos).</span>
+      </li>
+      <li><b>Protección de contenido (módulo negolo)</b>
+        <span class="sub">Archivos PDF almacenados <b>fuera de la carpeta pública</b> (sin URL directa); <b>lector propio</b> en la web basado en <b>PDF.js</b> (el archivo no se descarga ni se comparte por enlace); <b>marca de agua por comprador</b> (se estampa su email y número de pedido en cada página con FPDI, de modo que una filtración es rastreable); límites de descargas y registro de accesos; sin clic derecho, sin selección ni impresión.</span>
+      </li>
+      <li><b>Panel de administración</b>
+        <span class="sub">Subir PDFs, cambiar precios, ver ventas, descargas y usuarios.</span>
+      </li>
+      <li><b>Seguridad</b>
+        <span class="sub">HTTPS forzado, contraseñas robustas, roles y permisos, límite de intentos de acceso y <b>backups automáticos diarios con retención de 7 días</b>.</span>
+      </li>
+      <li><b>SEO básico</b>
+        <span class="sub">Títulos, metadescripciones, sitemap y datos estructurados de producto.</span>
+      </li>
+    </ul>
+    <div class="note"><b>Nota honesta sobre la protección:</b> las capturas de pantalla no son técnicamente evitables; las medidas anteriores impiden la descarga y permiten rastrear filtraciones.</div>
+  </section>
+
+  <!-- ================= 3 ================= -->
+  <section class="sec block">
+    <h2><span class="num">3</span> Contenido que entrega el cliente</h2>
+    <div class="note">En esta modalidad, el cliente entrega listo para publicar: los <b>7 cursos escaneados en PDF</b> (recomendado con capa OCR para que el contenido sea buscable), los <b>1,000 documentos legales</b> que ya están en PDF, el logo, el boceto de la página de inicio, los textos y las fotografías. negolo integra, publica y protege este material en la tienda.</div>
+  </section>
+
+  <!-- ================= 4 ================= -->
+  <section class="sec block">
+    <h2><span class="num">4</span> Incluye durante 1 año</h2>
+    <table class="grid">
+      <thead>
+        <tr><th style="width:28%">Concepto</th><th>Detalle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Dominio</b></td><td><b>.com</b> registrado y administrado (a nombre del cliente).</td></tr>
+        <tr><td><b>Hosting</b></td><td>Hasta <b>30 GB</b> de almacenamiento para la tienda y su material descargable (uso razonable; +S/60 por cada 10 GB adicionales al año).</td></tr>
+        <tr><td><b>Correo corporativo</b></td><td><b>3 buzones</b> de 5 GB (con configuración SPF/DKIM/DMARC).</td></tr>
+        <tr><td><b>SSL</b></td><td>Certificado HTTPS incluido y renovado automáticamente.</td></tr>
+        <tr><td><b>Backups</b></td><td>Copia diaria con retención de 7 días.</td></tr>
+        <tr><td><b>Soporte</b></td><td>Cambios menores hasta <b>1 vez al mes</b> (hasta 1 hora de trabajo), sujeto a evaluación: gratuito o con costo según complejidad. No acumulable.</td></tr>
+        <tr><td><b>Capacitación</b></td><td>Sesión de 30 minutos + manual breve para administrar la tienda.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= 5 ================= -->
+  <section class="sec block">
+    <h2><span class="num">5</span> Renovación a partir del año 2</h2>
+    <p>Mantenimiento <strong>S/ 150</strong> + renovación del dominio <strong>.com</strong> (<strong>US$ 13</strong>). Incluye cambios estéticos menores sujetos a evaluación y soporte de incidencias.</p>
+  </section>
+
+  <!-- ================= 6 ================= -->
+  <section class="sec block">
+    <h2><span class="num">6</span> Migración</h2>
+    <p>Si el cliente decide trasladarse a otro proveedor de web, hosting o dominio, <strong>se entregan las credenciales necesarias</strong>: código EPP del dominio, accesos de hosting y base de datos, y un respaldo completo del sitio, siempre que esté al día en sus pagos. La ejecución de la migración a otro proveedor no está incluida en esta cotización (se evalúa y cotiza aparte).</p>
+  </section>
+
+  <!-- ================= 7 ================= -->
+  <section class="sec block">
+    <h2><span class="num">7</span> No incluye</h2>
+    <ul class="plain">
+      <li>Redacción de textos, diseño gráfico o de marca nuevo (se replica el boceto entregado por el cliente).</li>
+      <li>Comisiones de la pasarela de pagos (~3.5&nbsp;% + S/0.50 por venta, descontadas por MercadoPago de las ventas del cliente).</li>
+      <li>Publicidad o campañas.</li>
+      <li>App móvil nativa.</li>
+      <li>DRM corporativo/SCORM.</li>
+      <li>Servicios de terceros no detallados en esta cotización.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 8 ================= -->
+  <section class="sec block">
+    <h2><span class="num">8</span> Cronograma</h2>
+    <ul class="plain">
+      <li><b>Validación de materiales y accesos</b> (1–2 días).</li>
+      <li><b>Diseño y maquetación de las 7 secciones</b> (3–5 días, con revisión del cliente).</li>
+      <li><b>Tienda, pagos y entrega automática</b> (3–5 días).</li>
+      <li><b>Módulo de protección y lector</b> (3–4 días).</li>
+      <li><b>Pruebas de compra real y publicación</b> (1–2 días).</li>
+    </ul>
+    <p class="lead"><strong>Total estimado: 8 a 10 días hábiles.</strong></p>
+  </section>
+
+  <!-- ================= 9 ================= -->
+  <section class="sec block">
+    <h2><span class="num">9</span> Inversión</h2>
+    <table class="grid">
+      <thead>
+        <tr><th class="c" style="width:7%">#</th><th>Concepto</th><th class="r" style="width:24%">Inversión</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="c">1</td>
+          <td>Tienda digital con entrega automática (WordPress + WooCommerce, 7 secciones, catálogo, MercadoPago con Yape/tarjetas, correos transaccionales, capacitación)</td>
+          <td class="r"><b>S/ 699</b> + IGV</td>
+        </tr>
+        <tr>
+          <td class="c">2</td>
+          <td>Módulo de protección de contenido + lector de ebooks</td>
+          <td class="r"><b>S/ 100</b> + IGV</td>
+        </tr>
+        <tr class="total">
+          <td class="c"></td>
+          <td>TOTAL</td>
+          <td class="r">S/ 799 + IGV</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="opts"><b>Opcionales:</b> dominio .pe +S/199 · mantenimiento anual S/150 (año 2) · 10 GB adicionales de hosting +S/60/año.</p>
+  </section>
+
+  <!-- ================= 10 ================= -->
+  <section class="sec block">
+    <h2><span class="num">10</span> Forma de pago</h2>
+    <p><strong>50&nbsp;% al aprobar el diseño</strong> y <strong>50&nbsp;% contra entrega y publicación</strong>. (Se muestra el diseño en staging antes de cualquier pago.)</p>
+  </section>
+
+  <!-- ================= 11 ================= -->
+  <section class="sec block">
+    <h2><span class="num">11</span> Aceptación</h2>
+    <div class="sign">
+      <div class="sig">
+        <div class="line">Firma Cliente</div>
+        <div style="font-size:12px;color:#6A5B75;margin-top:10px;line-height:2.2">
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Nombre:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Documento de identidad:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Fecha:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+        </div>
+      </div>
+      <div class="sig">
+        <div class="line">negolo</div>
+        <div style="font-size:12px;color:#6A5B75;margin-top:10px;line-height:2.2">
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Fecha:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:16px">Validez de la oferta: <b>15 días calendario.</b> Cualquier trabajo no detallado en este documento se cotiza por separado.</p>
+  </section>
+
+  <div class="footer">
+    <span><b>negolo</b> · Desarrollo web, apps y chatbots</span>
+    <span>WhatsApp 930 227 652 · atencionalcliente@negolo.com · negolo.com</span>
+  </div>
+
+</body>
+</html>
