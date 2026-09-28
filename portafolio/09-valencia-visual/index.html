@@ -9,41 +9,41 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{--blue:#2B59FF;--blue-2:#8CA2FF;--plum:#2D1B36;--lav:#F5F0F7;--muted:#6A5B75;--muted-d:#C9BBD6}
+  :root{--gold:#E8B84B;--plum:#2D1B36;--lav:#F5F0F7;--muted:#6A5B75;--muted-d:#C9BBD6}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:Nunito,system-ui,Arial,sans-serif;background:var(--lav);color:var(--plum);line-height:1.65}
   a{color:inherit}
-  header{background:var(--plum);padding:15px 0;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(43,89,255,.4)}
+  header{background:var(--plum);padding:15px 0;position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(232,184,75,.18)}
   .wrap{max-width:1150px;margin:0 auto;padding:0 24px}
   .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .nav img{height:28px}
-  .nav a{color:var(--blue-2);text-decoration:none;font-weight:800;font-size:14px}
-  .hero{background:radial-gradient(900px 500px at 85% -10%,rgba(43,89,255,.3),transparent 62%),var(--plum);color:#fff;padding:60px 0 50px}
-  .tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-2)}
+  .nav a{color:var(--gold);text-decoration:none;font-weight:800;font-size:14px}
+  .hero{background:radial-gradient(900px 500px at 85% -10%,rgba(232,184,75,.16),transparent 62%),var(--plum);color:#fff;padding:60px 0 50px}
+  .tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
   h1{font-size:clamp(28px,3.6vw,46px);line-height:1.08;letter-spacing:-.02em;font-weight:900;margin:14px 0 14px}
   .hero p{color:var(--muted-d);max-width:70ch;font-size:17px}
   .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
   .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:16px 28px;font-weight:900;text-decoration:none;font-size:15px;border:2px solid transparent;transition:filter .2s,transform .2s}
-  .btn--blue{background:var(--blue);color:#fff}
-  .btn--blue:hover{filter:brightness(1.08);transform:translateY(-1px)}
-  .btn--ghost{color:var(--blue-2);border-color:rgba(43,89,255,.55)}
-  .btn--ghost:hover{border-color:var(--blue-2)}
-  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:rgba(43,89,255,.4);border-radius:16px;overflow:hidden;margin-top:36px}
+  .btn--gold{background:var(--gold);color:var(--plum)}
+  .btn--gold:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn--ghost{color:var(--gold);border-color:rgba(232,184,75,.45)}
+  .btn--ghost:hover{border-color:var(--gold)}
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:rgba(255,255,255,.14);border-radius:16px;overflow:hidden;margin-top:36px}
   .meta div{background:var(--plum);padding:18px 20px}
-  .meta span{display:block;font-size:11.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-2);margin-bottom:6px}
+  .meta span{display:block;font-size:11.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
   .meta b{font-size:15px;font-weight:800;color:#fff}
   section{padding:54px 0}
   h2{font-size:26px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px}
   .lead{color:var(--muted);margin-bottom:26px}
   ul.bul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
-  ul.bul li{background:#fff;border:1px solid rgba(43,89,255,.2);border-radius:14px;padding:16px 18px;font-size:15px}
-  ul.bul li::before{content:"✓";color:var(--blue);font-weight:900;margin-right:9px}
+  ul.bul li{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:14px;padding:16px 18px;font-size:15px}
+  ul.bul li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:9px}
   .shots{display:grid;gap:26px}
-  figure{background:#fff;border:1px solid rgba(43,89,255,.22);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(45,27,54,.08)}
+  figure{background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(45,27,54,.08)}
   figure img{width:100%;display:block;background:#EDE7F0}
-  figcaption{padding:14px 18px;font-size:14px;color:var(--muted);border-top:1px solid rgba(43,89,255,.14)}
+  figcaption{padding:14px 18px;font-size:14px;color:var(--muted);border-top:1px solid rgba(45,27,54,.08)}
   figcaption b{color:var(--plum)}
-  .brandbox{display:flex;align-items:center;gap:28px;flex-wrap:wrap;background:#fff;border:1px solid rgba(43,89,255,.22);border-radius:16px;padding:26px}
+  .brandbox{display:flex;align-items:center;gap:28px;flex-wrap:wrap;background:#fff;border:1px solid rgba(45,27,54,.12);border-radius:16px;padding:26px}
   .brandbox img{max-width:200px;width:100%;height:auto;display:block}
   .brandbox p{color:var(--muted);font-size:15px;flex:1 1 320px;min-width:240px;max-width:560px}
   .cta{background:var(--plum);border-radius:22px;color:#fff;padding:40px 44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin:10px 0 40px}
@@ -51,7 +51,7 @@
   .cta p{color:var(--muted-d);max-width:52ch}
   footer{background:var(--plum);color:var(--muted-d);padding:32px 0;font-size:14px}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  footer a{color:var(--blue-2);text-decoration:none;font-weight:800}
+  footer a{color:var(--gold);text-decoration:none;font-weight:800}
   @media (max-width:700px){.hero{padding:40px 0}.cta{padding:28px 24px}}
 </style>
 </head>
@@ -66,7 +66,7 @@
   <h1>Sitio corporativo y configurador 3D de stands para Valencia Visual</h1>
   <p>Identidad de marca diseñada desde cero, sitio web completo con portafolio real y una herramienta 3D única en el mercado peruano: el cliente arma su stand Octanorm en el navegador y lo cotiza directo por WhatsApp.</p>
   <div class="btns">
-    <a class="btn btn--blue" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20quiero%20cotizar%20una%20web%20as%C3%AD" target="_blank" rel="noopener">Quiero así, cotizar por WhatsApp</a>
+    <a class="btn btn--gold" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20quiero%20cotizar%20una%20web%20as%C3%AD" target="_blank" rel="noopener">Quiero así, cotizar por WhatsApp</a>
     <a class="btn btn--ghost" href="#capturas">Ver capturas</a>
   </div>
   <div class="meta">
@@ -94,12 +94,11 @@
     <h2>Capturas del proyecto</h2>
     <p class="lead">Un recorrido por dentro del sitio entregado:</p>
     <div class="shots">
-      <figure><img src="preview.png" alt="Valencia Visual — Home con las cifras reales del negocio y ficha de un proyecto destacado" loading="lazy"><figcaption><b>Home.</b> Hero con las cifras reales del negocio (25 proyectos, 9 servicios, 182 fotos) y ficha de un proyecto destacado.</figcaption></figure>
-      <figure><img src="servicios.png" alt="Valencia Visual — Las 9 líneas de servicio con imágenes reales" loading="lazy"><figcaption><b>Servicios.</b> Las 9 líneas de servicio con imágenes reales y enlace directo a cotización.</figcaption></figure>
-      <figure><img src="portafolio.png" alt="Valencia Visual — Portafolio de 25 proyectos organizados por categoría" loading="lazy"><figcaption><b>Portafolio.</b> 25 proyectos reales organizados por categoría, con galería y ficha de cada trabajo.</figcaption></figure>
-      <figure><img src="configurador.png" alt="Valencia Visual — Configurador 3D de stands Octanorm con vistas isométrica, de planta y frontal" loading="lazy"><figcaption><b>Configurador 3D.</b> Armado del stand Octanorm en el navegador con vista isométrica, de planta y frontal; sin colisiones y con cotización por WhatsApp.</figcaption></figure>
-      <figure><img src="mobile.png" alt="Valencia Visual — Vista móvil del sitio, incluido el configurador" loading="lazy"><figcaption><b>Vista móvil.</b> La misma experiencia adaptada a celular, incluido el configurador.</figcaption></figure>
-      <figure><img src="fullpage.png" alt="Valencia Visual — Página completa del sitio entregado" loading="lazy"><figcaption><b>Página completa.</b> Recorrido de arriba a abajo del sitio entregado.</figcaption></figure>
+      <figure><img src="caso-01.png" alt="Valencia Visual — Portada del sitio con el hero y las cifras del negocio" loading="lazy"><figcaption><b>Portada.</b> Hero con el mensaje principal y las cifras reales del negocio (25 proyectos, 9 servicios, 182 fotos).</figcaption></figure>
+      <figure><img src="caso-02.png" alt="Valencia Visual — Las 9 líneas de servicio con imágenes reales" loading="lazy"><figcaption><b>Servicios.</b> Las 9 líneas de servicio con imágenes reales y enlace directo a cotización.</figcaption></figure>
+      <figure><img src="caso-03.png" alt="Valencia Visual — Portafolio de 25 proyectos organizados por categoría" loading="lazy"><figcaption><b>Portafolio.</b> 25 proyectos reales organizados por categoría, con galería y ficha de cada trabajo.</figcaption></figure>
+      <figure><img src="caso-04.png" alt="Valencia Visual — Configurador 3D de stands Octanorm con vistas isométrica, de planta y frontal" loading="lazy"><figcaption><b>Configurador 3D.</b> Armado del stand Octanorm en el navegador con vista isométrica, de planta y frontal; sin colisiones y con cotización por WhatsApp.</figcaption></figure>
+      <figure><img src="caso-05.png" alt="Valencia Visual — Vista móvil del sitio, incluido el configurador" loading="lazy"><figcaption><b>Vista móvil.</b> La misma experiencia adaptada a celular, incluido el configurador.</figcaption></figure>
     </div>
   </section>
 
@@ -113,7 +112,7 @@
 
   <div class="cta">
     <div><h2>¿Quieres una web así?</h2><p>Te la cotizamos gratis, la diseñamos y la corriges antes de pagar.</p></div>
-    <a class="btn btn--blue" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20quiero%20cotizar%20una%20web%20as%C3%AD" target="_blank" rel="noopener">Quiero así, cotizar por WhatsApp</a>
+    <a class="btn btn--gold" href="https://wa.me/51930227652?text=Hola%20negolo%2C%20quiero%20cotizar%20una%20web%20as%C3%AD" target="_blank" rel="noopener">Quiero así, cotizar por WhatsApp</a>
   </div>
 </div>
 
