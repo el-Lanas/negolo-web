@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Propuesta de posicionamiento POS-2026-001 — negolo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oro:#E8B84B;
+    --oro-claro:#F5E6A0;
+    --ciruela:#2D1B36;
+    --ciruela-2:#3A2447;
+    --lavanda:#F5F0F7;
+    --gris:#6A5B75;
+    --linea:#E7DEEE;
+    --blanco:#FFFFFF;
+    --ff:'Nunito','Segoe UI',Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  @page{size:A4;margin:14mm}
+  html,body{margin:0;padding:0;background:var(--blanco)}
+  body{
+    font-family:var(--ff);
+    color:var(--ciruela);
+    font-size:10.2pt;
+    line-height:1.5;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    -webkit-font-smoothing:antialiased;
+  }
+  p{margin:0 0 7px}
+  strong{font-weight:800}
+
+  /* ---------- Barra superior ---------- */
+  .topbar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--oro) 0%,var(--oro) 62%,var(--ciruela) 62%,var(--ciruela) 100%);margin-bottom:16px}
+
+  /* ---------- Cabecera ---------- */
+  .masthead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .brandblock{display:flex;flex-direction:column;gap:8px}
+  .brandblock img{height:44px;width:auto;display:block}
+  .tagline{font-size:8.6pt;letter-spacing:.09em;text-transform:uppercase;color:var(--gris);font-weight:800}
+  .branddata{font-size:9pt;color:var(--gris);line-height:1.55;margin-top:4px}
+  .branddata b{color:var(--ciruela)}
+  .docmeta{text-align:right;min-width:230px}
+  .docmeta .kicker{display:inline-block;background:var(--ciruela);color:var(--oro-claro);font-weight:900;font-size:8.4pt;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .docmeta .num{font-size:17pt;font-weight:900;color:var(--ciruela);margin-top:8px;letter-spacing:-.01em}
+  .docmeta table{border-collapse:collapse;margin:6px 0 0 auto}
+  .docmeta td{padding:1.5px 0;font-size:9.2pt}
+  .docmeta td.l{color:var(--gris);font-weight:700;padding-right:12px;text-align:right}
+  .docmeta td.v{font-weight:800;color:var(--ciruela);text-align:right;white-space:nowrap}
+
+  .rule{height:2px;background:var(--oro);border:0;margin:16px 0 14px}
+
+  .doctitle{font-size:15pt;font-weight:900;color:var(--ciruela);margin:0 0 2px}
+  .docsub{font-size:10.5pt;color:var(--gris);font-weight:700;margin:0 0 14px}
+
+  /* ---------- Cajas de datos ---------- */
+  .parties{display:flex;gap:12px;margin-bottom:16px}
+  .card{flex:1;border:1px solid var(--linea);border-radius:10px;overflow:hidden}
+  .card .card-h{background:var(--lavanda);border-bottom:1px solid var(--linea);padding:6px 12px;font-size:8.6pt;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--ciruela)}
+  .card .card-b{padding:9px 12px;font-size:9.4pt;line-height:1.6}
+  .card .card-b .row{display:flex;gap:6px}
+  .card .card-b .row .lbl{color:var(--gris);font-weight:700;min-width:66px}
+  .card .card-b .row .val{font-weight:700}
+
+  /* ---------- Secciones ---------- */
+  .sec{margin-bottom:15px}
+  .sec h2{font-size:11.6pt;font-weight:900;color:var(--ciruela);margin:0 0 8px;display:flex;align-items:center;gap:9px;break-after:avoid;page-break-after:avoid}
+  .sec h2 .num{flex:none;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:7px;background:var(--oro);color:var(--ciruela);font-size:11pt;font-weight:900}
+  .sec p.lead{margin-bottom:8px}
+
+  /* ---------- Listas ---------- */
+  ul.feat{list-style:none;margin:0;padding:0}
+  ul.feat>li{position:relative;padding:5px 0 5px 18px;border-bottom:1px dashed var(--linea)}
+  ul.feat>li:last-child{border-bottom:0}
+  ul.feat>li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:2px;background:var(--oro)}
+  ul.feat>li b{color:var(--ciruela)}
+  ul.feat>li .sub{display:block;color:var(--gris);font-size:9.2pt;margin-top:2px}
+
+  ul.plain{margin:4px 0 7px;padding-left:17px}
+  ul.plain li{margin-bottom:3px}
+  ul.plain li::marker{color:var(--oro)}
+
+  .note{background:var(--lavanda);border-left:3px solid var(--oro);border-radius:0 8px 8px 0;padding:8px 12px;font-size:9.2pt;color:var(--gris);margin-top:6px}
+  .note b{color:var(--ciruela)}
+
+  /* ---------- Tablas ---------- */
+  table.grid{width:100%;border-collapse:collapse;font-size:9.4pt;margin:4px 0 4px}
+  table.grid thead th{background:var(--ciruela);color:#fff;text-align:left;padding:7px 10px;font-weight:800;font-size:8.8pt;letter-spacing:.04em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.14)}
+  table.grid thead th:last-child{border-right:0}
+  table.grid tbody td{padding:7px 10px;border-bottom:1px solid var(--linea);vertical-align:top}
+  table.grid tbody tr:nth-child(even){background:var(--lavanda)}
+  table.grid td.c,table.grid th.c{text-align:center}
+  table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+  table.grid tr.total td{background:var(--oro-claro)!important;font-weight:900;color:var(--ciruela);border-top:2px solid var(--oro);border-bottom:2px solid var(--oro)}
+  table.grid tr.total td.r{font-size:11pt}
+  .tbl-cap{font-size:8.6pt;color:var(--gris);margin-top:2px}
+
+  .fineprint{font-size:8.4pt;color:var(--gris);margin-top:5px;line-height:1.45}
+  .opts{font-size:9.2pt;margin-top:6px}
+  .opts b{color:var(--ciruela)}
+
+  .footer{margin-top:20px;border-top:1px solid var(--linea);padding-top:8px;display:flex;justify-content:space-between;font-size:8pt;color:var(--gris)}
+  .footer b{color:var(--ciruela)}
+
+  .block{break-inside:avoid;page-break-inside:avoid}
+
+  .closing{margin-top:18px;background:var(--ciruela);color:var(--blanco);border-radius:10px;padding:12px 16px;font-size:10pt;font-weight:800;text-align:center}
+  .closing b{color:var(--oro-claro)}
+
+  /* Marco A4 solo en pantalla (el PDF usa @page) */
+  @media screen{
+    html{background:#EDE7F0}
+    body{width:210mm;min-height:297mm;margin:12mm auto;padding:14mm;background:var(--blanco);box-shadow:0 8px 28px rgba(45,27,54,.18)}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar"></div>
+
+  <!-- ================= CABECERA ================= -->
+  <header class="masthead">
+    <div class="brandblock">
+      <img src="../assets/brand/logo-full-light.svg" alt="negolo">
+      <div class="tagline">Desarrollo web, apps y chatbots</div>
+      <div class="branddata">
+        <b>negolo</b> · Desarrollo web, apps y chatbots<br>
+        WhatsApp <b>930 227 652</b><br>
+        atencionalcliente@negolo.com · <b>negolo.com</b>
+      </div>
+    </div>
+    <div class="docmeta">
+      <span class="kicker">Propuesta de posicionamiento</span>
+      <div class="num">POS-2026-001</div>
+      <table>
+        <tr><td class="l">Fecha</td><td class="v">28/09/2026</td></tr>
+        <tr><td class="l">Validez</td><td class="v">15 días</td></tr>
+      </table>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <h1 class="doctitle">PROPUESTA DE POSICIONAMIENTO</h1>
+  <p class="docsub">SEO y Google Ads para Multiservicios S.R.L.</p>
+
+  <div class="parties">
+    <div class="card">
+      <div class="card-h">Cliente</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Cliente</span><span class="val">Multiservicios S.R.L.</span></div>
+        <div class="row"><span class="lbl">Atención</span><span class="val">Gerencia</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h">Referencia</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Alcance</span><span class="val">Posicionamiento orgánico (SEO) y publicidad en Google Ads</span></div>
+        <div class="row"><span class="lbl">Moneda</span><span class="val">Soles (S/) — precios no incluyen IGV</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 1 ================= -->
+  <section class="sec block">
+    <h2><span class="num">1</span> Dos caminos para aparecer en Google</h2>
+    <p class="lead">El <strong>posicionamiento orgánico (SEO)</strong> construye visibilidad a mediano plazo y queda en el tiempo; la <strong>publicidad (Google Ads)</strong> compra apariciones inmediatas. Se pueden combinar.</p>
+  </section>
+
+  <!-- ================= 2 ================= -->
+  <section class="sec">
+    <h2><span class="num">2</span> Posicionamiento orgánico (SEO)</h2>
+    <ul class="feat">
+      <li><b>Qué incluye</b>
+        <span class="sub">Auditoría y palabras clave objetivo; optimización de títulos, descripciones, encabezados, imágenes y velocidad; contenido nuevo cada mes; enlaces y presencia local; reporte mensual con lo trabajado y lo que viene.</span>
+      </li>
+    </ul>
+    <table class="grid">
+      <thead>
+        <tr><th style="width:34%">Plan</th><th style="width:20%">Inversión</th><th>Incluye</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Configuración inicial</b><br>(pago único)</td>
+          <td class="r"><b>S/ 350</b></td>
+          <td>Auditoría, investigación de palabras clave, alta en Google Search Console y Google Analytics.</td>
+        </tr>
+        <tr>
+          <td><b>SEO Inicial</b><br>(mensual)</td>
+          <td class="r"><b>S/ 450 al mes</b></td>
+          <td>Optimización continua, 1 contenido nuevo al mes, enlaces locales, reporte mensual.</td>
+        </tr>
+        <tr>
+          <td><b>SEO Competitivo</b><br>(mensual)</td>
+          <td class="r"><b>S/ 850 al mes</b></td>
+          <td>3-4 contenidos al mes, enlaces, optimización técnica avanzada, reportes quincenales.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Tiempo para resultados:</strong> de 3 a 6 meses. Se recomienda un mínimo de 3 meses para que el trabajo tenga efecto.</p>
+    <div class="note"><b>Aclaración honesta:</b> no se garantizan primeras posiciones; se trabaja para mejorar visibilidad, tráfico y contactos de forma sostenida.</div>
+  </section>
+
+  <!-- ================= 3 ================= -->
+  <section class="sec">
+    <h2><span class="num">3</span> Google Ads (publicidad)</h2>
+    <ul class="feat">
+      <li><b>Qué incluye</b>
+        <span class="sub">Creación de la campaña y los anuncios; palabras clave y negativos; páginas de destino optimizadas; seguimiento de conversiones (llamadas, WhatsApp y formularios); optimización semanal y reporte mensual.</span>
+      </li>
+    </ul>
+    <table class="grid">
+      <thead>
+        <tr><th style="width:60%">Concepto</th><th class="r">Inversión</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Configuración de campaña <b>(pago único)</b></td><td class="r"><b>S/ 350</b></td></tr>
+        <tr><td>Gestión mensual</td><td class="r"><b>S/ 350 al mes</b></td></tr>
+        <tr><td>Presupuesto de pauta <span class="fineprint">(se paga directo a Google con su tarjeta)</span></td><td class="r"><b>Desde S/ 300 al mes</b><br><span class="fineprint">sugerido S/10 a S/15 al día</span></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Tiempo para resultados:</strong> visitas y contactos desde los primeros días; el presupuesto de pauta es <strong>100&nbsp;% para Google</strong> y se puede ajustar cuando quiera.</p>
+  </section>
+
+  <!-- ================= 4 ================= -->
+  <section class="sec block">
+    <h2><span class="num">4</span> Comparación</h2>
+    <table class="grid">
+      <thead>
+        <tr><th style="width:22%">Criterio</th><th>SEO (orgánico)</th><th>Google Ads (publicidad)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Inversión mensual</b></td><td>S/ 450 o S/ 850</td><td>S/ 350 + pauta desde S/ 300</td></tr>
+        <tr><td><b>Tiempo de resultados</b></td><td>3 a 6 meses</td><td>Días</td></tr>
+        <tr><td><b>Ideal para</b></td><td>Construir presencia que queda</td><td>Conseguir contactos ahora mientras se construye el SEO</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= 5 ================= -->
+  <section class="sec block">
+    <h2><span class="num">5</span> Paquete combinado (recomendado)</h2>
+    <table class="grid">
+      <thead>
+        <tr><th>Concepto</th><th class="r">Inversión</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SEO Inicial + Gestión de Google Ads</td><td class="r"><b>S/ 700 al mes</b></td></tr>
+        <tr class="total"><td>En lugar de S/ 800 al mes por separado</td><td class="r">Ahorro S/ 100 al mes</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= 6 ================= -->
+  <section class="sec block">
+    <h2><span class="num">6</span> Condiciones</h2>
+    <ul class="plain">
+      <li>Facturación mensual adelantada.</li>
+      <li>SEO con compromiso mínimo de 3 meses.</li>
+      <li>Ads sin permanencia (se puede pausar cuando quiera).</li>
+      <li>El presupuesto de pauta lo paga el cliente directamente a Google.</li>
+      <li>Los informes se entregan cada mes por correo o WhatsApp.</li>
+    </ul>
+    <p class="closing">Para iniciar, responda este documento con la opción elegida.</p>
+  </section>
+
+  <div class="footer">
+    <span><b>negolo</b> · Desarrollo web, apps y chatbots</span>
+    <span>WhatsApp 930 227 652 · atencionalcliente@negolo.com · negolo.com</span>
+  </div>
+
+</body>
+</html>

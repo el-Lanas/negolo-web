@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cotización COT-2026-004 — negolo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oro:#E8B84B;
+    --oro-claro:#F5E6A0;
+    --ciruela:#2D1B36;
+    --ciruela-2:#3A2447;
+    --lavanda:#F5F0F7;
+    --gris:#6A5B75;
+    --linea:#E7DEEE;
+    --blanco:#FFFFFF;
+    --ff:'Nunito','Segoe UI',Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  @page{size:A4;margin:14mm}
+  html,body{margin:0;padding:0;background:var(--blanco)}
+  body{
+    font-family:var(--ff);
+    color:var(--ciruela);
+    font-size:10.2pt;
+    line-height:1.5;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    -webkit-font-smoothing:antialiased;
+  }
+  p{margin:0 0 7px}
+  strong{font-weight:800}
+
+  /* ---------- Barra superior ---------- */
+  .topbar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--oro) 0%,var(--oro) 62%,var(--ciruela) 62%,var(--ciruela) 100%);margin-bottom:16px}
+
+  /* ---------- Cabecera ---------- */
+  .masthead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .brandblock{display:flex;flex-direction:column;gap:8px}
+  .brandblock img{height:44px;width:auto;display:block}
+  .tagline{font-size:8.6pt;letter-spacing:.09em;text-transform:uppercase;color:var(--gris);font-weight:800}
+  .branddata{font-size:9pt;color:var(--gris);line-height:1.55;margin-top:4px}
+  .branddata b{color:var(--ciruela)}
+  .docmeta{text-align:right;min-width:210px}
+  .docmeta .kicker{display:inline-block;background:var(--ciruela);color:var(--oro-claro);font-weight:900;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .docmeta .num{font-size:17pt;font-weight:900;color:var(--ciruela);margin-top:8px;letter-spacing:-.01em}
+  .docmeta table{border-collapse:collapse;margin:6px 0 0 auto}
+  .docmeta td{padding:1.5px 0;font-size:9.2pt}
+  .docmeta td.l{color:var(--gris);font-weight:700;padding-right:12px;text-align:right}
+  .docmeta td.v{font-weight:800;color:var(--ciruela);text-align:right;white-space:nowrap}
+
+  .rule{height:2px;background:var(--oro);border:0;margin:16px 0 14px}
+
+  /* ---------- Cajas de datos ---------- */
+  .parties{display:flex;gap:12px;margin-bottom:16px}
+  .card{flex:1;border:1px solid var(--linea);border-radius:10px;overflow:hidden}
+  .card .card-h{background:var(--lavanda);border-bottom:1px solid var(--linea);padding:6px 12px;font-size:8.6pt;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--ciruela)}
+  .card .card-b{padding:9px 12px;font-size:9.4pt;line-height:1.6}
+  .card .card-b .row{display:flex;gap:6px}
+  .card .card-b .row .lbl{color:var(--gris);font-weight:700;min-width:66px}
+  .card .card-b .row .val{font-weight:700}
+
+  /* ---------- Secciones ---------- */
+  .sec{margin-bottom:15px}
+  .sec h2{font-size:11.6pt;font-weight:900;color:var(--ciruela);margin:0 0 8px;display:flex;align-items:center;gap:9px;break-after:avoid;page-break-after:avoid}
+  .sec h2 .num{flex:none;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:7px;background:var(--oro);color:var(--ciruela);font-size:11pt;font-weight:900}
+  .sec p.lead{margin-bottom:8px}
+
+  /* ---------- Listas ---------- */
+  ul.feat{list-style:none;margin:0;padding:0}
+  ul.feat>li{position:relative;padding:5px 0 5px 18px;border-bottom:1px dashed var(--linea)}
+  ul.feat>li:last-child{border-bottom:0}
+  ul.feat>li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:2px;background:var(--oro)}
+  ul.feat>li b{color:var(--ciruela)}
+  ul.feat>li .sub{display:block;color:var(--gris);font-size:9.2pt;margin-top:2px}
+
+  ul.plain{margin:4px 0 7px;padding-left:17px}
+  ul.plain li{margin-bottom:3px}
+  ul.plain li::marker{color:var(--oro)}
+
+  .note{background:var(--lavanda);border-left:3px solid var(--oro);border-radius:0 8px 8px 0;padding:8px 12px;font-size:9.2pt;color:var(--gris);margin-top:6px}
+  .note b{color:var(--ciruela)}
+
+  /* ---------- Tablas ---------- */
+  table.grid{width:100%;border-collapse:collapse;font-size:9.4pt;margin:4px 0 4px}
+  table.grid thead th{background:var(--ciruela);color:#fff;text-align:left;padding:7px 10px;font-weight:800;font-size:8.8pt;letter-spacing:.04em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.14)}
+  table.grid thead th:last-child{border-right:0}
+  table.grid tbody td{padding:7px 10px;border-bottom:1px solid var(--linea);vertical-align:top}
+  table.grid tbody tr:nth-child(even){background:var(--lavanda)}
+  table.grid td.c,table.grid th.c{text-align:center}
+  table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+  table.grid tr.total td{background:var(--oro-claro)!important;font-weight:900;color:var(--ciruela);border-top:2px solid var(--oro);border-bottom:2px solid var(--oro)}
+  table.grid tr.total td.r{font-size:11pt}
+  .tbl-cap{font-size:8.6pt;color:var(--gris);margin-top:2px}
+
+  .fineprint{font-size:8.4pt;color:var(--gris);margin-top:5px;line-height:1.45}
+  .opts{font-size:9.2pt;margin-top:6px}
+  .opts b{color:var(--ciruela)}
+
+  /* ---------- Firma ---------- */
+  .sign{display:flex;gap:40px;margin-top:26px}
+  .sign .sig{flex:1}
+  .sign .line{border-top:1.4px solid var(--ciruela);margin-top:40px;padding-top:6px;font-size:9.2pt;color:var(--ciruela);font-weight:800}
+  .sign .line span{display:block;color:var(--gris);font-weight:600;font-size:8.6pt;margin-top:1px}
+
+  .footer{margin-top:20px;border-top:1px solid var(--linea);padding-top:8px;display:flex;justify-content:space-between;font-size:8pt;color:var(--gris)}
+  .footer b{color:var(--ciruela)}
+
+  .block{break-inside:avoid;page-break-inside:avoid}
+
+  /* Marco A4 solo en pantalla (el PDF usa @page) */
+  @media screen{
+    html{background:#EDE7F0}
+    body{width:210mm;min-height:297mm;margin:12mm auto;padding:14mm;background:var(--blanco);box-shadow:0 8px 28px rgba(45,27,54,.18)}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar"></div>
+
+  <!-- ================= CABECERA ================= -->
+  <header class="masthead">
+    <div class="brandblock">
+      <img src="../assets/brand/logo-full-light.svg" alt="negolo">
+      <div class="tagline">Desarrollo web, apps y chatbots</div>
+      <div class="branddata">
+        <b>negolo</b> · Desarrollo web, apps y chatbots<br>
+        WhatsApp <b>930 227 652</b><br>
+        atencionalcliente@negolo.com · <b>negolo.com</b>
+      </div>
+    </div>
+    <div class="docmeta">
+      <span class="kicker">Cotización</span>
+      <div class="num">COT-2026-004</div>
+      <table>
+        <tr><td class="l">Fecha</td><td class="v">28/09/2026</td></tr>
+        <tr><td class="l">Validez</td><td class="v">15 días</td></tr>
+      </table>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <div class="parties">
+    <div class="card">
+      <div class="card-h">Cliente</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Cliente</span><span class="val">Multiservicios S.R.L.</span></div>
+        <div class="row"><span class="lbl">Atención</span><span class="val">Gerencia</span></div>
+        <div class="row"><span class="lbl">Proyecto</span><span class="val">Landing Page (landing de 1 página)</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h">Referencia</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Documento</span><span class="val">Cotización formal</span></div>
+        <div class="row"><span class="lbl">Moneda</span><span class="val">Soles (S/) — IGV según detalle</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 1 ================= -->
+  <section class="sec block">
+    <h2><span class="num">1</span> Resumen ejecutivo</h2>
+    <p class="lead">Diseñamos una <strong>landing page</strong> —una sola página diseñada a medida— para que Multiservicios sea encontrada en Google y sus clientes la contacten directo por <strong>WhatsApp o formulario</strong>. Todo queda alojado y operativo por <strong>1 año</strong>, con dominio, hosting y correos incluidos.</p>
+  </section>
+
+  <!-- ================= 2 ================= -->
+  <section class="sec">
+    <h2><span class="num">2</span> Alcance técnico detallado</h2>
+    <ul class="feat">
+      <li><b>Plataforma</b>
+        <span class="sub">WordPress (o desarrollo estático, el más rápido) sobre servidor propio de negolo, con <b>Cloudflare</b> (CDN y protección) y certificado <b>SSL</b>.</span>
+      </li>
+      <li><b>Diseño</b>
+        <span class="sub">1 página con titulares de propuesta de valor, servicios en tarjetas, una sección breve de “quiénes somos” y bloque de contacto; diseño adaptado a celular, tablet y computadora.</span>
+      </li>
+      <li><b>Contacto</b>
+        <span class="sub">Botón de WhatsApp y formulario que llegan directo al correo y al WhatsApp de la empresa.</span>
+      </li>
+      <li><b>SEO técnico</b>
+        <span class="sub">Títulos, descripciones, encabezados, estructura, velocidad, mapa del sitio (sitemap) y conexión con <b>Google Search Console</b>.</span>
+      </li>
+      <li><b>Visibilidad local</b>
+        <span class="sub">Configuración del <b>Perfil de Empresa en Google</b> (Google Maps), sin costo adicional.</span>
+      </li>
+      <li><b>Seguridad y respaldos</b>
+        <span class="sub"><b>HTTPS forzado</b> y respaldo automático diario.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= 3 ================= -->
+  <section class="sec block">
+    <h2><span class="num">3</span> Incluye durante 1 año</h2>
+    <table class="grid">
+      <thead>
+        <tr><th style="width:28%">Concepto</th><th>Detalle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Dominio</b></td><td>Dominio <b>.com</b> registrado y administrado (a nombre del cliente).</td></tr>
+        <tr><td><b>Hosting</b></td><td>Hasta <b>30 GB</b> para la web y su contenido (+S/60 por cada 10 GB adicionales al año).</td></tr>
+        <tr><td><b>Correo</b></td><td><b>3 buzones corporativos</b>.</td></tr>
+        <tr><td><b>SSL</b></td><td>Certificado HTTPS incluido y renovado automáticamente.</td></tr>
+        <tr><td><b>Respaldos</b></td><td>Copia diaria con retención de 7 días.</td></tr>
+        <tr><td><b>Soporte</b></td><td>Cambios menores hasta <b>3 veces al año</b> (hasta 1 hora cada uno), sujetos a evaluación. No acumulables.</td></tr>
+        <tr><td><b>Capacitación</b></td><td>Sesión de 30 minutos + guía breve.</td></tr>
+        <tr><td><b>Posibilidad de ampliación</b></td><td>Puede pasar al plan superior (web corporativa) pagando solo la diferencia de <b>S/200 + IGV</b>, dentro de los 12 meses.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= 4 ================= -->
+  <section class="sec block">
+    <h2><span class="num">4</span> Renovación a partir del año 2</h2>
+    <p><strong>S/ 199 al año, todo incluido:</strong> mantenimiento, hosting y renovación del dominio <strong>.com</strong>.</p>
+  </section>
+
+  <!-- ================= 5 ================= -->
+  <section class="sec block">
+    <h2><span class="num">5</span> Migración</h2>
+    <p>Se entregan el <strong>código EPP</strong> del dominio, los accesos de hosting y base de datos, y un respaldo completo, siempre que el cliente esté al día en sus pagos. La ejecución de la migración a otro proveedor <strong>no está incluida</strong>.</p>
+  </section>
+
+  <!-- ================= 6 ================= -->
+  <section class="sec block">
+    <h2><span class="num">6</span> No incluye</h2>
+    <ul class="plain">
+      <li>Redacción de textos, fotografía ni diseño gráfico nuevo (se usa el material del cliente).</li>
+      <li>Comisiones de pasarelas de pago.</li>
+      <li>Publicidad, app móvil ni servicios de terceros.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 7 ================= -->
+  <section class="sec block">
+    <h2><span class="num">7</span> Cronograma</h2>
+    <p class="lead">Landing publicada en <strong>2 días</strong> desde la entrega de materiales (logo, textos y fotos).</p>
+  </section>
+
+  <!-- ================= 8 ================= -->
+  <section class="sec block">
+    <h2><span class="num">8</span> Inversión</h2>
+    <table class="grid">
+      <thead>
+        <tr><th class="c" style="width:7%">#</th><th>Concepto</th><th class="r" style="width:24%">Inversión</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="c">1</td>
+          <td>Landing Page (1 página, dominio .com + hosting + 3 correos por 1 año, SEO técnico y Perfil de Empresa en Google, 3 cambios menores al año, capacitación)</td>
+          <td class="r"><b>S/ 299</b> + IGV</td>
+        </tr>
+        <tr class="total">
+          <td class="c"></td>
+          <td>TOTAL</td>
+          <td class="r">S/ 299 + IGV</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="opts"><b>Opcionales:</b> dominio .pe: +S/199 · correo adicional: +S/30/año · página nueva: +S/120 · cambio urgente: +S/60</p>
+  </section>
+
+  <!-- ================= 9 ================= -->
+  <section class="sec block">
+    <h2><span class="num">9</span> Forma de pago</h2>
+    <p><strong>50&nbsp;% al aprobar el diseño y 50&nbsp;% contra entrega y publicación.</strong> El diseño se revisa antes en un enlace de prueba (staging), sin ningún pago.</p>
+  </section>
+
+  <!-- ================= 10 ================= -->
+  <section class="sec block">
+    <h2><span class="num">10</span> Aceptación</h2>
+    <div class="sign">
+      <div class="sig">
+        <div class="line">Firma Cliente</div>
+        <div style="font-size:12px;color:#6A5B75;margin-top:10px;line-height:2.2">
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Nombre:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Documento de identidad:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Fecha:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+        </div>
+      </div>
+      <div class="sig">
+        <div class="line">negolo</div>
+        <div style="font-size:12px;color:#6A5B75;margin-top:10px;line-height:2.2">
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Fecha:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:16px">Validez de la oferta: <b>15 días calendario.</b> Cualquier trabajo no detallado en este documento se cotiza por separado.</p>
+  </section>
+
+  <div class="footer">
+    <span><b>negolo</b> · Desarrollo web, apps y chatbots</span>
+    <span>WhatsApp 930 227 652 · atencionalcliente@negolo.com · negolo.com</span>
+  </div>
+
+</body>
+</html>
