@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Planes negolo - catalogo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; display: flex; gap: 24px; padding: 24px; font-family: 'Segoe UI', 'Nunito', sans-serif; }
+  .card {
+    width: 600px; height: 600px; background: #2D1B36; color: #F5F0F7;
+    padding: 40px 44px; display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .card::after {
+    content: ''; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px;
+    background: #E8B84B; opacity: .12; border-radius: 50%;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+  .brand b { font-size: 34px; letter-spacing: -.5px; color: #fff; }
+  .brand b em { color: #E8B84B; font-style: normal; }
+  .brand span { font-size: 13px; color: #b9a8c4; letter-spacing: 2px; text-transform: uppercase; }
+  h1 { font-size: 44px; line-height: 1.05; margin-bottom: 6px; color: #fff; }
+  h1 .hl { color: #E8B84B; display: block; }
+  .price { display: flex; align-items: baseline; gap: 10px; margin: 8px 0 26px; }
+  .price .num { font-size: 56px; font-weight: 800; color: #E8B84B; letter-spacing: -1px; }
+  .price .cur { font-size: 22px; font-weight: 700; color: #E8B84B; }
+  .price .igv { font-size: 15px; color: #b9a8c4; }
+  ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  li { font-size: 17.5px; line-height: 1.3; padding-left: 30px; position: relative; color: #F5F0F7; }
+  li::before { content: '✓'; position: absolute; left: 0; top: 0; color: #E8B84B; font-weight: 800; font-size: 18px; }
+  li b { color: #fff; }
+  .foot { margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(232,184,75,.35); display: flex; justify-content: space-between; align-items: center; }
+  .foot .entrega { font-size: 16px; color: #E8B84B; font-weight: 700; }
+  .foot .web { font-size: 15px; color: #b9a8c4; }
+</style>
+</head>
+<body>
+
+<div class="card" id="p1">
+  <div class="brand"><img src="/assets/brand/logo-full-light.svg" alt="negolo" style="height:50px;width:auto;display:block"><span>PLAN 1</span></div>
+  <h1>Landing<span class="hl">Page</span></h1>
+  <div class="price"><span class="num">S/299</span><span class="igv">+ IGV</span></div>
+  <ul>
+    <li><b>1 página</b> diseñada a medida para tu negocio</li>
+    <li>Secciones: <b>servicios, quiénes somos y contacto</b></li>
+    <li><b>Dominio .com + hosting</b> y respaldos por 1 año</li>
+    <li><b>3 correos corporativos</b> (ej. ventas@tunegocio.com)</li>
+    <li><b>Botón de WhatsApp</b> y formulario de contacto</li>
+    <li><b>SEO técnico</b> + Perfil de Empresa en Google (Maps)</li>
+    <li>Certificado <b>HTTPS/SSL</b> incluido</li>
+    <li><b>3 cambios menores al año</b> + capacitación 30 min</li>
+  </ul>
+  <div class="foot"><span class="entrega">Entrega en 2 días</span><span class="web">negolo.com</span></div>
+</div>
+
+<div class="card" id="p2">
+  <div class="brand"><img src="/assets/brand/logo-full-light.svg" alt="negolo" style="height:50px;width:auto;display:block"><span>PLAN 2</span></div>
+  <h1>Web<span class="hl">Corporativa</span></h1>
+  <div class="price"><span class="num">S/499</span><span class="igv">+ IGV</span></div>
+  <ul>
+    <li>Hasta <b>5 secciones</b> (inicio, servicios, nosotros, proyectos, contacto)</li>
+    <li><b>Diseño a medida</b> adaptado a celular, tablet y PC</li>
+    <li><b>Dominio .com + hosting</b> (30 GB) y respaldos por 1 año</li>
+    <li><b>3 correos corporativos</b> (ej. ventas@tunegocio.com)</li>
+    <li><b>Botón de WhatsApp</b> y formulario de contacto</li>
+    <li><b>SEO técnico</b> + Perfil de Empresa en Google (Maps)</li>
+    <li>Certificado <b>HTTPS/SSL</b> incluido</li>
+    <li><b>3 cambios menores al año</b> + capacitación 30 min</li>
+  </ul>
+  <div class="foot"><span class="entrega">Entrega en 5 días</span><span class="web">negolo.com</span></div>
+</div>
+
+<div class="card" id="p3">
+  <div class="brand"><img src="/assets/brand/logo-full-light.svg" alt="negolo" style="height:50px;width:auto;display:block"><span>PLAN 3</span></div>
+  <h1>Tienda<span class="hl">Virtual</span></h1>
+  <div class="price"><span class="num">S/699</span><span class="igv">+ IGV</span></div>
+  <ul>
+    <li><b>Carrito de compras</b> con hasta <b>30 productos</b></li>
+    <li>Categorías y <b>ficha de cada producto</b> (foto, precio, stock)</li>
+    <li><b>Pagos con tarjeta</b> (Izipay/Niubiz) o <b>pedido por WhatsApp</b></li>
+    <li><b>Dominio .com + hosting</b> y respaldos por 1 año</li>
+    <li><b>3 correos corporativos</b> (ej. ventas@tunegocio.com)</li>
+    <li><b>Botón de WhatsApp</b> y formulario de contacto</li>
+    <li><b>SEO técnico</b> + Perfil de Empresa en Google (Maps)</li>
+    <li><b>Capacitación</b> para gestionar tus pedidos y productos</li>
+  </ul>
+  <div class="foot"><span class="entrega">Entrega en 7 días</span><span class="web">negolo.com</span></div>
+</div>
+
+</body>
+</html>

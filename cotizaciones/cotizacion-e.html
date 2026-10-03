@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cotización COT-2026-005 — negolo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oro:#E8B84B;
+    --oro-claro:#F5E6A0;
+    --ciruela:#2D1B36;
+    --ciruela-2:#3A2447;
+    --lavanda:#F5F0F7;
+    --gris:#6A5B75;
+    --linea:#E7DEEE;
+    --blanco:#FFFFFF;
+    --ff:'Nunito','Segoe UI',Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  @page{size:A4;margin:14mm}
+  html,body{margin:0;padding:0;background:var(--blanco)}
+  body{
+    font-family:var(--ff);
+    color:var(--ciruela);
+    font-size:10.2pt;
+    line-height:1.5;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    -webkit-font-smoothing:antialiased;
+  }
+  p{margin:0 0 7px}
+  strong{font-weight:800}
+
+  /* ---------- Barra superior ---------- */
+  .topbar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--oro) 0%,var(--oro) 62%,var(--ciruela) 62%,var(--ciruela) 100%);margin-bottom:16px}
+
+  /* ---------- Cabecera ---------- */
+  .masthead{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .brandblock{display:flex;flex-direction:column;gap:8px}
+  .brandblock img{height:44px;width:auto;display:block}
+  .tagline{font-size:8.6pt;letter-spacing:.09em;text-transform:uppercase;color:var(--gris);font-weight:800}
+  .branddata{font-size:9pt;color:var(--gris);line-height:1.55;margin-top:4px}
+  .branddata b{color:var(--ciruela)}
+  .docmeta{text-align:right;min-width:210px}
+  .docmeta .kicker{display:inline-block;background:var(--ciruela);color:var(--oro-claro);font-weight:900;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .docmeta .num{font-size:17pt;font-weight:900;color:var(--ciruela);margin-top:8px;letter-spacing:-.01em}
+  .docmeta table{border-collapse:collapse;margin:6px 0 0 auto}
+  .docmeta td{padding:1.5px 0;font-size:9.2pt}
+  .docmeta td.l{color:var(--gris);font-weight:700;padding-right:12px;text-align:right}
+  .docmeta td.v{font-weight:800;color:var(--ciruela);text-align:right;white-space:nowrap}
+
+  .rule{height:2px;background:var(--oro);border:0;margin:16px 0 14px}
+
+  /* ---------- Cajas de datos ---------- */
+  .parties{display:flex;gap:12px;margin-bottom:16px}
+  .card{flex:1;border:1px solid var(--linea);border-radius:10px;overflow:hidden}
+  .card .card-h{background:var(--lavanda);border-bottom:1px solid var(--linea);padding:6px 12px;font-size:8.6pt;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--ciruela)}
+  .card .card-b{padding:9px 12px;font-size:9.4pt;line-height:1.6}
+  .card .card-b .row{display:flex;gap:6px}
+  .card .card-b .row .lbl{color:var(--gris);font-weight:700;min-width:66px}
+  .card .card-b .row .val{font-weight:700}
+
+  /* ---------- Secciones ---------- */
+  .sec{margin-bottom:15px}
+  .sec h2{font-size:11.6pt;font-weight:900;color:var(--ciruela);margin:0 0 8px;display:flex;align-items:center;gap:9px;break-after:avoid;page-break-after:avoid}
+  .sec h2 .num{flex:none;display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:7px;background:var(--oro);color:var(--ciruela);font-size:11pt;font-weight:900}
+  .sec p.lead{margin-bottom:8px}
+  .sec h3{font-size:10.4pt;font-weight:900;color:var(--ciruela);margin:10px 0 5px}
+  .sec h3:first-of-type{margin-top:2px}
+
+  /* ---------- Listas ---------- */
+  ul.feat{list-style:none;margin:0;padding:0}
+  ul.feat>li{position:relative;padding:5px 0 5px 18px;border-bottom:1px dashed var(--linea)}
+  ul.feat>li:last-child{border-bottom:0}
+  ul.feat>li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:2px;background:var(--oro)}
+  ul.feat>li b{color:var(--ciruela)}
+  ul.feat>li .sub{display:block;color:var(--gris);font-size:9.2pt;margin-top:2px}
+
+  ul.plain{margin:4px 0 7px;padding-left:17px}
+  ul.plain li{margin-bottom:3px}
+  ul.plain li::marker{color:var(--oro)}
+
+  .note{background:var(--lavanda);border-left:3px solid var(--oro);border-radius:0 8px 8px 0;padding:8px 12px;font-size:9.2pt;color:var(--gris);margin-top:6px}
+  .note b{color:var(--ciruela)}
+
+  /* ---------- Tablas ---------- */
+  table.grid{width:100%;border-collapse:collapse;font-size:9.4pt;margin:4px 0 4px}
+  table.grid thead th{background:var(--ciruela);color:#fff;text-align:left;padding:7px 10px;font-weight:800;font-size:8.8pt;letter-spacing:.04em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.14)}
+  table.grid thead th:last-child{border-right:0}
+  table.grid tbody td{padding:7px 10px;border-bottom:1px solid var(--linea);vertical-align:top}
+  table.grid tbody tr:nth-child(even){background:var(--lavanda)}
+  table.grid td.c,table.grid th.c{text-align:center}
+  table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+  table.grid tr.total td{background:var(--oro-claro)!important;font-weight:900;color:var(--ciruela);border-top:2px solid var(--oro);border-bottom:2px solid var(--oro)}
+  table.grid tr.total td.r{font-size:11pt}
+  .tbl-cap{font-size:8.6pt;color:var(--gris);margin-top:2px}
+
+  .fineprint{font-size:8.4pt;color:var(--gris);margin-top:5px;line-height:1.45}
+  .opts{font-size:9.2pt;margin-top:6px}
+  .opts b{color:var(--ciruela)}
+
+  /* ---------- Precio del paquete ---------- */
+  .pack{display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--ciruela);color:#fff;border-radius:10px;padding:12px 16px;margin-top:10px}
+  .pack .pack-l{font-size:9.2pt;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--oro-claro)}
+  .pack .pack-l small{display:block;font-size:8.4pt;font-weight:600;letter-spacing:0;text-transform:none;color:#CDBFD6;margin-top:3px}
+  .pack .pack-r{text-align:right;white-space:nowrap}
+  .pack .pack-r .val{font-size:19pt;font-weight:900;color:var(--oro-claro);line-height:1}
+  .pack .pack-r .igv{font-size:9pt;font-weight:700;color:#fff;margin-top:2px}
+  .pack .pack-r .saving{font-size:8.6pt;font-weight:800;color:var(--oro-claro);margin-top:3px}
+
+  /* ---------- Firma ---------- */
+  .sign{display:flex;gap:40px;margin-top:26px}
+  .sign .sig{flex:1}
+  .sign .line{border-top:1.4px solid var(--ciruela);margin-top:40px;padding-top:6px;font-size:9.2pt;color:var(--ciruela);font-weight:800}
+  .sign .line span{display:block;color:var(--gris);font-weight:600;font-size:8.6pt;margin-top:1px}
+
+  .footer{margin-top:20px;border-top:1px solid var(--linea);padding-top:8px;display:flex;justify-content:space-between;font-size:8pt;color:var(--gris)}
+  .footer b{color:var(--ciruela)}
+
+  .block{break-inside:avoid;page-break-inside:avoid}
+
+  /* Marco A4 solo en pantalla (el PDF usa @page) */
+  @media screen{
+    html{background:#EDE7F0}
+    body{width:210mm;min-height:297mm;margin:12mm auto;padding:14mm;background:var(--blanco);box-shadow:0 8px 28px rgba(45,27,54,.18)}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar"></div>
+
+  <!-- ================= CABECERA ================= -->
+  <header class="masthead">
+    <div class="brandblock">
+      <img src="../assets/brand/logo-full-light.svg" alt="negolo">
+      <div class="tagline">Desarrollo web, apps y chatbots</div>
+      <div class="branddata">
+        <b>negolo</b> · Desarrollo web, apps y chatbots<br>
+        WhatsApp <b>930 227 652</b><br>
+        atencionalcliente@negolo.com · <b>negolo.com</b>
+      </div>
+    </div>
+    <div class="docmeta">
+      <span class="kicker">Cotización</span>
+      <div class="num">COT-2026-005</div>
+      <table>
+        <tr><td class="l">Fecha</td><td class="v">03/10/2026</td></tr>
+        <tr><td class="l">Validez</td><td class="v">15 días</td></tr>
+      </table>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <div class="parties">
+    <div class="card">
+      <div class="card-h">Cliente</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Cliente</span><span class="val">Sensum Specialty Coffee</span></div>
+        <div class="row"><span class="lbl">Atención</span><span class="val">Gerencia</span></div>
+        <div class="row"><span class="lbl">Proyecto</span><span class="val">Tienda virtual de café de especialidad + suscripciones</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h">Referencia</div>
+      <div class="card-b">
+        <div class="row"><span class="lbl">Documento</span><span class="val">Cotización formal</span></div>
+        <div class="row"><span class="lbl">Moneda</span><span class="val">Soles (S/) — IGV según detalle</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 1 ================= -->
+  <section class="sec block">
+    <h2><span class="num">1</span> Resumen ejecutivo</h2>
+    <p class="lead">Sensum es una marca de <strong>microlotes de café de especialidad peruano</strong> con una identidad muy cuidada (drops y colecciones intervenidas a mano). Esta propuesta convierte esa identidad en una <strong>tienda propia</strong> para vender paquetes de café (con su molienda, peso y tueste), merchandising y combos, y además gestionar sus <strong>suscripciones mensuales de café</strong>: la forma más rentable de vender café de especialidad, porque genera ingresos recurrentes. Incluye la conexión de tu dominio actual (GoDaddy) y pedidos por WhatsApp.</p>
+    <p class="note">Nota comparativa: con una plataforma como Shopify pagarías <b>licencia mensual en dólares para siempre</b> (y las suscripciones requieren apps de pago adicionales, US$ 20-30 al mes). Aquí pagas una vez, <b>la tienda es tuya</b> y solo renuevas <b>S/ 199 al año</b>.</p>
+  </section>
+
+  <!-- ================= 2 ================= -->
+  <section class="sec">
+    <h2><span class="num">2</span> Alcance técnico detallado</h2>
+
+    <h3>2.1 Tienda y catálogo</h3>
+    <ul class="feat">
+      <li>Tienda completa con hasta <b>30 productos</b>: café (microlotes), merchandising, combos y colecciones/drops.</li>
+      <li>Café con <b>variantes</b>: tipo de molienda (grano entero, espresso, moka, V60/prensa, etc.), peso (250 g / 500 g / 1 kg) y tueste cuando aplique; <b>precio y stock por variante</b>.</li>
+      <li><b>Ficha de cada microlote</b>: origen, altura, variedad, proceso, notas de cata, puntaje y recomendación de preparación.</li>
+      <li>Cuentas de cliente con historial de pedidos y gestión de suscripciones; búsqueda, filtros, cupones y combos.</li>
+    </ul>
+
+    <h3>2.2 Suscripciones mensuales</h3>
+    <ul class="feat">
+      <li><b>Planes de suscripción</b> (por ejemplo: 1 bolsa mensual, 2 bolsas o plan “explorador” con el microlote del mes), frecuencia <b>mensual o quincenal</b>.</li>
+      <li>El cliente elige molienda y dirección, y puede <b>pausar, adelantar, cambiar de plan o cancelar</b> desde su cuenta.</li>
+      <li><b>Renovación guiada</b>: recordatorio por correo y WhatsApp con pago en un clic (Yape, transferencia o link de pasarela). El cobro automático con tarjeta se activa si la pasarela elegida soporta suscripciones, sin costo adicional de nuestro lado.</li>
+      <li><b>Panel de administración</b>: suscriptores activos, próximos envíos y pedidos generados.</li>
+    </ul>
+
+    <h3>2.3 Colecciones / Drops</h3>
+    <ul class="feat">
+      <li>Sección <b>“Drops”</b> donde cada colección (como “Drop 2 — Las formas silenciosas de querer”) tiene su página de historia, sus productos y su aviso de <b>agotado</b>.</li>
+    </ul>
+
+    <h3>2.4 Pagos y envíos</h3>
+    <ul class="feat">
+      <li>Pagos con <b>tarjeta vía Izipay o Niubiz</b>, <b>Yape/Plin</b> por transferencia y <b>“pedido por WhatsApp”</b> desde el carrito.</li>
+      <li>Zonas de envío: Lima (24-48 h), provincias (3-5 días), recojo en punto y <b>envío gratis desde S/ 150</b> (configurable).</li>
+      <li>Las comisiones de la pasarela las cobra directamente el proveedor.</li>
+    </ul>
+
+    <h3>2.5 Diseño y marca</h3>
+    <ul class="feat">
+      <li><b>Diseño a medida</b> con la identidad de Sensum (paleta, tipografías y fotografía de la marca), con la estética de sus drops.</li>
+      <li>Home con portada, colección destacada, productos, historia de marca, suscripciones y newsletter.</li>
+    </ul>
+
+    <h3>2.6 SEO técnico y Perfil de Empresa en Google (Maps)</h3>
+    <ul class="feat">
+      <li>Títulos, descripciones, encabezados, estructura, velocidad y sitemap; conexión con <b>Google Search Console</b> y configuración del <b>Perfil de Empresa en Google</b> (Google Maps).</li>
+    </ul>
+  </section>
+
+  <!-- ================= 3 ================= -->
+  <section class="sec block">
+    <h2><span class="num">3</span> Incluye durante 1 año</h2>
+    <table class="grid">
+      <thead>
+        <tr><th style="width:28%">Concepto</th><th>Detalle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Dominio</b></td><td>Conexión y configuración de tu <b>dominio actual (GoDaddy)</b> — sin costo de registro nuevo.</td></tr>
+        <tr><td><b>Hosting</b></td><td>Hasta <b>30 GB</b> para la tienda y su contenido (+S/60 por cada 10 GB adicionales al año).</td></tr>
+        <tr><td><b>Correo</b></td><td><b>3 buzones corporativos</b> (ej. hola@sensum…).</td></tr>
+        <tr><td><b>SSL</b></td><td>Certificado HTTPS incluido y renovado automáticamente.</td></tr>
+        <tr><td><b>Respaldos</b></td><td>Copia diaria con retención de 7 días.</td></tr>
+        <tr><td><b>Soporte</b></td><td>Cambios menores hasta <b>3 veces al año</b> (hasta 1 hora cada uno), sujetos a evaluación. No acumulables.</td></tr>
+        <tr><td><b>Capacitación</b></td><td>Sesión de <b>45 minutos</b> para gestionar productos, pedidos y suscripciones + guía breve.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= 4 ================= -->
+  <section class="sec block">
+    <h2><span class="num">4</span> Soporte ampliado (opcional)</h2>
+    <p><strong>S/ 99 al mes</strong> — actualizaciones, cambios frecuentes y gestión de suscripciones.</p>
+  </section>
+
+  <!-- ================= 5 ================= -->
+  <section class="sec block">
+    <h2><span class="num">5</span> Renovación a partir del año 2</h2>
+    <p><strong>S/ 199 al año, todo incluido:</strong> mantenimiento, hosting y soporte. (El dominio se renueva directo en GoDaddy.)</p>
+  </section>
+
+  <!-- ================= 6 ================= -->
+  <section class="sec block">
+    <h2><span class="num">6</span> Migración</h2>
+    <p>Entrega de <strong>accesos de hosting y base de datos</strong> y respaldo completo, estando al día en pagos. La migración a otro proveedor <strong>no está incluida</strong>.</p>
+  </section>
+
+  <!-- ================= 7 ================= -->
+  <section class="sec block">
+    <h2><span class="num">7</span> No incluye</h2>
+    <ul class="plain">
+      <li>Redacción de textos ni producción de fotos/video (se usa el material de la marca; se puede cotizar aparte).</li>
+      <li>Comisiones de pasarelas de pago.</li>
+      <li>Publicidad, apps premium de terceros ni el registro del dominio (ya es tuyo).</li>
+    </ul>
+  </section>
+
+  <!-- ================= 8 ================= -->
+  <section class="sec block">
+    <h2><span class="num">8</span> Cronograma</h2>
+    <p class="lead">Tienda publicada en <strong>10 días hábiles</strong> desde la entrega de materiales (logo, textos y fotos) y la aprobación del diseño.</p>
+  </section>
+
+  <!-- ================= 9 ================= -->
+  <section class="sec block">
+    <h2><span class="num">9</span> Inversión</h2>
+    <table class="grid">
+      <thead>
+        <tr><th>Componente</th><th class="r" style="width:24%">Valor</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tienda virtual completa (hasta 30 productos, carrito, checkout y cuentas de cliente)</td><td class="r">S/ 699</td></tr>
+        <tr><td>Catálogo de café con variantes (molienda, peso y tueste) y fichas de microlote</td><td class="r">S/ 200</td></tr>
+        <tr><td>Sección de colecciones/drops con su historia</td><td class="r">S/ 150</td></tr>
+        <tr><td>Módulo de suscripciones mensuales + panel del cliente</td><td class="r">S/ 300</td></tr>
+        <tr><td>Merchandising y combos</td><td class="r">S/ 100</td></tr>
+        <tr><td>Conexión de tu dominio (GoDaddy) + 3 correos corporativos</td><td class="r">S/ 100</td></tr>
+        <tr class="total">
+          <td>Valor total</td>
+          <td class="r">S/ 1,549</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pack">
+      <div class="pack-l">
+        Precio del paquete
+        <small>Incluye todo lo detallado en esta cotización.</small>
+      </div>
+      <div class="pack-r">
+        <div class="val">S/ 1,199</div>
+        <div class="igv">+ IGV</div>
+        <div class="saving">Ahorro de S/ 350</div>
+      </div>
+    </div>
+
+    <p class="opts"><b>Opcionales:</b> página nueva +S/ 120 · correo adicional +S/ 30/año · cambio urgente +S/ 60</p>
+    <p class="fineprint">El diseño se revisa y apruebas antes de pagar.</p>
+  </section>
+
+  <!-- ================= 10 ================= -->
+  <section class="sec block">
+    <h2><span class="num">10</span> Forma de pago</h2>
+    <p><strong>50&nbsp;% al aprobar el diseño y 50&nbsp;% contra entrega y puesta en marcha.</strong></p>
+  </section>
+
+  <!-- ================= 11 ================= -->
+  <section class="sec block">
+    <h2><span class="num">11</span> Aceptación</h2>
+    <div class="sign">
+      <div class="sig">
+        <div class="line">Firma Cliente</div>
+        <div style="font-size:12px;color:#6A5B75;margin-top:10px;line-height:2.2">
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Nombre:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Documento de identidad:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Fecha:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+        </div>
+      </div>
+      <div class="sig">
+        <div class="line">negolo</div>
+        <div style="font-size:12px;color:#6A5B75;margin-top:10px;line-height:2.2">
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="white-space:nowrap">Fecha:</span><span style="flex:1;border-bottom:1px solid rgba(45,27,54,.28);min-height:13px"></span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:16px">Validez de la oferta: <b>15 días calendario.</b> Cualquier trabajo no detallado en este documento se cotiza por separado.</p>
+  </section>
+
+  <div class="footer">
+    <span><b>negolo</b> · Desarrollo web, apps y chatbots</span>
+    <span>WhatsApp 930 227 652 · atencionalcliente@negolo.com · negolo.com</span>
+  </div>
+
+</body>
+</html>
