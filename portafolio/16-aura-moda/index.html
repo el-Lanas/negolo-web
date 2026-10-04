@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURA — Boutique de moda femenina | Caso de estudio</title>
+    <meta
+      name="description"
+      content="Caso de estudio: tienda demo AURA (WooCommerce, WordPress) con diseño editorial claro, checkout peruano, pasarela simulada y sistema de diseño documentado."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #faf7f2;
+        --surface: #ffffff;
+        --ink: #1f1b16;
+        --muted: #6e655c;
+        --line: #e8e0d6;
+        --accent: #c86b4a;
+        --accent-dark: #a9542f;
+        --soft: rgba(200, 107, 74, 0.1);
+        --display: "Playfair Display", Georgia, serif;
+        --body: "Inter", -apple-system, sans-serif;
+        --mono: "IBM Plex Mono", monospace;
+        --r-lg: 20px;
+        --r-md: 14px;
+        --shadow: 0 18px 50px -22px rgba(31, 27, 22, 0.22);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; }
+      .mono { font-family: var(--mono); }
+      .container { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
+      img { max-width: 100%; display: block; }
+
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(250, 247, 242, 0.92);
+        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+      .brand { font-family: var(--display); font-weight: 900; font-size: 24px; color: var(--ink); text-decoration: none; }
+      .brand em { font-style: normal; color: var(--accent); }
+      .nav-links { display: flex; align-items: center; gap: 18px; }
+      .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+      .nav-links a:hover { color: var(--ink); }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--accent-dark); color: #fff; text-decoration: none;
+        border-radius: 12px; padding: 11px 20px; font-weight: 600; font-size: 14px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(169, 84, 47, 0.6); }
+      .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+      .btn-ghost:hover { border-color: var(--accent); color: var(--accent-dark); box-shadow: none; }
+
+      .hero { padding: 72px 0 30px; }
+      .kicker {
+        display: inline-block; font-family: var(--mono); font-size: 11.5px;
+        letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent-dark);
+        background: var(--soft); border: 1px solid rgba(200, 107, 74, 0.28);
+        border-radius: 50px; padding: 7px 16px; margin-bottom: 22px;
+      }
+      .hero h1 { font-size: clamp(38px, 5.4vw, 64px); max-width: 17ch; }
+      .hero h1 span { color: var(--accent); }
+      .lead { color: var(--muted); font-size: 18px; max-width: 62ch; margin: 18px 0 30px; }
+      .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 26px 0 34px; }
+      .meta div { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 14px 16px; }
+      .meta .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); }
+      .meta .v { font-weight: 600; font-size: 14.5px; margin-top: 4px; }
+      .shot { border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); background: var(--surface); }
+      .shot img { width: 100%; }
+      .shot-cap { font-family: var(--mono); font-size: 11.5px; color: var(--muted); letter-spacing: 0.6px; padding: 12px 16px; border-top: 1px solid var(--line); }
+
+      section { padding: 72px 0; }
+      section.tight { padding: 46px 0; }
+      h2 { font-size: clamp(28px, 3.4vw, 42px); margin-bottom: 14px; }
+      .sub { color: var(--muted); max-width: 68ch; margin-bottom: 34px; }
+      .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px; }
+      .card h3 { font-size: 21px; margin-bottom: 10px; }
+      .card p { color: var(--muted); font-size: 15px; }
+      .list { list-style: none; margin-top: 12px; }
+      .list li { color: var(--muted); font-size: 14.5px; padding: 7px 0 7px 22px; position: relative; }
+      .list li::before { content: "✦"; position: absolute; left: 0; color: var(--accent); font-size: 12px; }
+
+      .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+      .swatch { border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+      .swatch .chip { height: 64px; }
+      .swatch .lbl { font-family: var(--mono); font-size: 10.5px; padding: 9px 10px; color: var(--muted); letter-spacing: 0.5px; }
+      .fonts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+      .font-card { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 18px; }
+      .font-card .demo { font-size: 26px; margin-bottom: 8px; }
+      .font-card .fname { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.8px; }
+
+      .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px; }
+      .feature .n { font-family: var(--mono); font-size: 11px; color: var(--accent-dark); letter-spacing: 1.4px; }
+      .feature h3 { font-size: 17px; margin: 8px 0 6px; }
+      .feature p { color: var(--muted); font-size: 13.5px; }
+
+      .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .gallery .wide { grid-column: 1 / -1; }
+
+      .cta {
+        background: var(--ink); color: var(--bg); border-radius: var(--r-lg);
+        padding: 46px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      }
+      .cta h2 { color: var(--bg); margin: 0; }
+      .cta p { color: rgba(250, 247, 242, 0.7); max-width: 46ch; }
+      .cta .btn { background: var(--accent); }
+      .cta .btn:hover { background: var(--accent-dark); }
+
+      footer { padding: 40px 0 56px; color: var(--muted); font-size: 13.5px; }
+      footer a { color: var(--accent-dark); text-decoration: none; }
+
+      @media (max-width: 900px) {
+        .meta { grid-template-columns: 1fr 1fr; }
+        .cols, .gallery { grid-template-columns: 1fr; }
+        .features { grid-template-columns: 1fr; }
+        .swatches { grid-template-columns: repeat(3, 1fr); }
+        .fonts { grid-template-columns: 1fr; }
+        .nav-links a:not(.btn) { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="/#portafolio">AURA<em>.</em></a>
+        <div class="nav-links">
+          <a href="#resumen">Resumen</a>
+          <a href="#diseno">Diseño</a>
+          <a href="#capturas">Capturas</a>
+          <a class="btn" href="demo.html">Ver demo</a>
+          <a class="btn btn-ghost" href="/#portafolio">← Portafolio</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero container">
+      <span class="kicker">Caso de estudio · E-commerce de moda</span>
+      <h1>AURA — boutique de moda femenina, <span>hecha en Lima</span></h1>
+      <p class="lead">
+        Tienda demo en WordPress + WooCommerce con dirección de arte editorial (crema y terracota),
+        catálogo variable de 16 prendas, checkout peruano con IGV y pasarela simulada, y un sistema
+        de movimiento propio: marquesinas, lookbook y microinteracciones.
+      </p>
+      <div class="meta">
+        <div><div class="k">Rol</div><div class="v">Diseño + desarrollo</div></div>
+        <div><div class="k">Stack</div><div class="v">WordPress · WooCommerce · PHP</div></div>
+        <div><div class="k">Base</div><div class="v">Child theme propio</div></div>
+        <div><div class="k">Año</div><div class="v">2026</div></div>
+      </div>
+      <div class="shot">
+        <img src="preview.png" alt="Home de AURA: hero editorial con modelo, título serif y CTAs" />
+        <div class="shot-cap">HOME · hero editorial con flyers flotantes y marquesina de beneficios</div>
+      </div>
+    </header>
+
+    <section id="resumen" class="container">
+      <h2>El encargo</h2>
+      <p class="sub">Una tienda demo del rubro más pedido en Lima —moda femenina— pensada para verse como un estudio real, no como una plantilla.</p>
+      <div class="cols">
+        <article class="card">
+          <h3>Reto</h3>
+          <p>
+            Reutilizar una base e-commerce ya construida (ZYPHER) sin que parezca un reskin: marca,
+            paleta, contenido y fotos 100 % nuevos, con una identidad editorial clara que rompiera
+            el look oscuro anterior.
+          </p>
+          <ul class="list">
+            <li>16 productos variables (talla × color) con 75 variaciones y stock real</li>
+            <li>Precios en soles con IGV incluido y envío gratis desde S/149</li>
+            <li>Pago demo (tarjeta/Yape/efectivo) y pedido por WhatsApp</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Solución</h3>
+          <p>
+            Un child theme propio con tokens de diseño documentados, 13 secciones en la home
+            (lookbook, combos, best sellers, testimonios, Instagram) y un sistema de animación
+            respetuoso de <span class="mono">prefers-reduced-motion</span>.
+          </p>
+          <ul class="list">
+            <li>Diseño editorial: Playfair Display + Satoshi + IBM Plex Mono</li>
+            <li>Fotos de producto y lifestyle generadas con dirección de arte consistente</li>
+            <li>Checkout peruano: DNI/RUC, distrito, teléfono y WhatsApp</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="diseno" class="container">
+      <h2>Sistema de diseño</h2>
+      <p class="sub">Tokens en <span class="mono">:root</span>, documentados en <span class="mono">docs/SISTEMA-DISENO.md</span> y aplicados en todo el sitio.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#FAF7F2"></div><div class="lbl">#FAF7F2 · fondo</div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="lbl">#FFFFFF · superficie</div></div>
+        <div class="swatch"><div class="chip" style="background:#1F1B16"></div><div class="lbl">#1F1B16 · tinta</div></div>
+        <div class="swatch"><div class="chip" style="background:#C86B4A"></div><div class="lbl">#C86B4A · acento</div></div>
+        <div class="swatch"><div class="chip" style="background:#A9542F"></div><div class="lbl">#A9542F · CTA AA</div></div>
+        <div class="swatch"><div class="chip" style="background:#4E7C59"></div><div class="lbl">#4E7C59 · éxito</div></div>
+      </div>
+      <div class="fonts">
+        <div class="font-card"><div class="demo" style="font-family:var(--display)">Aa Gg Ñn</div><div class="fname">Playfair Display · títulos</div></div>
+        <div class="font-card"><div class="demo" style="font-family:var(--body)">Aa Gg Ñn</div><div class="fname">Satoshi (Fontshare) · cuerpo</div></div>
+        <div class="font-card"><div class="demo mono">S/149.00</div><div class="fname">IBM Plex Mono · precios y etiquetas</div></div>
+      </div>
+    </section>
+
+    <section class="container tight">
+      <h2>Funcionalidades clave</h2>
+      <div class="features">
+        <div class="feature"><div class="n">01</div><h3>Producto variable</h3><p>Talla y color obligatorios, chips con stock por variación, galería con foto on-model, prenda y detalle.</p></div>
+        <div class="feature"><div class="n">02</div><h3>Carrito y drawer</h3><p>Agregar rápido desde la tarjeta, drawer con envío gratis desde S/149, IGV incluido y quitar ítems por AJAX.</p></div>
+        <div class="feature"><div class="n">03</div><h3>Checkout peruano</h3><p>DNI/RUC validado, teléfono, distrito de Lima, resumen sticky y botón "Pedir por WhatsApp".</p></div>
+        <div class="feature"><div class="n">04</div><h3>Pago demo</h3><p>Pasarela simulada: aprobado, rechazado y pendiente; aprobación manual desde el admin y webhook firmado.</p></div>
+        <div class="feature"><div class="n">05</div><h3>Wishlist y combos</h3><p>Favoritos con localStorage y contador en navbar; "Armá tu look" agrega 3 prendas con un clic.</p></div>
+        <div class="feature"><div class="n">06</div><h3>Movimiento</h3><p>Marquesinas, reveal de palabras, flyers, ken burns y reveals escalonados; todo se apaga con reduced-motion.</p></div>
+      </div>
+    </section>
+
+    <section id="capturas" class="container">
+      <h2>Capturas</h2>
+      <p class="sub">Home completa, ficha, checkout y móvil — renderizadas desde el sitio en vivo.</p>
+      <div class="gallery">
+        <div class="shot wide">
+          <img src="fullpage.png" alt="Página completa de la home de AURA" />
+          <div class="shot-cap">HOME · 13 secciones: hero, confianza, categorías, recién llegado, combos, best sellers, lookbook, testimonios, Instagram, newsletter</div>
+        </div>
+        <div class="shot">
+          <img src="producto.png" alt="Ficha de producto de AURA con talla y color" />
+          <div class="shot-cap">FICHA · talla + color, stock, acordeón y relacionados</div>
+        </div>
+        <div class="shot">
+          <img src="checkout.png" alt="Checkout peruano de AURA" />
+          <div class="shot-cap">CHECKOUT · DNI/RUC, distrito, envío gratis S/149 y pago demo</div>
+        </div>
+        <div class="shot">
+          <img src="mobile.png" alt="Home de AURA en móvil" />
+          <div class="shot-cap">MÓVIL · 390 px sin scroll horizontal</div>
+        </div>
+        <div class="shot">
+          <img src="lookbook.png" alt="Lookbook editorial de AURA" />
+          <div class="shot-cap">LOOKBOOK · combinaciones numeradas con foto on-model</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container tight">
+      <div class="cta">
+        <div>
+          <h2>Demo en vivo</h2>
+          <p>Demo interactiva navegable (réplica del sitio) con carrito, checkout de prueba, cupón BIENVENIDA10 y guion de demo de 3 minutos.</p>
+        </div>
+        <a class="btn" href="demo.html">Abrir demo →</a>
+      </div>
+    </section>
+
+    <footer class="container">
+      <p>Caso de estudio AURA · Diseño y desarrollo por <a href="/#portafolio">Piero Letich</a> · 2026</p>
+    </footer>
+  </body>
+</html>

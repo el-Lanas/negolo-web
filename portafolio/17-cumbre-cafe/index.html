@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CUMBRE — Café de origen peruano | Caso de estudio</title>
+    <meta
+      name="description"
+      content="Caso de estudio: tienda demo CUMBRE (WordPress + WooCommerce) de café de especialidad con suscripciones, microlotes con ficha técnica SCA, checkout peruano y pasarela simulada."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f6f1ea;
+        --surface: #ffffff;
+        --ink: #3e2a20;
+        --muted: #6e5f52;
+        --line: #e6dcd0;
+        --accent: #7a8b5a;
+        --accent-dark: #5f6e44;
+        --warm: #c0713f;
+        --warm-dark: #9a5326;
+        --soft: rgba(122, 139, 90, 0.12);
+        --display: "Fraunces", Georgia, serif;
+        --body: "Satoshi", -apple-system, sans-serif;
+        --mono: "IBM Plex Mono", monospace;
+        --r-lg: 20px;
+        --r-md: 14px;
+        --shadow: 0 18px 50px -22px rgba(62, 42, 32, 0.24);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; }
+      .mono { font-family: var(--mono); }
+      .container { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
+      img { max-width: 100%; display: block; }
+
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(246, 241, 234, 0.92);
+        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+      .brand { font-family: var(--display); font-weight: 900; font-size: 24px; color: var(--ink); text-decoration: none; }
+      .brand em { font-style: normal; color: var(--accent-dark); }
+      .nav-links { display: flex; align-items: center; gap: 18px; }
+      .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+      .nav-links a:hover { color: var(--ink); }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--accent-dark); color: #fff; text-decoration: none;
+        border-radius: 12px; padding: 11px 20px; font-weight: 600; font-size: 14px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(95, 110, 68, 0.6); }
+      .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+      .btn-ghost:hover { border-color: var(--accent-dark); color: var(--accent-dark); box-shadow: none; }
+
+      .hero { padding: 72px 0 30px; }
+      .kicker {
+        display: inline-block; font-family: var(--mono); font-size: 11.5px;
+        letter-spacing: 1.6px; text-transform: uppercase; color: var(--warm-dark);
+        background: rgba(192, 113, 63, 0.12); border: 1px solid rgba(192, 113, 63, 0.3);
+        border-radius: 50px; padding: 7px 16px; margin-bottom: 22px;
+      }
+      .hero h1 { font-size: clamp(38px, 5.4vw, 64px); max-width: 19ch; }
+      .hero h1 span { color: var(--accent-dark); }
+      .lead { color: var(--muted); font-size: 18px; max-width: 64ch; margin: 18px 0 30px; }
+      .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 26px 0 34px; }
+      .meta div { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 14px 16px; }
+      .meta .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); }
+      .meta .v { font-weight: 600; font-size: 14.5px; margin-top: 4px; }
+      .shot { border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); background: var(--surface); }
+      .shot img { width: 100%; }
+      .shot-cap { font-family: var(--mono); font-size: 11.5px; color: var(--muted); letter-spacing: 0.6px; padding: 12px 16px; border-top: 1px solid var(--line); }
+
+      section { padding: 72px 0; }
+      section.tight { padding: 46px 0; }
+      h2 { font-size: clamp(28px, 3.4vw, 42px); margin-bottom: 14px; }
+      .sub { color: var(--muted); max-width: 68ch; margin-bottom: 34px; }
+      .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px; }
+      .card h3 { font-size: 21px; margin-bottom: 10px; }
+      .card p { color: var(--muted); font-size: 15px; }
+      .list { list-style: none; margin-top: 12px; }
+      .list li { color: var(--muted); font-size: 14.5px; padding: 7px 0 7px 22px; position: relative; }
+      .list li::before { content: "✦"; position: absolute; left: 0; color: var(--warm); font-size: 12px; }
+
+      .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+      .swatch { border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+      .swatch .chip { height: 64px; }
+      .swatch .lbl { font-family: var(--mono); font-size: 10.5px; padding: 9px 10px; color: var(--muted); letter-spacing: 0.5px; }
+      .fonts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+      .font-card { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 18px; }
+      .font-card .demo { font-size: 26px; margin-bottom: 8px; }
+      .font-card .fname { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.8px; }
+
+      .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px; }
+      .feature .n { font-family: var(--mono); font-size: 11px; color: var(--warm-dark); letter-spacing: 1.4px; }
+      .feature h3 { font-size: 17px; margin: 8px 0 6px; }
+      .feature p { color: var(--muted); font-size: 13.5px; }
+
+      .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .gallery .wide { grid-column: 1 / -1; }
+
+      .cta {
+        background: var(--ink); color: var(--bg); border-radius: var(--r-lg);
+        padding: 46px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      }
+      .cta h2 { color: var(--bg); margin: 0; }
+      .cta p { color: rgba(246, 241, 234, 0.72); max-width: 46ch; }
+      .cta .btn { background: var(--warm-dark); }
+      .cta .btn:hover { background: var(--warm); }
+
+      footer { padding: 40px 0 56px; color: var(--muted); font-size: 13.5px; }
+      footer a { color: var(--warm-dark); text-decoration: none; }
+
+      @media (max-width: 900px) {
+        .meta { grid-template-columns: 1fr 1fr; }
+        .cols, .gallery { grid-template-columns: 1fr; }
+        .features { grid-template-columns: 1fr; }
+        .swatches { grid-template-columns: repeat(3, 1fr); }
+        .fonts { grid-template-columns: 1fr; }
+        .nav-links a:not(.btn) { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="/#portafolio">CUMBRE<em>.</em></a>
+        <div class="nav-links">
+          <a href="#resumen">Resumen</a>
+          <a href="#diseno">Diseño</a>
+          <a href="#capturas">Capturas</a>
+          <a class="btn" href="demo.html">Ver demo</a>
+          <a class="btn btn-ghost" href="/#portafolio">← Portafolio</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero container">
+      <span class="kicker">Caso de estudio · Café de especialidad con suscripciones</span>
+      <h1>CUMBRE — café de origen peruano, <span>tostado a pedido</span></h1>
+      <p class="lead">
+        Tienda demo en WordPress + WooCommerce para un tostador de especialidad: 6 microlotes variables
+        (molienda × peso × tueste), ficha técnica con puntaje SCA, planes de suscripción gestionables
+        desde Mi Cuenta, checkout peruano con IGV y pasarela simulada.
+      </p>
+      <div class="meta">
+        <div><div class="k">Rol</div><div class="v">Diseño + desarrollo</div></div>
+        <div><div class="k">Stack</div><div class="v">WordPress · WooCommerce · PHP</div></div>
+        <div><div class="k">Base</div><div class="v">Child theme + módulo de suscripciones</div></div>
+        <div><div class="k">Año</div><div class="v">2026</div></div>
+      </div>
+      <div class="shot">
+        <img src="preview.png" alt="Home de CUMBRE: hero con pour-over, título Fraunces y CTAs" />
+        <div class="shot-cap">HOME · hero editorial con marquesina de orígenes y barra de confianza</div>
+      </div>
+    </header>
+
+    <section id="resumen" class="container">
+      <h2>El encargo</h2>
+      <p class="sub">Una tienda demo del rubro café/gourmet con suscripciones —pensada para tostadores y cafeterías— lista para clonar a un cliente real.</p>
+      <div class="cols">
+        <article class="card">
+          <h3>Reto</h3>
+          <p>
+            Reutilizar una base e-commerce ya construida (AURA) sin que parezca un reskin: marca, paleta,
+            tipografías, contenido y 21 fotos nuevas, más un módulo de suscripciones que no existía en la base.
+          </p>
+          <ul class="list">
+            <li>6 microlotes variables con 30 variaciones cada uno (molienda × peso × tueste)</li>
+            <li>Ficha técnica por lote: finca, altura, variedad, proceso, notas y puntaje SCA</li>
+            <li>Planes de suscripción con pausa, adelanto, cambio de molienda y cancelación</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Solución</h3>
+          <p>
+            Un child theme propio con tokens documentados (hueso/oliva/cobre), home editorial con suscripción
+            en 3 pasos y un módulo de suscripciones semi-manual (CPT + Mi Cuenta + cron de recordatorios + panel admin).
+          </p>
+          <ul class="list">
+            <li>Diseño editorial: Fraunces + Satoshi + IBM Plex Mono</li>
+            <li>Fotos generadas con dirección de arte única (fondo hueso, luz cálida, sin texto)</li>
+            <li>Checkout peruano: DNI/RUC, distrito, WhatsApp y pedido por transferencia/Yape</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="diseno" class="container">
+      <h2>Sistema de diseño</h2>
+      <p class="sub">Tokens en <span class="mono">:root</span>, documentados en <span class="mono">docs/SISTEMA-DISENO.md</span> y aplicados en todo el sitio.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#F6F1EA"></div><div class="lbl">#F6F1EA · fondo</div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="lbl">#FFFFFF · superficie</div></div>
+        <div class="swatch"><div class="chip" style="background:#3E2A20"></div><div class="lbl">#3E2A20 · tinta café</div></div>
+        <div class="swatch"><div class="chip" style="background:#7A8B5A"></div><div class="lbl">#7A8B5A · oliva</div></div>
+        <div class="swatch"><div class="chip" style="background:#5F6E44"></div><div class="lbl">#5F6E44 · CTA AA</div></div>
+        <div class="swatch"><div class="chip" style="background:#C0713F"></div><div class="lbl">#C0713F · cobre</div></div>
+      </div>
+      <div class="fonts">
+        <div class="font-card"><div class="demo" style="font-family:var(--display)">Aa Gg Ñn</div><div class="fname">Fraunces · títulos</div></div>
+        <div class="font-card"><div class="demo" style="font-family:var(--body)">Aa Gg Ñn</div><div class="fname">Satoshi (Fontshare) · cuerpo</div></div>
+        <div class="font-card"><div class="demo mono">86 pts SCA · 1,750 m</div><div class="fname">IBM Plex Mono · datos técnicos</div></div>
+      </div>
+    </section>
+
+    <section class="container tight">
+      <h2>Funcionalidades clave</h2>
+      <div class="features">
+        <div class="feature"><div class="n">01</div><h3>Microlote variable</h3><p>Molienda, peso y tueste obligatorios; precio por combinación (250 g / 500 g / 1 kg) y stock por variación.</p></div>
+        <div class="feature"><div class="n">02</div><h3>Ficha del lote</h3><p>Origen, finca, altura, variedad, proceso, notas de cata en chips y puntaje SCA en mono, más guía de preparación.</p></div>
+        <div class="feature"><div class="n">03</div><h3>Suscripciones</h3><p>3 planes; compra con cuenta, alta automática al pagar y gestión en Mi Cuenta: pausar, adelantar, cambiar molienda, cancelar.</p></div>
+        <div class="feature"><div class="n">04</div><h3>Recordatorios + admin</h3><p>Cron diario avisa 5 días antes de cada entrega; panel admin lista suscriptores y registra envíos (+1 mes).</p></div>
+        <div class="feature"><div class="n">05</div><h3>Checkout peruano</h3><p>DNI/RUC validado, teléfono, distrito, IGV incluido, envío gratis desde S/149 y botón "Pedir por WhatsApp".</p></div>
+        <div class="feature"><div class="n">06</div><h3>Pago demo + movimiento</h3><p>Pasarela simulada (aprobado/rechazado/pendiente) y animaciones propias con <span class="mono">prefers-reduced-motion</span>.</p></div>
+      </div>
+    </section>
+
+    <section id="capturas" class="container">
+      <h2>Capturas</h2>
+      <p class="sub">Home completa, tienda, ficha de microlote, suscripción y checkout — renderizadas desde el sitio en vivo.</p>
+      <div class="gallery">
+        <div class="shot wide">
+          <img src="fullpage.png" alt="Página completa de la home de CUMBRE" />
+          <div class="shot-cap">HOME · hero, confianza, categorías, microlotes con SCA, suscripción en 3 pasos, kits, testimonios, blog, Instagram y newsletter</div>
+        </div>
+        <div class="shot">
+          <img src="producto.png" alt="Ficha de microlote de CUMBRE con ficha técnica SCA" />
+          <div class="shot-cap">FICHA · molienda + peso + tueste, stock, ficha del lote y preparación</div>
+        </div>
+        <div class="shot">
+          <img src="suscripcion.png" alt="Mi Suscripción en CUMBRE" />
+          <div class="shot-cap">MI SUSCRIPCIÓN · pausar, adelantar, cambiar molienda y cancelar</div>
+        </div>
+        <div class="shot">
+          <img src="checkout.png" alt="Checkout peruano de CUMBRE" />
+          <div class="shot-cap">CHECKOUT · DNI/RUC, distrito, IGV incluido y pago demo</div>
+        </div>
+        <div class="shot">
+          <img src="recibo.png" alt="Recibo de pago aprobado de CUMBRE" />
+          <div class="shot-cap">RECIBO · pago aprobado (demo) con total e IGV desglosado</div>
+        </div>
+        <div class="shot">
+          <img src="tienda.png" alt="Tienda de CUMBRE" />
+          <div class="shot-cap">TIENDA · curaduría por microlotes, kits y merch</div>
+        </div>
+        <div class="shot">
+          <img src="mobile.png" alt="Home de CUMBRE en móvil" />
+          <div class="shot-cap">MÓVIL · 390 px sin scroll horizontal, menú funcional</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container tight">
+      <div class="cta">
+        <div>
+          <h2>Demo en vivo</h2>
+          <p>Demo interactiva navegable (réplica del sitio) con carrito, suscripción y checkout de prueba.</p>
+        </div>
+        <a class="btn" href="demo.html">Abrir demo →</a>
+      </div>
+    </section>
+
+    <footer class="container">
+      <p>Caso de estudio CUMBRE · Diseño y desarrollo por <a href="/#portafolio">Piero Letich</a> · 2026</p>
+    </footer>
+  </body>
+</html>

@@ -91,16 +91,18 @@
         .product-card:hover .product-img img{transform:scale(1.06)}
         .product-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700}
         .product-wishlist{position:absolute;top:12px;right:12px;width:36px;height:36px;background:rgba(0,0,0,.5);border:none;border-radius:50%;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-        .product-wishlist:hover{background:var(--accent)}
+        .product-wishlist:hover,.product-wishlist.on{background:var(--accent)}
         .product-info{padding:20px}
         .product-info .brand{font-size:12px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
         .product-info h3{font-size:16px;font-weight:600;margin-bottom:8px}
         .product-info .price{display:flex;align-items:center;gap:10px;margin-bottom:12px}
         .product-info .price .current{font-size:22px;font-weight:700;color:var(--accent)}
         .product-info .price .old{font-size:14px;color:var(--text-muted);text-decoration:line-through}
-        .product-info .sizes{display:flex;gap:6px;margin-bottom:16px}
+        .product-info .sizes{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
         .product-info .sizes span{background:var(--bg-dark);border:1px solid var(--border);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;transition:all .2s}
+        .product-info .sizes span.sel{background:var(--accent);border-color:var(--accent);color:#fff}
         .product-info .sizes span:hover{border-color:var(--accent);color:var(--accent)}
+        .product-info .sizes span.sel:hover{color:#fff}
         .add-cart{width:100%;background:var(--bg-dark);border:1px solid var(--border);color:#fff;padding:12px;border-radius:8px;font-weight:600;cursor:pointer;transition:all .2s}
         .add-cart:hover{background:var(--accent);border-color:var(--accent)}
 
@@ -132,6 +134,10 @@
         .cart-header{padding:24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
         .cart-header h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px}
         .cart-close{background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+        .ship-bar{padding:14px 24px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--text-muted)}
+        .ship-bar b{color:var(--accent)}
+        .ship-track{height:5px;background:var(--bg-dark);border-radius:99px;margin-top:8px;overflow:hidden}
+        .ship-fill{height:100%;width:0%;background:var(--gradient);border-radius:99px;transition:width .3s}
         .cart-items{flex:1;overflow-y:auto;padding:16px 24px}
         .cart-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
         .cart-item img{width:80px;height:80px;object-fit:cover;border-radius:8px}
@@ -140,11 +146,36 @@
         .cart-item .remove-item{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:12px;margin-top:8px}
         .cart-item .remove-item:hover{color:#e74c3c}
         .cart-footer{padding:24px;border-top:1px solid var(--border)}
-        .cart-total{display:flex;justify-content:space-between;margin-bottom:16px;font-size:18px;font-weight:700}
+        .cart-total{display:flex;justify-content:space-between;margin-bottom:6px;font-size:18px;font-weight:700}
         .cart-total .total-price{color:var(--accent)}
+        .cart-note{font-size:11.5px;color:var(--text-muted);margin-bottom:14px}
         .cart-checkout{width:100%;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;transition:transform .2s}
         .cart-checkout:hover{transform:scale(1.02)}
         .cart-empty{text-align:center;padding:40px 0;color:var(--text-muted)}
+
+        /* Checkout modal */
+        .modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:20px}
+        .modal.open{display:flex}
+        .modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.72)}
+        .modal-card{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:520px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px}
+        .modal-card h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:18px}
+        .modal-card label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin:14px 0 6px}
+        .modal-card input,.modal-card select{width:100%;background:var(--bg-dark);border:1px solid var(--border);color:#fff;padding:11px 14px;border-radius:8px;font-size:14px;outline:none}
+        .modal-card input:focus,.modal-card select:focus{border-color:var(--accent)}
+        .pay-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px}
+        .pay-opt{border:1px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;background:var(--bg-dark)}
+        .pay-opt.on{border-color:var(--accent);background:rgba(255,107,53,.12);color:var(--accent)}
+        .modal-total{display:flex;justify-content:space-between;font-size:17px;font-weight:700;margin:20px 0 14px}
+        .modal-total b{color:var(--accent)}
+        .modal-pay{width:100%;background:var(--accent);color:#fff;border:none;padding:15px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer}
+        .modal-pay:disabled{opacity:.6;cursor:wait}
+        .modal-note{font-size:11.5px;color:var(--text-muted);text-align:center;margin-top:10px}
+        .modal-ok{text-align:center;padding:26px 6px}
+        .modal-ok .tick{width:64px;height:64px;border-radius:50%;background:rgba(37,211,102,.15);border:2px solid #25D366;color:#25D366;font-size:30px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+        .modal-ok h3{margin-bottom:8px}
+        .modal-ok p{color:var(--text-muted);font-size:14px}
+        .modal-ok .order-id{color:var(--accent);font-weight:700}
+        .modal-close-x{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--text-muted);font-size:22px;cursor:pointer}
 
         /* WhatsApp */
         .whatsapp-float{position:fixed;bottom:24px;right:24px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;z-index:999;transition:transform .2s;text-decoration:none}
@@ -164,6 +195,7 @@
             .categories,.featured,.newsletter{padding:60px 20px}
             .footer-grid{grid-template-columns:1fr}
             .newsletter-form{flex-direction:column}
+            .pay-opts{grid-template-columns:1fr}
         }
         @media(max-width:600px){
             .cat-grid{grid-template-columns:1fr}
@@ -174,7 +206,7 @@
 </head>
 <body>
     <!-- Topbar -->
-    <div class="topbar"><span>🔥 ENVÍO GRATIS en compras +$99 | 30 Días de Devolución</span></div>
+    <div class="topbar"><span>🔥 ENVÍO GRATIS desde S/149 | 30 días de devolución | Tallas 37-44</span></div>
 
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
@@ -197,9 +229,9 @@
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content fade-up">
-            <div class="hero-badge">★ Colección Exclusiva 2026</div>
+            <div class="hero-badge">★ Colección 2026 · Hecho para Perú</div>
             <h1>STEP UP<br>YOUR <span class="highlight">GAME</span></h1>
-            <p>Descubre las zapatillas que están definiendo el street style este año. Diseño premium, materiales de alta gama y comfort absoluto.</p>
+            <p>Zapatillas urbanas con diseño premium, materiales de alta gama y comodidad para la calle. Envíos a todo el Perú en 24-48 h.</p>
             <div class="hero-btns">
                 <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
                 <a href="#nuevos" class="btn-outline">Nuevos Lanzamientos</a>
@@ -214,7 +246,7 @@
     </section>
 
     <!-- Promo -->
-    <div class="promo-banner"><p>⚡ FLASH SALE — HASTA 25% OFF EN MODELOS SELECCIONADOS</p></div>
+    <div class="promo-banner" id="ofertas"><p>⚡ FLASH SALE — HASTA 21% OFF EN MODELOS SELECCIONADOS</p></div>
 
     <!-- Categories -->
     <section class="categories fade-up" id="catalogo">
@@ -223,20 +255,20 @@
             <h2>EXPLORA POR ESTILO</h2>
         </div>
         <div class="cat-grid">
-            <div class="cat-card">
-                <img src="img/p1.jpg" alt="Running">
+            <div class="cat-card" onclick="setFilter('running')">
+                <img src="img/cat-running.jpg" alt="Running">
                 <div class="cat-overlay"><h3>RUNNING</h3><span>Ver colección →</span></div>
             </div>
-            <div class="cat-card">
-                <img src="img/p2.jpg" alt="Basketball">
+            <div class="cat-card" onclick="setFilter('basketball')">
+                <img src="img/cat-basketball.jpg" alt="Basketball">
                 <div class="cat-overlay"><h3>BASKETBALL</h3><span>Ver colección →</span></div>
             </div>
-            <div class="cat-card">
-                <img src="img/p3.jpg" alt="Retro">
+            <div class="cat-card" onclick="setFilter('retro')">
+                <img src="img/cat-retro.jpg" alt="Retro">
                 <div class="cat-overlay"><h3>RETRO</h3><span>Ver colección →</span></div>
             </div>
-            <div class="cat-card">
-                <img src="img/lifestyle.jpg" alt="Lifestyle">
+            <div class="cat-card" onclick="setFilter('lifestyle')">
+                <img src="img/cat-lifestyle.jpg" alt="Lifestyle">
                 <div class="cat-overlay"><h3>LIFESTYLE</h3><span>Ver colección →</span></div>
             </div>
         </div>
@@ -248,12 +280,12 @@
             <div class="tag">NUEVOS LANZAMIENTOS</div>
             <h2>LO MÁS TOP</h2>
         </div>
-        <div class="filter-bar fade-up">
-            <button class="filter-btn active">Todos</button>
-            <button class="filter-btn">Running</button>
-            <button class="filter-btn">Basketball</button>
-            <button class="filter-btn">Retro</button>
-            <button class="filter-btn">Skate</button>
+        <div class="filter-bar fade-up" id="filters">
+            <button class="filter-btn active" data-cat="all">Todos</button>
+            <button class="filter-btn" data-cat="running">Running</button>
+            <button class="filter-btn" data-cat="basketball">Basketball</button>
+            <button class="filter-btn" data-cat="retro">Retro</button>
+            <button class="filter-btn" data-cat="skate">Skate</button>
         </div>
         <div class="products-grid" id="products-grid"></div>
     </section>
@@ -264,7 +296,7 @@
         <p>Sé el primero en enterarte de nuevos lanzamientos, ofertas exclusivas y drops limitados.</p>
         <div class="newsletter-form">
             <input type="email" placeholder="tucorreo@email.com">
-            <button>Suscribirme</button>
+            <button onclick="this.textContent='¡Listo! Revisa tu correo';this.disabled=true">Suscribirme</button>
         </div>
     </section>
 
@@ -277,24 +309,24 @@
             </div>
             <div class="footer-col">
                 <h4>Tienda</h4>
-                <a href="#">Nuevos Lanzamientos</a>
-                <a href="#">Más Vendidos</a>
-                <a href="#">Ofertas</a>
-                <a href="#">Gift Cards</a>
+                <a href="#nuevos">Nuevos Lanzamientos</a>
+                <a href="#nuevos">Más Vendidos</a>
+                <a href="#ofertas">Ofertas</a>
+                <a href="#contacto">Gift Cards</a>
             </div>
             <div class="footer-col">
                 <h4>Ayuda</h4>
-                <a href="#">Guía de Tallas</a>
-                <a href="#">Envíos</a>
-                <a href="#">Devoluciones</a>
-                <a href="#">FAQ</a>
+                <a href="#contacto">Guía de Tallas</a>
+                <a href="#contacto">Envíos</a>
+                <a href="#contacto">Devoluciones</a>
+                <a href="#contacto">FAQ</a>
             </div>
             <div class="footer-col">
                 <h4>Síguenos</h4>
-                <a href="#">Instagram</a>
-                <a href="#">TikTok</a>
-                <a href="#">Twitter/X</a>
-                <a href="#">YouTube</a>
+                <a href="#contacto">Instagram</a>
+                <a href="#contacto">TikTok</a>
+                <a href="#contacto">Twitter/X</a>
+                <a href="#contacto">YouTube</a>
             </div>
         </div>
         <div class="footer-bottom">© 2026 ZYPHER Sneakers. Todos los derechos reservados. Hecho con ❤️ en Perú.</div>
@@ -304,10 +336,42 @@
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header"><h3>MI CARRITO</h3><button class="cart-close" onclick="toggleCart()">✕</button></div>
+        <div class="ship-bar" id="shipBar"></div>
         <div class="cart-items" id="cartItems"><div class="cart-empty">Tu carrito está vacío</div></div>
         <div class="cart-footer">
-            <div class="cart-total"><span>Total:</span><span class="total-price" id="cartTotal">$0.00</span></div>
-            <button class="cart-checkout">Finalizar Compra</button>
+            <div class="cart-total"><span>Total:</span><span class="total-price" id="cartTotal">S/ 0.00</span></div>
+            <div class="cart-note">IGV incluido · Envío calculado en el checkout</div>
+            <button class="cart-checkout" onclick="openCheckout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Checkout modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-bg" onclick="closeCheckout()"></div>
+        <div class="modal-card" id="checkoutCard">
+            <button class="modal-close-x" onclick="closeCheckout()">✕</button>
+            <h3>FINALIZAR COMPRA</h3>
+            <label>Nombre completo</label>
+            <input id="coName" placeholder="Ej: Piero Letich" />
+            <label>DNI / RUC</label>
+            <input id="coDoc" placeholder="Ej: 70123456" />
+            <label>WhatsApp</label>
+            <input id="coPhone" placeholder="Ej: 930 227 652" />
+            <label>Distrito (Lima)</label>
+            <select id="coDist">
+                <option>Miraflores</option><option>Surco</option><option>San Isidro</option>
+                <option>La Molina</option><option>San Borja</option><option>Barranco</option>
+                <option>Lince</option><option>Jesús María</option><option>Provincia (envío 3-5 días)</option>
+            </select>
+            <label>Método de pago (demo)</label>
+            <div class="pay-opts" id="payOpts">
+                <div class="pay-opt on" data-pay="Tarjeta demo" onclick="pickPay(this)">💳 Tarjeta demo</div>
+                <div class="pay-opt" data-pay="Yape" onclick="pickPay(this)">📱 Yape</div>
+                <div class="pay-opt" data-pay="Efectivo" onclick="pickPay(this)">💵 Efectivo</div>
+            </div>
+            <div class="modal-total"><span>Total a pagar</span><b id="coTotal">S/ 0.00</b></div>
+            <button class="modal-pay" id="coPay" onclick="pay()">Pagar</button>
+            <div class="modal-note">Pasarela simulada · ninguna tarjeta real se procesa (demo)</div>
         </div>
     </div>
 
@@ -316,64 +380,82 @@
 
     <script>
         const products = [
-            {id:1,name:"ZYPHER Air Pulse",brand:"ZYPHER",price:189,oldPrice:249,image:"img/p1.jpg",badge:"-24%",sizes:["38","39","40","41","42","43"],category:"running"},
-            {id:2,name:"ZYPHER Dunk Elite",brand:"ZYPHER",price:215,oldPrice:null,image:"img/p2.jpg",badge:"Nuevo",sizes:["39","40","41","42","43"],category:"basketball"},
-            {id:3,name:"ZYPHER Suede Classic",brand:"ZYPHER",price:165,oldPrice:null,image:"img/p3.jpg",badge:null,sizes:["38","39","40","41","42"],category:"retro"},
-            {id:4,name:"ZYPHER Pro Skate",brand:"ZYPHER",price:175,oldPrice:210,image:"img/p4.jpg",badge:"-17%",sizes:["40","41","42","43","44"],category:"skate"},
-            {id:5,name:"ZYPHER Street Runner",brand:"ZYPHER",price:199,oldPrice:259,image:"img/lifestyle.jpg",badge:"-23%",sizes:["38","39","40","41","42"],category:"running"},
-            {id:6,name:"ZYPHER One Low",brand:"ZYPHER",price:145,oldPrice:null,image:"img/p1.jpg",badge:null,sizes:["37","38","39","40","41"],category:"retro"},
-            {id:7,name:"ZYPHER Court Vision",brand:"ZYPHER",price:225,oldPrice:289,image:"img/p2.jpg",badge:"-22%",sizes:["39","40","41","42","43","44"],category:"basketball"},
-            {id:8,name:"ZYPHER Urban X",brand:"ZYPHER",price:185,oldPrice:null,image:"img/p3.jpg",badge:"Nuevo",sizes:["38","39","40","41","42"],category:"skate"}
+            {id:1,name:"ZYPHER Air Pulse",brand:"ZYPHER",price:289,oldPrice:349,image:"img/p1.jpg",badge:"-17%",sizes:["38","39","40","41","42","43"],category:"running"},
+            {id:2,name:"ZYPHER Dunk Elite",brand:"ZYPHER",price:329,oldPrice:null,image:"img/p2.jpg",badge:"Nuevo",sizes:["39","40","41","42","43"],category:"basketball"},
+            {id:3,name:"ZYPHER Suede Classic",brand:"ZYPHER",price:249,oldPrice:null,image:"img/p3.jpg",badge:null,sizes:["38","39","40","41","42"],category:"retro"},
+            {id:4,name:"ZYPHER Pro Skate",brand:"ZYPHER",price:269,oldPrice:319,image:"img/p4.jpg",badge:"-16%",sizes:["40","41","42","43","44"],category:"skate"},
+            {id:5,name:"ZYPHER Street Runner",brand:"ZYPHER",price:299,oldPrice:379,image:"img/p5.jpg",badge:"-21%",sizes:["38","39","40","41","42"],category:"running"},
+            {id:6,name:"ZYPHER One Low",brand:"ZYPHER",price:219,oldPrice:null,image:"img/p6.jpg",badge:null,sizes:["37","38","39","40","41"],category:"retro"},
+            {id:7,name:"ZYPHER Court Vision",brand:"ZYPHER",price:339,oldPrice:429,image:"img/p7.jpg",badge:"-21%",sizes:["39","40","41","42","43","44"],category:"basketball"},
+            {id:8,name:"ZYPHER Urban X",brand:"ZYPHER",price:279,oldPrice:null,image:"img/p8.jpg",badge:"Nuevo",sizes:["38","39","40","41","42"],category:"skate"}
         ];
 
+        const FREE_SHIP = 149;
         let cart = JSON.parse(localStorage.getItem('zypher-cart') || '[]');
+        let wish = JSON.parse(localStorage.getItem('zypher-wish') || '[]');
+        let currentFilter = 'all';
+        let payMethod = 'Tarjeta demo';
+
+        const money = n => 'S/ ' + n.toFixed(2);
 
         function renderProducts(filter='all'){
+            currentFilter = filter;
             const grid = document.getElementById('products-grid');
             const filtered = filter==='all' ? products : products.filter(p=>p.category===filter);
             grid.innerHTML = filtered.map(p=>`
                 <div class="product-card" data-category="${p.category}">
                     <div class="product-img">
-                        <img src="${p.image}" alt="${p.name}">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy">
                         ${p.badge?`<div class="product-badge">${p.badge}</div>`:''}
-                        <button class="product-wishlist" onclick="event.stopPropagation()">♡</button>
+                        <button class="product-wishlist ${wish.includes(p.id)?'on':''}" onclick="toggleWish(${p.id},this)">♡</button>
                     </div>
                     <div class="product-info">
                         <div class="brand">${p.brand}</div>
                         <h3>${p.name}</h3>
                         <div class="price">
-                            <span class="current">$${p.price}</span>
-                            ${p.oldPrice?`<span class="old">$${p.oldPrice}</span>`:''}
+                            <span class="current">${money(p.price)}</span>
+                            ${p.oldPrice?`<span class="old">${money(p.oldPrice)}</span>`:''}
                         </div>
-                        <div class="sizes">${p.sizes.map(s=>`<span>${s}</span>`).join('')}</div>
+                        <div class="sizes">${p.sizes.map((s,i)=>`<span class="${i===0?'sel':''}" onclick="pickSize(this)">${s}</span>`).join('')}</div>
                         <button class="add-cart" onclick="addToCart(${p.id})">Agregar al Carrito</button>
                     </div>
                 </div>
             `).join('');
         }
 
+        function pickSize(el){ el.parentElement.querySelectorAll('span').forEach(s=>s.classList.remove('sel')); el.classList.add('sel'); }
+        function setFilter(cat){
+            const btn=[...document.querySelectorAll('.filter-btn')].find(b=>b.dataset.cat===cat);
+            if(btn){ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+            renderProducts(cat);
+            document.getElementById('nuevos').scrollIntoView({behavior:'smooth'});
+        }
+        function toggleWish(id,el){
+            wish = wish.includes(id) ? wish.filter(x=>x!==id) : [...wish,id];
+            localStorage.setItem('zypher-wish',JSON.stringify(wish));
+            el.classList.toggle('on');
+        }
         function addToCart(id){
             const p = products.find(x=>x.id===id);
-            if(!cart.find(x=>x.id===id)){
-                cart.push({...p,qty:1});
-            } else {
-                cart.find(x=>x.id===id).qty++;
-            }
+            const found = cart.find(x=>x.id===id);
+            if(found){ found.qty++; } else { cart.push({...p,qty:1}); }
             localStorage.setItem('zypher-cart',JSON.stringify(cart));
             updateCart();
             toggleCart();
         }
-
         function removeFromCart(id){
             cart = cart.filter(x=>x.id!==id);
             localStorage.setItem('zypher-cart',JSON.stringify(cart));
             updateCart();
         }
-
+        function cartTotal(){ return cart.reduce((s,x)=>s+x.price*x.qty,0); }
         function updateCart(){
             document.getElementById('cart-count').textContent = cart.reduce((s,x)=>s+x.qty,0);
-            const total = cart.reduce((s,x)=>s+x.price*x.qty,0);
-            document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+            const total = cartTotal();
+            document.getElementById('cartTotal').textContent = money(total);
+            const bar = document.getElementById('shipBar');
+            if(total>=FREE_SHIP){ bar.innerHTML = '🎉 <b>¡Tienes envío gratis!</b>'; }
+            else { bar.innerHTML = `Te faltan <b>${money(FREE_SHIP-total)}</b> para envío gratis<div class="ship-track"><div class="ship-fill" style="width:${Math.min(100,total/FREE_SHIP*100)}%"></div></div>`; }
             const itemsEl = document.getElementById('cartItems');
             if(cart.length===0){itemsEl.innerHTML='<div class="cart-empty">Tu carrito está vacío</div>';return;}
             itemsEl.innerHTML = cart.map(x=>`
@@ -381,16 +463,46 @@
                     <img src="${x.image}" alt="${x.name}">
                     <div class="item-info">
                         <h4>${x.name}</h4>
-                        <div class="item-price">$${x.price} × ${x.qty}</div>
+                        <div class="item-price">${money(x.price)} × ${x.qty}</div>
                         <button class="remove-item" onclick="removeFromCart(${x.id})">Eliminar</button>
                     </div>
                 </div>
             `).join('');
         }
-
         function toggleCart(){
             document.getElementById('cartOverlay').classList.toggle('open');
             document.getElementById('cartDrawer').classList.toggle('open');
+        }
+
+        const CHECKOUT_FORM = document.getElementById('checkoutCard').innerHTML;
+        function openCheckout(){
+            if(cart.length===0){ alert('Tu carrito está vacío. Agrega un producto primero.'); return; }
+            document.getElementById('checkoutCard').innerHTML = CHECKOUT_FORM;
+            payMethod = 'Tarjeta demo';
+            document.getElementById('coTotal').textContent = money(cartTotal());
+            document.getElementById('coPay').textContent = 'Pagar ' + money(cartTotal());
+            document.getElementById('checkoutModal').classList.add('open');
+        }
+        function closeCheckout(){ document.getElementById('checkoutModal').classList.remove('open'); }
+        function pickPay(el){
+            document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('on'));
+            el.classList.add('on');
+            payMethod = el.dataset.pay;
+        }
+        function pay(){
+            const btn = document.getElementById('coPay');
+            btn.disabled = true; btn.textContent = 'Procesando pago…';
+            setTimeout(()=>{
+                const id = 'ZY-' + Math.floor(1000 + Math.random()*9000);
+                document.getElementById('checkoutCard').innerHTML = `
+                    <button class="modal-close-x" onclick="closeCheckout()">✕</button>
+                    <div class="modal-ok">
+                        <div class="tick">✓</div>
+                        <h3>PEDIDO CONFIRMADO</h3>
+                        <p>Pedido <span class="order-id">#${id}</span> · ${payMethod} (demo)<br>Te escribimos por WhatsApp para coordinar la entrega.</p>
+                        <button class="modal-pay" style="margin-top:22px" onclick="cart=[];localStorage.removeItem('zypher-cart');updateCart();closeCheckout()">Seguir comprando</button>
+                    </div>`;
+            }, 900);
         }
 
         // Filter buttons
@@ -398,8 +510,7 @@
             btn.addEventListener('click',()=>{
                 document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
                 btn.classList.add('active');
-                const cat = btn.textContent.toLowerCase();
-                renderProducts(cat==='todos'?'all':cat);
+                renderProducts(btn.dataset.cat);
             });
         });
 
@@ -450,15 +561,14 @@
 <section style="background:#2D1B36;color:#fff;font-family:Nunito,system-ui,Arial,sans-serif">
   <div style="max-width:1100px;margin:0 auto;padding:64px 26px">
     <span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#E8B84B">Caso — negolo</span>
-    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">ZYPHER — Ecommerce de Zapatillas</h2>
-    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Ecommerce completo: catálogo de productos, filtros, ficha de producto, carrito con totales en vivo y checkout.</p>
+    <h2 style="margin:14px 0 12px;font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.02em;font-weight:900">ZYPHER — Tienda de Zapatillas</h2>
+    <p style="max-width:70ch;color:#C9BBD6;font-size:16px;line-height:1.65">Tienda en WordPress + WooCommerce: catálogo con filtros, ficha con tallas 37-44, wishlist, carrito drawer con envío gratis desde S/149, checkout peruano con IGV y pago demo (aprobado / rechazado / pendiente).</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px">
       <a href="https://wa.me/51930227652?text=Hola%20negolo%2C%20vi%20este%20proyecto%20en%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#E8B84B;color:#2D1B36;font-weight:900;text-decoration:none;padding:15px 26px;border-radius:999px">Quiero algo así · WhatsApp</a>
       <a href="/#portafolio" style="display:inline-flex;align-items:center;color:#E8B84B;font-weight:800;text-decoration:none;padding:15px 22px;border:2px solid rgba(232,184,75,.45);border-radius:999px">← Ver más proyectos</a>
     </div>
   </div>
 </section>
-
 
 <!-- demo back button -->
 <a href="./" style="position:fixed;left:18px;bottom:18px;z-index:99999;background:#E8B84B;color:#2D1B36;font-family:Nunito,system-ui,Arial,sans-serif;font-weight:900;text-decoration:none;padding:13px 22px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.35)">← Volver al caso</a>
