@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BROTE — Cosmética Natural | Caso de estudio</title>
+    <meta
+      name="description"
+      content="Caso de estudio: tienda demo BROTE (WordPress + WooCommerce) de cosmética natural peruana con rutina interactiva AM/PM por tipo de piel, kits con ahorro, reseñas con foto, creadoras con código y checkout peruano con pasarela simulada."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fbf8f6;
+        --surface: #ffffff;
+        --ink: #2b2327;
+        --muted: #7a6f72;
+        --line: #ebe2e0;
+        --accent: #b76e79;
+        --accent-dark: #9a5560;
+        --salvia: #9caf88;
+        --salvia-dark: #5f7250;
+        --green: #4e7c59;
+        --soft: rgba(183, 110, 121, 0.12);
+        --display: "Cormorant Garamond", Georgia, serif;
+        --body: "Satoshi", -apple-system, sans-serif;
+        --mono: "IBM Plex Mono", monospace;
+        --r-lg: 18px;
+        --r-md: 14px;
+        --shadow: 0 18px 50px -22px rgba(43, 35, 39, 0.24);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -0.005em; line-height: 1.15; }
+      .mono { font-family: var(--mono); }
+      .container { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
+      img { max-width: 100%; display: block; }
+
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        background: rgba(251, 248, 246, 0.92);
+        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+      .brand { font-family: var(--display); font-weight: 600; font-size: 26px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; }
+      .brand em { font-style: normal; color: var(--accent-dark); }
+      .nav-links { display: flex; align-items: center; gap: 18px; }
+      .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+      .nav-links a:hover { color: var(--ink); }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: linear-gradient(135deg, #8f4e58, #a85d68); color: #fff; text-decoration: none;
+        border-radius: 12px; padding: 11px 20px; font-weight: 600; font-size: 14px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(143, 78, 88, 0.6); }
+      .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+      .btn-ghost:hover { border-color: var(--accent-dark); color: var(--accent-dark); box-shadow: none; }
+
+      .hero { padding: 72px 0 30px; }
+      .kicker {
+        display: inline-block; font-family: var(--mono); font-size: 11.5px;
+        letter-spacing: 1.6px; text-transform: uppercase; color: var(--salvia-dark);
+        background: rgba(156, 175, 136, 0.2); border: 1px solid rgba(156, 175, 136, 0.55);
+        border-radius: 50px; padding: 7px 16px; margin-bottom: 22px;
+      }
+      .hero h1 { font-size: clamp(40px, 5.6vw, 68px); max-width: 20ch; }
+      .hero h1 span { color: var(--accent-dark); }
+      .lead { color: var(--muted); font-size: 18px; max-width: 64ch; margin: 18px 0 30px; }
+      .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 26px 0 34px; }
+      .meta div { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 14px 16px; }
+      .meta .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); }
+      .meta .v { font-weight: 600; font-size: 14.5px; margin-top: 4px; }
+      .shot { border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); background: var(--surface); }
+      .shot img { width: 100%; }
+      .shot-cap { font-family: var(--mono); font-size: 11.5px; color: var(--muted); letter-spacing: 0.6px; padding: 12px 16px; border-top: 1px solid var(--line); }
+      .note { font-family: var(--mono); font-size: 12px; color: var(--salvia-dark); letter-spacing: 0.4px; margin-top: 12px; }
+
+      section { padding: 72px 0; }
+      section.tight { padding: 46px 0; }
+      h2 { font-size: clamp(30px, 3.8vw, 46px); margin-bottom: 14px; }
+      .sub { color: var(--muted); max-width: 68ch; margin-bottom: 34px; }
+      .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px; }
+      .card h3 { font-size: 26px; margin-bottom: 10px; }
+      .card p { color: var(--muted); font-size: 15px; }
+      .list { list-style: none; margin-top: 12px; }
+      .list li { color: var(--muted); font-size: 14.5px; padding: 7px 0 7px 22px; position: relative; }
+      .list li::before { content: "✦"; position: absolute; left: 0; color: var(--accent); font-size: 12px; }
+
+      .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+      .swatch { border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+      .swatch .chip { height: 64px; }
+      .swatch .lbl { font-family: var(--mono); font-size: 10.5px; padding: 9px 10px; color: var(--muted); letter-spacing: 0.5px; }
+      .fonts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+      .font-card { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 18px; }
+      .font-card .demo { font-size: 28px; margin-bottom: 8px; }
+      .font-card .fname { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.8px; }
+
+      .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px; }
+      .feature .n { font-family: var(--mono); font-size: 11px; color: var(--salvia-dark); letter-spacing: 1.4px; }
+      .feature h3 { font-size: 21px; margin: 8px 0 6px; }
+      .feature p { color: var(--muted); font-size: 13.5px; }
+
+      .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .gallery .wide { grid-column: 1 / -1; }
+
+      .cta {
+        background: var(--ink); color: var(--bg); border-radius: var(--r-lg);
+        padding: 46px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      }
+      .cta h2 { color: var(--bg); margin: 0; }
+      .cta p { color: rgba(251, 248, 246, 0.72); max-width: 46ch; }
+      .cta .btn { background: linear-gradient(135deg, #b76e79, #c98b93); }
+      .cta .btn:hover { background: linear-gradient(135deg, #9a5560, #b76e79); }
+
+      footer { padding: 40px 0 56px; color: var(--muted); font-size: 13.5px; }
+      footer a { color: var(--accent-dark); text-decoration: none; }
+
+      @media (max-width: 900px) {
+        .meta { grid-template-columns: 1fr 1fr; }
+        .cols, .gallery { grid-template-columns: 1fr; }
+        .features { grid-template-columns: 1fr; }
+        .swatches { grid-template-columns: repeat(3, 1fr); }
+        .fonts { grid-template-columns: 1fr; }
+        .nav-links a:not(.btn) { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="/#portafolio">BROTE<em>.</em></a>
+        <div class="nav-links">
+          <a href="#resumen">Resumen</a>
+          <a href="#diseno">Diseño</a>
+          <a href="#capturas">Capturas</a>
+          <a class="btn" href="demo.html">Ver demo</a>
+          <a class="btn btn-ghost" href="/#portafolio">← Portafolio</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero container">
+      <span class="kicker">Caso de estudio · Skincare natural con rutinas y kits</span>
+      <h1>BROTE — cosmética natural que <span>muestra sus activos</span></h1>
+      <p class="lead">
+        Tienda demo en WordPress + WooCommerce para marcas de skincare peruanas:
+        <strong>rutina interactiva AM/PM por tipo de piel</strong> que se agrega al carrito con −10 %,
+        <strong>kits con ahorro visible</strong>, <strong>reseñas con foto y compra verificada</strong> y
+        <strong>creadoras con código copiable</strong>. Checkout peruano con IGV y pasarela simulada.
+      </p>
+      <div class="meta">
+        <div><div class="k">Rol</div><div class="v">Diseño + desarrollo</div></div>
+        <div><div class="k">Stack</div><div class="v">WordPress · WooCommerce · Blocksy</div></div>
+        <div><div class="k">Base</div><div class="v">Child theme propio + plugin de pagos demo</div></div>
+        <div><div class="k">Año</div><div class="v">2026</div></div>
+      </div>
+      <div class="shot">
+        <img src="preview.png" alt="Home de BROTE: hero con flat lay de frascos ámbar y pétalos, titular Cormorant y acentos rosa arcilla" />
+        <div class="shot-cap">HOME · hero «Menos promesas, mejores fórmulas» con flat lay botánico, barra de confianza (sin parabenos · cruelty free · testado dermatológicamente) y marquesina de tipos de piel</div>
+      </div>
+    </header>
+
+    <section id="resumen" class="container">
+      <h2>El encargo</h2>
+      <p class="sub">Una tienda demo del rubro belleza —pensada para marcas de cosmética natural y emprendedoras— lista para clonar a un cliente real, con módulos propios de skincare que la base e-commerce no traía.</p>
+      <div class="cols">
+        <article class="card">
+          <h3>Reto</h3>
+          <p>
+            Partir de una base e-commerce probada (NEXA) y convertirla en una marca de skincare con identidad
+            editorial botánica: quitar los módulos técnicos (comparador, garantía, cuotas) y sumar los que una
+            marca de belleza necesita para vender.
+          </p>
+          <ul class="list">
+            <li>Rutina interactiva AM/PM para 4 tipos de piel, con «Agregar rutina completa (−10 %)»</li>
+            <li>Kits con ahorro visible y chips «Ahorras S/ 44 / S/ 50»</li>
+            <li>Reseñas con foto y «Compra verificada» + creadoras con cupones reales (ANA10/LUZ10/SOF10)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Solución</h3>
+          <p>
+            Child theme propio sobre Blocksy con tokens documentados (hueso / rosa arcilla / salvia) y tipografía
+            editorial (Cormorant Garamond + Satoshi + IBM Plex Mono). Cada producto declara su paso de rutina,
+            activos, pH y % en la ficha; el catálogo se filtra por tipo de piel con el atributo global
+            <span class="mono">pa_tipo-piel</span>.
+          </p>
+          <ul class="list">
+            <li>Diseño botánico: Cormorant Garamond + Satoshi + IBM Plex Mono</li>
+            <li>25 fotos con dirección de arte única (fondo crema #FBF8F6, luz difusa, botánica mínima)</li>
+            <li>Checkout peruano: DNI/RUC, distrito, IGV incluido, envío gratis desde S/149</li>
+            <li>Revisión anti-IA independiente aprobada con 9.27/10</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="diseno" class="container">
+      <h2>Sistema de diseño</h2>
+      <p class="sub">Tokens en <span class="mono">:root</span>, documentados en <span class="mono">docs/SISTEMA-DISENO.md</span> y aplicados en todo el sitio.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#FBF8F6"></div><div class="lbl">#FBF8F6 · hueso</div></div>
+        <div class="swatch"><div class="chip" style="background:#2B2327"></div><div class="lbl">#2B2327 · tinta</div></div>
+        <div class="swatch"><div class="chip" style="background:#B76E79"></div><div class="lbl">#B76E79 · rosa arcilla</div></div>
+        <div class="swatch"><div class="chip" style="background:#9A5560"></div><div class="lbl">#9A5560 · CTA AA</div></div>
+        <div class="swatch"><div class="chip" style="background:#9CAF88"></div><div class="lbl">#9CAF88 · salvia</div></div>
+        <div class="swatch"><div class="chip" style="background:#4E7C59"></div><div class="lbl">#4E7C59 · verificado</div></div>
+      </div>
+      <div class="fonts">
+        <div class="font-card"><div class="demo" style="font-family:var(--display)">Aa Gg Ñn</div><div class="fname">Cormorant Garamond · títulos</div></div>
+        <div class="font-card"><div class="demo" style="font-family:var(--body)">Aa Gg Ñn</div><div class="fname">Satoshi (Fontshare) · cuerpo</div></div>
+        <div class="font-card"><div class="demo mono">pH 3.5 · 15% · BR-001</div><div class="fname">IBM Plex Mono · pH, % y SKU</div></div>
+      </div>
+    </section>
+
+    <section class="container tight">
+      <h2>Funcionalidades clave</h2>
+      <div class="features">
+        <div class="feature"><div class="n">01</div><h3>Rutina interactiva AM/PM</h3><p>Selector por tipo de piel (seca, grasa, mixta, sensible) con pasos de mañana y noche, notas por paso y resumen deduplicado. «Agregar rutina completa (−10 %)» agrega todo y aplica el cupón RUTINA10.</p></div>
+        <div class="feature"><div class="n">02</div><h3>Kits con ahorro</h3><p>Kit Rutina Básica (−22 %, ahorras S/ 44) y Kit Anti-Manchas (−20 %, ahorras S/ 50), con chip de ahorro calculado en la tarjeta y la ficha.</p></div>
+        <div class="feature"><div class="n">03</div><h3>Reseñas con foto</h3><p>Tres reseñas con imagen propia, estrellas, nombre, distrito y badge «Compra verificada»; foto del producto o del tocador, sin rostros.</p></div>
+        <div class="feature"><div class="n">04</div><h3>Creadoras con código</h3><p>Sección «Creadoras que lo usan» con tres códigos copiables al portapapeles (ANA10 · LUZ10 · SOF10), creados como cupones reales usables en el carrito.</p></div>
+        <div class="feature"><div class="n">05</div><h3>Ficha con activos y pH</h3><p>Cada ficha muestra «Paso X de tu rutina», activos principales en lista, <span class="mono">%</span> y <span class="mono">pH</span> en mono, modo de uso, sello cruelty free y tabs de ingredientes/envíos/devoluciones.</p></div>
+        <div class="feature"><div class="n">06</div><h3>Checkout peruano + pago demo</h3><p>DNI/RUC validado, teléfono, distrito, IGV incluido, envío gratis desde S/149 y botón «Pedir por WhatsApp». Pasarela simulada con aprobado/rechazado/pendiente y metabox en el admin.</p></div>
+      </div>
+    </section>
+
+    <section id="capturas" class="container">
+      <h2>Capturas</h2>
+      <p class="sub">Home completa, tienda, ficha, rutina, kits, carrito, checkout, recibo, admin y móvil — renderizadas desde el sitio en vivo. 12 productos (BR-001..BR-012) en 4 categorías: Sérums y activos · Limpieza · Hidratación y SPF · Kits y rutinas.</p>
+      <div class="gallery">
+        <div class="shot wide">
+          <img src="fullpage.png" alt="Página completa de la home de BROTE" />
+          <div class="shot-cap">HOME · hero botánico, categorías, «Encuentra tu rutina», sérums, kits con ahorro, reseñas con foto, creadoras, blog y newsletter</div>
+        </div>
+        <div class="shot">
+          <img src="producto.png" alt="Ficha del Sérum Vitamina C 15% con paso de rutina, activos y pH" />
+          <div class="shot-cap">FICHA · «Paso 2 de tu rutina», activos con <span class="mono">15%</span> y <span class="mono">pH 3.5</span>, modo de uso, sello cruelty free y relacionados</div>
+        </div>
+        <div class="shot">
+          <img src="rutina.png" alt="Página de Rutinas de BROTE con selector de tipo de piel y pasos AM/PM" />
+          <div class="shot-cap">RUTINA · selector por tipo de piel, pasos AM/PM numerados con producto y nota, y «Agregar rutina completa (−10 %)»</div>
+        </div>
+        <div class="shot">
+          <img src="kits.png" alt="Página de Kits de BROTE con ahorro visible" />
+          <div class="shot-cap">KITS · Rutina Básica y Anti-Manchas con ahorro S/ 44 y S/ 50 y tarjeta de pasos</div>
+        </div>
+        <div class="shot">
+          <img src="tienda.png" alt="Tienda de BROTE con filtros por tipo de piel y precio" />
+          <div class="shot-cap">TIENDA · filtros por tipo de piel (<span class="mono">pa_tipo-piel</span>), rango de precio y solo en stock + chips de categoría</div>
+        </div>
+        <div class="shot">
+          <img src="drawer.png" alt="Drawer de carrito de BROTE con la nota de envío gratis" />
+          <div class="shot-cap">DRAWER · carrito lateral con «Te faltan S/ 60.00 para envío gratis» correctamente calculado con IGV</div>
+        </div>
+        <div class="shot">
+          <img src="carrito.png" alt="Carrito de BROTE con la rutina completa y el cupón RUTINA10" />
+          <div class="shot-cap">CARRITO · rutina completa de 5 productos con RUTINA10 (−S/ 34.10) y envío gratis</div>
+        </div>
+        <div class="shot">
+          <img src="checkout.png" alt="Checkout peruano de BROTE" />
+          <div class="shot-cap">CHECKOUT · DNI/RUC, teléfono, distrito, envío Lima 24-48 h, IGV incluido y pago demo</div>
+        </div>
+        <div class="shot">
+          <img src="recibo.png" alt="Recibo de pago aprobado de BROTE" />
+          <div class="shot-cap">RECIBO · pago aprobado (demo) con tarjeta **** 1111 y total con IGV desglosado</div>
+        </div>
+        <div class="shot">
+          <img src="admin.png" alt="Pedido en el admin de BROTE con el metabox de la pasarela" />
+          <div class="shot-cap">ADMIN · pedido con DNI/distrito y metabox «MP Sim (Demo)» para aprobar, rechazar o dejar pendiente</div>
+        </div>
+        <div class="shot">
+          <img src="mobile.png" alt="Home de BROTE en móvil" />
+          <div class="shot-cap">MÓVIL · 390 px sin scroll horizontal, con rutina, kits, reseñas y creadoras apilados</div>
+        </div>
+        <div class="shot">
+          <img src="mobile-checkout.png" alt="Checkout de BROTE en móvil" />
+          <div class="shot-cap">MÓVIL · checkout usable a 390 px con FAB de WhatsApp sin tapar campos</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container tight">
+      <div class="cta">
+        <div>
+          <h2>Demo en vivo</h2>
+          <p>El sitio corre en LocalWP (<span class="mono">brote-skincare.local</span>). Incluye rutina interactiva, kits, reseñas, códigos de creadoras, pedidos de prueba y guion de demo de 3 minutos. <strong>Demo en VPS pendiente de montaje.</strong></p>
+        </div>
+        <a class="btn" href="demo.html">Abrir demo →</a>
+      </div>
+      <p class="note">Demo en VPS pendiente de montaje · entorno local (LocalWP).</p>
+    </section>
+
+    <footer class="container">
+      <p>Caso de estudio BROTE · Diseño y desarrollo por <a href="/#portafolio">Piero Letich</a> · 2026</p>
+    </footer>
+  </body>
+</html>
