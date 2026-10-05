@@ -132,9 +132,21 @@
   .tier ul{list-style:none;margin:18px 0 22px;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:var(--muted)}
   .tier li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:8px}
   .tier .btn{margin-top:auto;justify-content:center;padding:13px 20px;font-size:14px}
-  .extras{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
-  .extra{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:13.5px;font-weight:700;color:var(--muted)}
-  .extra b{color:var(--plum)}
+  .plandet{margin-top:26px;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:22px}
+.plandet>h3{font-size:16px;font-weight:900;color:var(--plum);margin:0 0 16px;display:flex;align-items:center;gap:9px}
+.plandet>h3::before{content:"";width:22px;height:2.5px;background:var(--gold);border-radius:2px}
+.plandet__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pd-card{background:var(--lav);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.pd-card .pd-ic{width:36px;height:36px;border-radius:11px;background:rgba(232,184,75,.16);border:1px solid rgba(232,184,75,.32);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:10px}
+.pd-card h4{font-size:15px;font-weight:900;color:var(--plum);margin:0 0 8px}
+.pd-card h4 span{font-weight:700;color:var(--muted);font-size:12px}
+.pd-card ul{list-style:none;margin:0;padding:0}
+.pd-card li{position:relative;padding:5px 0 5px 14px;font-size:13px;color:var(--muted);font-weight:600;line-height:1.5}
+.pd-card li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.pd-card li b{color:var(--plum)}
+@media (max-width:900px){.plandet__grid{grid-template-columns:1fr}}
+  
+  
   .guarantee{margin-top:22px;display:flex;gap:12px;align-items:flex-start;background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.35);border-radius:14px;padding:16px 18px;font-size:14px;font-weight:600}
   /* ---------- process ---------- */
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;counter-reset:s}
@@ -344,12 +356,38 @@
         <a class="btn btn--ghost" data-wa="Hola negolo, quiero cotizar un sistema a medida / chatbot / app" href="#">Pedir cotización gratis</a>
       </div>
     </div>
-    <div class="extras rv">
-      <span class="extra">Todos los precios <b>+ IGV</b></span>
-      <span class="extra">Renovación anual: Landing <b>S/149</b> · Corporativa <b>S/249</b> · Tienda <b>S/399</b></span>
-      <span class="extra">Dominio a tu nombre desde el año 2 (~S/55/año) · gestión negolo <b>+S/60/año</b></span>
-      <span class="extra">+<b>S/60</b> por cada 10 GB adicionales al año</span>
-      <span class="extra">Dominio <b>.pe</b>: + S/199 · Secciones extra: <b>cotización gratis</b></span>
+    <div class="plandet rv">
+      <h3>Todo claro desde el inicio</h3>
+      <div class="plandet__grid">
+        <div class="pd-card">
+          <div class="pd-ic">🌐</div>
+          <h4>Dominio</h4>
+          <ul>
+            <li><b>Incluido el 1.er año</b> (.com) y queda a tu nombre.</li>
+            <li>Año 2 en adelante: lo renuevas tú (~S/ 55/año) o <b>lo gestionamos por +S/ 60/año</b>.</li>
+            <li>Dominio <b>.pe</b>: + S/ 199.</li>
+          </ul>
+        </div>
+        <div class="pd-card">
+          <div class="pd-ic">🔁</div>
+          <h4>Renovación anual <span>(año 2+)</span></h4>
+          <ul>
+            <li>Landing <b>S/ 149</b> · Corporativa <b>S/ 249</b> · Tienda <b>S/ 399</b>.</li>
+            <li>Incluye hosting, respaldos, CDN y monitoreo.</li>
+            <li><b>No incluye el dominio</b> — va aparte, siempre a tu nombre.</li>
+          </ul>
+        </div>
+        <div class="pd-card">
+          <div class="pd-ic">➕</div>
+          <h4>Extras</h4>
+          <ul>
+            <li>Espacio adicional: <b>+S/ 60</b> por cada 10 GB al año.</li>
+            <li>Correo adicional: <b>+S/ 30/año</b>.</li>
+            <li>Secciones o funciones extra: <b>cotización gratis</b>.</li>
+            <li>Todos los precios <b>+ IGV</b>.</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="guarantee rv">
       <span style="font-size:20px">🔒</span>
