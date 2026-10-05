@@ -103,6 +103,49 @@
   .card p{color:var(--muted);font-size:14.5px}
   .card ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:var(--muted)}
   .card li::before{content:"✓";color:#1f9d55;font-weight:900;margin-right:8px}
+  /* ---------- servicios v2 ---------- */
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .svc__card{position:relative;display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--sh-1);transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s cubic-bezier(.2,.7,.3,1),border-color .35s}
+  .svc__card:hover{transform:translateY(-5px);box-shadow:var(--sh-2);border-color:rgba(232,184,75,.55)}
+  .svc__card h3{font-size:19px;margin:18px 0 8px}
+  .svc__card p{color:var(--muted);font-size:14.5px;margin:0}
+  .svc__vis{height:96px;display:flex;align-items:center}
+  .svc__tags{margin-top:auto;padding-top:16px;display:flex;gap:7px;flex-wrap:wrap;border-top:1px solid var(--line)}
+  .svc__tags span{font-size:10.5px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--lav);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+  .svc__card--dark{background:var(--plum);border-color:rgba(232,184,75,.22)}
+  .svc__card--dark h3{color:var(--white)}
+  .svc__card--dark p{color:var(--muted-d)}
+  .svc__card--dark .svc__tags{border-top-color:rgba(255,255,255,.14)}
+  .svc__card--dark .svc__tags span{background:rgba(232,184,75,.1);border-color:rgba(232,184,75,.3);color:var(--gold-soft)}
+  .svc__card--dark:hover{border-color:rgba(232,184,75,.6);box-shadow:0 24px 60px rgba(45,27,54,.45)}
+  .sv-browser{width:150px;background:var(--lav);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .sv-browser span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--muted-d);margin-right:4px}
+  .sv-browser i{display:block;height:6px;border-radius:3px;background:rgba(45,27,54,.18);margin-top:7px}
+  .sv-browser i.w2{width:68%}
+  .sv-browser b{display:block;width:46px;height:14px;border-radius:5px;background:var(--gold);margin-top:9px}
+  .sv-stack{width:150px;display:flex;flex-direction:column;gap:6px}
+  .sv-stack i{display:block;height:11px;border-radius:4px;background:var(--lav);border:1px solid var(--line)}
+  .sv-stack i:nth-child(2){width:82%}
+  .sv-stack i:nth-child(3){width:62%;background:rgba(232,184,75,.3);border-color:rgba(232,184,75,.5)}
+  .sv-prod{width:132px;background:var(--plum-2);border:1px solid rgba(232,184,75,.28);border-radius:12px;padding:10px}
+  .sv-prod .im{height:46px;border-radius:8px;background:linear-gradient(135deg,rgba(232,184,75,.4),rgba(232,184,75,.08))}
+  .sv-prod .pr{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
+  .sv-prod .pr i{display:block;width:48px;height:6px;border-radius:3px;background:rgba(255,255,255,.25)}
+  .sv-prod .pr b{font-size:11px;font-weight:900;color:var(--gold)}
+  .sv-phone{width:64px;height:88px;border:2px solid var(--plum);border-radius:14px;padding:7px;display:flex;flex-direction:column;gap:5px}
+  .sv-phone i{display:block;height:8px;border-radius:3px;background:var(--lav)}
+  .sv-phone i:nth-child(2){width:70%;background:rgba(232,184,75,.5)}
+  .sv-phone i:nth-child(3){width:48%}
+  .sv-chat{display:flex;flex-direction:column;gap:6px;max-width:190px}
+  .sv-chat span{background:rgba(255,255,255,.94);color:var(--plum);font-size:10.5px;font-weight:700;padding:6px 10px;border-radius:10px 10px 10px 3px;width:max-content;max-width:100%}
+  .sv-chat span.in{align-self:flex-end;background:var(--gold);border-radius:10px 10px 3px 10px}
+  .sv-swatch{display:flex;align-items:center}
+  .sv-swatch .dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--white);box-shadow:0 0 0 1px var(--line);margin-left:-8px}
+  .sv-swatch .dot:first-child{margin-left:0}
+  .sv-swatch .aa{font-size:26px;font-weight:900;color:var(--plum);margin-left:8px}
+  @media (max-width:900px){.svc{grid-template-columns:1fr 1fr}}
+  @media (max-width:620px){.svc{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){.svc__card{transition:none}}
   /* ---------- portfolio ---------- */
   .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
   .filters button{border:1px solid var(--line);background:var(--white);color:var(--plum);border-radius:999px;padding:9px 16px;font-weight:800;font-size:13.5px;cursor:pointer;font-family:inherit}
@@ -364,7 +407,7 @@
           <h4>Dominio</h4>
           <ul>
             <li><b>Incluido el 1.er año</b> (.com) y queda a tu nombre.</li>
-            <li>Año 2 en adelante: lo renuevas tú (~S/ 55/año) o <b>lo gestionamos por +S/ 60/año</b>.</li>
+            <li>Año 2 en adelante: <b>renovación S/ 60/año</b>, siempre a tu nombre — nosotros la gestionamos.</li>
             <li>Dominio <b>.pe</b>: + S/ 199.</li>
           </ul>
         </div>
@@ -403,13 +446,43 @@
       <h2>Todo lo que tu negocio necesita para vender online</h2>
       <p class="lead">No hacemos plantillas genéricas: cada proyecto se diseña a medida, con foco en conversión, velocidad y que tú puedas administrarlo sin depender de nadie.</p>
     </div>
-    <div class="cards">
-      <div class="card rv"><div class="ic">01</div><h3>Landing pages</h3><p>Una página rápida y directa, pensada para que el visitante te escriba o te compre.</p><ul><li>Diseño a medida</li><li>Botón de WhatsApp y formularios</li><li>Lista en 3-5 días</li></ul></div>
-      <div class="card rv"><div class="ic">02</div><h3>Webs corporativas</h3><p>Sitios de 5 a 8 secciones para presentar tu empresa, servicios y equipo con seriedad.</p><ul><li>Estructura clara y SEO básico</li><li>Autoadministrable</li><li>Dominio y correos incluidos</li></ul></div>
-      <div class="card rv"><div class="ic">03</div><h3>Tiendas y catálogos</h3><p>Vende online con carrito, pagos y gestión de pedidos simple.</p><ul><li>Shopify o WooCommerce</li><li>Pagos y envíos configurados</li><li>Capacitación para tu equipo</li></ul></div>
-      <div class="card rv"><div class="ic">04</div><h3>Apps móviles</h3><p>Aplicaciones nativas para Android y iOS conectadas a tu web, tu CRM o tu sistema de ventas.</p><ul><li>React Native / Flutter (una base, dos tiendas)</li><li>Login, perfiles, notificaciones push y geolocalización</li><li>Pagos dentro de la app y modo offline</li><li>Publicación y actualizaciones en Play Store y App Store</li><li>Panel de administración para tu equipo</li></ul></div>
-      <div class="card rv"><div class="ic">05</div><h3>Chatbots y automatización</h3><p>Un asistente que atiende 24/7, filtra consultas y agenda citas mientras tú trabajas.</p><ul><li>WhatsApp Business API y chat en tu web</li><li>Entrenado con <b>tu</b> información: precios, horarios, servicios</li><li>Cotiza, agenda y toma pedidos solo</li><li>Deriva a un humano cuando hace falta</li><li>CRM, Google Sheets, Shopify y pasarelas de pago</li><li>Automatizaciones: recordatorios, seguimiento y reportes</li></ul></div>
-      <div class="card rv"><div class="ic">06</div><h3>Diseño y marca</h3><p>Identidad completa y coherente: la misma imagen en tu web, tus redes y tu local.</p><ul><li>Logo (vectorial AI/SVG + PNG para web)</li><li>Manual de marca: paleta, tipografías y usos</li><li>Tarjetas, banners, menús y packaging</li><li>Plantillas para Instagram y Facebook</li><li>Packaging y material impreso listo para imprenta</li></ul></div>
+    <div class="svc">
+      <article class="svc__card rv">
+        <div class="svc__vis"><div class="sv-browser"><span></span><span></span><span></span><i></i><i class="w2"></i><b></b></div></div>
+        <h3>Landing pages</h3>
+        <p>Una página rápida y directa, pensada para que el visitante te escriba o te compre.</p>
+        <div class="svc__tags"><span>3-5 días</span><span>Botón WhatsApp</span><span>Formulario</span></div>
+      </article>
+      <article class="svc__card rv">
+        <div class="svc__vis"><div class="sv-stack"><i></i><i></i><i></i></div></div>
+        <h3>Webs corporativas</h3>
+        <p>Sitios de 5 a 8 secciones para presentar tu empresa, servicios y equipo con seriedad.</p>
+        <div class="svc__tags"><span>SEO básico</span><span>Autoadministrable</span><span>Dominio + correos</span></div>
+      </article>
+      <article class="svc__card svc__card--dark rv">
+        <div class="svc__vis"><div class="sv-prod"><div class="im"></div><div class="pr"><i></i><b>S/ 99</b></div></div></div>
+        <h3>Tiendas y catálogos</h3>
+        <p>Vende online con carrito, pagos y gestión de pedidos simple.</p>
+        <div class="svc__tags"><span>WooCommerce</span><span>Pagos y envíos</span><span>Capacitación</span></div>
+      </article>
+      <article class="svc__card rv">
+        <div class="svc__vis"><div class="sv-phone"><i></i><i></i><i></i></div></div>
+        <h3>Apps móviles</h3>
+        <p>Aplicaciones para Android y iOS conectadas a tu web, tu CRM o tu sistema de ventas.</p>
+        <div class="svc__tags"><span>Android + iOS</span><span>Push y GPS</span><span>Play Store y App Store</span></div>
+      </article>
+      <article class="svc__card svc__card--dark rv">
+        <div class="svc__vis"><div class="sv-chat"><span>¿Tienen stock del polo azul?</span><span class="in">¡Sí! Te lo reservo 🙌</span></div></div>
+        <h3>Chatbots y automatización</h3>
+        <p>Un asistente que atiende 24/7, filtra consultas y agenda citas mientras tú trabajas.</p>
+        <div class="svc__tags"><span>WhatsApp + web</span><span>Entrenado con tu info</span><span>Deriva a humano</span></div>
+      </article>
+      <article class="svc__card rv">
+        <div class="svc__vis"><div class="sv-swatch"><span class="dot" style="background:#E8B84B"></span><span class="dot" style="background:#2D1B36"></span><span class="dot" style="background:#C9BBD6"></span><span class="aa">Aa</span></div></div>
+        <h3>Diseño y marca</h3>
+        <p>Identidad completa y coherente: la misma imagen en tu web, tus redes y tu local.</p>
+        <div class="svc__tags"><span>Logo SVG</span><span>Manual de marca</span><span>Piezas para redes</span></div>
+      </article>
     </div>
     <div class="tech rv">
       <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">WordPress</span><span class="chip">WooCommerce</span><span class="chip">Shopify</span><span class="chip">Three.js / WebGL</span><span class="chip">PWA</span>
