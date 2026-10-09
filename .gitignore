@@ -2,3 +2,10 @@
 qa-*.png
 *.log
 .DS_Store
+
+# Material de campana — solo local, no va al repo publico
+assets/marketing/reel-negolo-40s.mp4
+assets/marketing/guion-reel-v2.md
+assets/marketing/reel-fuentes/
+assets/marketing/planes/
+assets/marketing/redes/
