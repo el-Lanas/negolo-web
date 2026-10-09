@@ -1,4 +1,4 @@
-﻿# negolo — Plan de lanzamiento y promoción
+# negolo — Plan de lanzamiento y promoción
 
 > Generado el 26-sep-2026. Todo lo de este documento está listo para ejecutar.
 > Contacto: WhatsApp **930 227 652** · correo **atencionalcliente@negolo.com** · web **negolo.com**
@@ -18,16 +18,16 @@
 | Posts 1080×1080 | `assets/marketing/post-planes.png` · `assets/marketing/post-sinpago.png` |
 
 **Descripción (copiar tal cual):**
-> Desarrollo web, apps y chatbots para tu negocio. Landing Page S/299 (2 días), Web Corporativa S/499 (5 días) y Tienda Virtual S/699 (7 días). Sin pago previo: págas recién cuando apruebas tu web. Precios + IGV. Cotización gratis y sin compromiso 👉 WhatsApp 930 227 652
+> Desarrollo web, apps y chatbots para tu negocio. Landing Page S/399 (2 días), Web Corporativa S/599 (5 días) y Tienda Virtual S/799 (7 días). Sin pago previo: págas recién cuando apruebas tu web. Precios + IGV. Cotización gratis y sin compromiso 👉 WhatsApp 930 227 652
 
 ---
 
 ## 2. Los 10 posts iniciales (copy listo)
 
-1. **Lanzamiento** — "Nace negolo 🚀 Webs, apps y chatbots para negocios que quieren crecer en internet. Landing Page desde S/299 con dominio .com y hosting. Cotización gratis y sin pago previo."
-2. **Oferta Web Corporativa S/499** — "Tu web lista en 5 días: hasta 5 secciones + dominio .com + hosting + 3 correos por 1 año = S/499 (+ IGV). Sin costos sorpresa."
+1. **Lanzamiento** — "Nace negolo 🚀 Webs, apps y chatbots para negocios que quieren crecer en internet. Landing Page desde S/399 con dominio .com y hosting. Cotización gratis y sin pago previo."
+2. **Oferta Web Corporativa S/599** — "Tu web lista en 5 días: hasta 5 secciones + dominio .com + hosting + 3 correos por 1 año = S/599 (+ IGV). Sin costos sorpresa."
 3. **Antes / Después** — carrusel del portafolio (Valencia Visual) con la frase "¿Tu web actual espanta clientes?"
-4. **Cuánto cuesta una web** — video corto explicando los planes vigentes: S/299 landing (2 días), S/499 corporativa (5 días) y S/699 tienda (7 días).
+4. **Cuánto cuesta una web** — video corto explicando los planes vigentes: S/399 landing (2 días), S/599 corporativa (5 días) y S/799 tienda (7 días).
 5. **Casos: Valencia Visual** — "Sitio corporativo + configurador 3D de stands con marca diseñada desde cero. Hecho 100% con código."
 6. **Chatbots** — "Responde de noche, filtra consultas y agenda citas solo. Tu negocio atendiendo mientras duermes. A medida, cotización en el día."
 7. **Error común** — "3 errores que hacen que tu web no venda" (tip educativo, sin vender).
@@ -54,9 +54,9 @@
 **Calificación interna:** negocio · si tiene web · urgencia · presupuesto · si decide él o alguien más.
 
 **Propuesta (3 opciones siempre):**
-- S/299 **Landing Page** (1 página + dominio .com + hosting, entrega en 2 días)
-- **S/499 Web Corporativa** (hasta 5 secciones + dominio .com + hosting + 3 correos por 1 año, entrega en 5 días) ← recomendar (el más elegido)
-- S/699 **Tienda Virtual** (catálogo + carrito + pagos y envíos, entrega en 7 días)
+- S/399 **Landing Page** (1 página + dominio .com + hosting, entrega en 2 días)
+- **S/599 Web Corporativa** (hasta 5 secciones + dominio .com + hosting + 3 correos por 1 año, entrega en 5 días) ← recomendar (el más elegido)
+- S/799 **Tienda Virtual** (catálogo + carrito + pagos y envíos, entrega en 7 días)
 
 Todos los precios son **+ IGV**. Extras: dominio **.pe + S/199**, **mantenimiento S/199/año**. Para chatbots, apps, ERP/CRM o cualquier sistema a medida: **cotización en el día**.
 
@@ -68,7 +68,7 @@ Todos los precios son **+ IGV**. Extras: dominio **.pe + S/199**, **mantenimient
 
 **Semana 1-2 (orgánico, inversión S/0)**
 - Publicar los 10 posts (1 cada 2 días) + 1 reel por semana.
-- Marketplace: 2 avisos (Landing Page S/299 y Web Corporativa S/499) con CTA al chat. Nunca poner teléfono/correo/URL en la imagen ni en la descripción.
+- Marketplace: 2 avisos (Landing Page S/399 y Web Corporativa S/599) con CTA al chat. Nunca poner teléfono/correo/URL en la imagen ni en la descripción.
 - Grupos de Facebook: emprendedores Perú / Lima, negocios locales, ferias y emprendimiento. 1 aporte útil por día + comentario suave; no spam.
 
 **Semana 2+ (pago, empezar S/15/día)**
@@ -77,7 +77,7 @@ Todos los precios son **+ IGV**. Extras: dominio **.pe + S/199**, **mantenimient
 - 3 creativos A/B (post de los 3 planes con "sin pago previo", antes/después, "cotización gratis").
 - Escalar solo si **costo por mensaje < S/8**; apagar lo que no rinda.
 
-**KPIs semanales:** mensajes recibidos · costo por mensaje · % que pide precio · cierres · ticket promedio (meta S/499+).
+**KPIs semanales:** mensajes recibidos · costo por mensaje · % que pide precio · cierres · ticket promedio (meta S/599+).
 
 ---
 
